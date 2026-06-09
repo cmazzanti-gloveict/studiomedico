@@ -30,10 +30,10 @@
   <h2>Anteprima Riservata</h2>
   <p>Questo contenuto è riservato.<br>Inserisci il codice ricevuto via email per accedere.</p>
   <label for="code">Codice di accesso</label>
-  <input type="text" id="code" placeholder="XXXX-XXXX" maxlength="9" autocomplete="off"
+  <input type="text" id="code" placeholder="XXXX-XXXX" maxlength="11" autocomplete="off"
     oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')"
     onkeydown="if(event.key==='Enter')verifica()">
-  <button onclick="verifica()">Accedi →</button>
+  <button type="button" onclick="verifica()">Accedi →</button>
   <div class="err-msg" id="err">Codice non valido. Riprova o contatta Glove ICT.</div>
   <div class="footer">Glove ICT Srl · Anteprima progetto riservata</div>
 </div>
