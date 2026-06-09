@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prenotazioni — Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<aside class="admin-sidebar">
+  <div class="admin-brand">
+    <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+    <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Pannello Gestione</div></div>
+  </div>
+  <nav class="admin-nav">
+    <div class="admin-nav-section">Gestione</div>
+    <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="prenotazioni.html" class="admin-nav-link active"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
+    <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
+    <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
+    <div class="admin-nav-section" style="margin-top:.5rem;">Configurazione</div>
+    <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
+    <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
+    <a href="#" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+  </nav>
+  <div class="admin-footer">
+    <div class="admin-user">
+      <div class="admin-avatar">MR</div>
+      <div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div>
+      <a href="../login.html" style="margin-left:auto;color:rgba(255,255,255,.4);font-size:.875rem;" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a>
+    </div>
+  </div>
+</aside>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title">Prenotazioni</span>
+    <div class="admin-topbar-actions">
+      <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Aggiungi manuale</button>
+    </div>
+  </div>
+  <div class="admin-body">
+
+    <!-- FILTRI -->
+    <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1.25rem;">
+      <div style="display:flex;gap:.875rem;flex-wrap:wrap;align-items:flex-end;">
+        <div style="flex:1;min-width:160px;">
+          <label class="form-label">Medico</label>
+          <select class="form-select">
+            <option>Tutti i medici</option>
+            <option selected>Dott. Rossi</option>
+            <option>Dott.ssa Bianchi</option>
+            <option>Dott. Verdi</option>
+            <option>Dott.ssa Ferrari</option>
+          </select>
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <label class="form-label">Data</label>
+          <input type="date" class="form-control" value="2025-06-09">
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <label class="form-label">Stato</label>
+          <select class="form-select">
+            <option>Tutti</option>
+            <option selected>In attesa</option>
+            <option>Confermati</option>
+            <option>Rifiutati</option>
+          </select>
+        </div>
+        <div>
+          <button class="btn btn-primary">Filtra</button>
+          <button class="btn btn-ghost btn-sm ms-1">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">In attesa (5)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Confermate (43)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutate (3)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Tutte</button>
+    </div>
+
+    <div class="data-card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Paziente</th>
+            <th>Medico</th>
+            <th>Data / Ora richiesta</th>
+            <th>Motivo</th>
+            <th>Ricevuta</th>
+            <th>Stato</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:.625rem;">
+                <div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">MB</div>
+                <div>
+                  <div style="font-weight:600;font-size:.85rem;">Mario Bianchi</div>
+                  <div style="font-size:.72rem;color:var(--text-muted);">mario.bianchi@gmail.com</div>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:.85rem;">Dott. Rossi</td>
+            <td>
+              <div style="font-weight:600;font-size:.85rem;">16/06/2025</div>
+              <div style="font-size:.78rem;color:var(--primary);">Ore 10:30</div>
+            </td>
+            <td style="font-size:.82rem;max-width:160px;">Visita di controllo</td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 09:47</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button onclick="this.closest('tr').querySelector('.badge').outerHTML='<span class=\'badge badge-confermato\'>✓ Confermato</span>'" class="btn btn-success btn-sm">Conferma</button>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button class="btn btn-ghost btn-sm btn-icon" title="Dettaglio"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:.625rem;">
+                <div style="width:32px;height:32px;border-radius:50%;background:#dcfce7;color:var(--success);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">LM</div>
+                <div>
+                  <div style="font-weight:600;font-size:.85rem;">Laura Montanari</div>
+                  <div style="font-size:.72rem;color:var(--text-muted);">l.montanari@outlook.com</div>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:.85rem;">Dott.ssa Bianchi</td>
+            <td>
+              <div style="font-weight:600;font-size:.85rem;">17/06/2025</div>
+              <div style="font-size:.78rem;color:var(--primary);">Ore 9:00</div>
+            </td>
+            <td style="font-size:.82rem;">Prima visita</td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 08:21</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button class="btn btn-success btn-sm">Conferma</button>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:.625rem;">
+                <div style="width:32px;height:32px;border-radius:50%;background:#fef3c7;color:var(--warning);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">GP</div>
+                <div>
+                  <div style="font-weight:600;font-size:.85rem;">Giorgio Pari</div>
+                  <div style="font-size:.72rem;color:var(--text-muted);">giorgio.p@gmail.com</div>
+                </div>
+              </div>
+            </td>
+            <td style="font-size:.85rem;">Dott. Verdi</td>
+            <td>
+              <div style="font-weight:600;font-size:.85rem;">18/06/2025</div>
+              <div style="font-size:.78rem;color:var(--primary);">Ore 11:30</div>
+            </td>
+            <td style="font-size:.82rem;">Rinnovo terapia ipertensione</td>
+            <td style="font-size:.78rem;color:var(--danger);">Ieri 17:44 ⚠️</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button class="btn btn-success btn-sm">Conferma</button>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

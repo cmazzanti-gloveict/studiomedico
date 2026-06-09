@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Messaggi — Portale Paziente</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="patient-wrap">
+  <aside class="patient-sidebar">
+    <div class="patient-sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Portale Pazienti</div></div>
+    </div>
+    <div class="patient-user">
+      <div class="patient-avatar">MB</div>
+      <div><div class="patient-user-name">Mario Bianchi</div><div class="patient-user-email">mario.bianchi@gmail.com</div></div>
+    </div>
+    <nav class="patient-nav">
+      <a href="dashboard.html" class="patient-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a href="prenota.html" class="patient-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenota Visita</a>
+      <a href="ricetta.html" class="patient-nav-link"><i class="fa-solid fa-pills"></i> Richiedi Ricetta</a>
+      <a href="certificato.html" class="patient-nav-link"><i class="fa-solid fa-file-medical"></i> Certificato Malattia</a>
+      <a href="referti.html" class="patient-nav-link"><i class="fa-solid fa-file-arrow-up"></i> I Miei Referti</a>
+      <a href="messaggi.html" class="patient-nav-link active"><i class="fa-regular fa-message"></i> Scrivi al Medico</a>
+      <hr style="border-color:var(--border);margin:.5rem 0;">
+      <a href="../login.html" class="patient-nav-link danger"><i class="fa-solid fa-right-from-bracket"></i> Esci</a>
+    </nav>
+  </aside>
+
+  <main class="patient-main">
+    <div class="patient-topbar">
+      <div class="patient-topbar-title"><i class="fa-regular fa-message me-2" style="color:var(--primary);"></i>Messaggi con lo Studio</div>
+    </div>
+    <div class="page-body">
+
+      <div class="row g-4">
+        <!-- LISTA MESSAGGI -->
+        <div class="col-md-4">
+          <div style="background:white;border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+            <div style="padding:.875rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-weight:700;font-size:.875rem;color:var(--dark);">Conversazioni</span>
+              <button onclick="document.getElementById('nuovoMsg').scrollIntoView();" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> Nuovo
+              </button>
+            </div>
+            <div style="padding:.5rem;">
+              <div class="msg-item unread">
+                <div class="msg-avatar">DR</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="d-flex justify-content-between">
+                    <span class="msg-sender">Dott. Rossi</span>
+                    <span class="msg-time">Oggi 9:14</span>
+                  </div>
+                  <div class="msg-preview">La ricetta è pronta, può passare in studio quando vuole...</div>
+                </div>
+                <div class="msg-unread-dot"></div>
+              </div>
+              <div class="msg-item">
+                <div class="msg-avatar" style="background:#dcfce7;color:var(--success);">SEG</div>
+                <div style="flex:1;min-width:0;">
+                  <div class="d-flex justify-content-between">
+                    <span class="msg-sender">Segreteria</span>
+                    <span class="msg-time">Ieri</span>
+                  </div>
+                  <div class="msg-preview">La confermiamo l'appuntamento del 16 giugno...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAT E NUOVO MESSAGGIO -->
+        <div class="col-md-8">
+          <!-- THREAD -->
+          <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1rem;">
+            <div style="display:flex;align-items:center;gap:.75rem;padding-bottom:.875rem;border-bottom:1px solid var(--border);margin-bottom:.875rem;">
+              <div class="msg-avatar">DR</div>
+              <div>
+                <div style="font-weight:700;font-size:.875rem;color:var(--dark);">Dott. Mario Rossi</div>
+                <div style="font-size:.75rem;color:var(--text-muted);">Medico di base</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <!-- Messaggio paziente -->
+              <div style="display:flex;justify-content:flex-end;">
+                <div style="max-width:75%;background:var(--primary);color:white;border-radius:12px 12px 2px 12px;padding:.75rem 1rem;font-size:.85rem;">
+                  Buongiorno Dottore, ho terminato la Metformina. Può rinnovarmi la ricetta per 3 scatole?
+                  <div style="font-size:.72rem;opacity:.7;margin-top:.25rem;text-align:right;">07/06/2025 · 10:32</div>
+                </div>
+              </div>
+              <!-- Risposta medico -->
+              <div style="display:flex;justify-content:flex-start;gap:.5rem;">
+                <div class="msg-avatar" style="flex-shrink:0;">DR</div>
+                <div style="max-width:75%;background:var(--bg);color:var(--text);border-radius:2px 12px 12px 12px;padding:.75rem 1rem;font-size:.85rem;">
+                  Buongiorno Mario. La ricetta è pronta, può passare in studio quando vuole nelle ore di apertura. Ho prescritto 3 scatole come richiesto.
+                  <div style="font-size:.72rem;color:var(--text-muted);margin-top:.25rem;">09/06/2025 · 9:14</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NUOVO MESSAGGIO -->
+          <div id="nuovoMsg" style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.25rem;">
+            <h6 style="font-weight:700;color:var(--dark);margin-bottom:1rem;">Nuovo messaggio</h6>
+            <div style="margin-bottom:1rem;">
+              <label class="form-label">Destinatario <span class="required">*</span></label>
+              <select class="form-select">
+                <option>Dott. Mario Rossi (Il mio medico)</option>
+                <option>Segreteria Studio</option>
+              </select>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <label class="form-label">Oggetto <span class="required">*</span></label>
+              <input type="text" class="form-control" placeholder="Breve oggetto del messaggio">
+            </div>
+            <div style="margin-bottom:1.25rem;">
+              <label class="form-label">Messaggio <span class="required">*</span></label>
+              <textarea class="form-control" rows="4" placeholder="Scrivi il tuo messaggio..."></textarea>
+              <div class="input-hint">⚠️ Non inviare dati di carte di credito o documenti di identità via messaggio.</div>
+            </div>
+            <button onclick="alert('✅ Messaggio inviato!\n\nRiceverai risposta entro 24 ore lavorative.');" class="btn btn-primary">
+              <i class="fa-solid fa-paper-plane me-1"></i>Invia Messaggio
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

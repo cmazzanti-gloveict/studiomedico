@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Medico Associato — Portale Pazienti</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="assets/style.css" rel="stylesheet">
+<style>
+/* ── HOMEPAGE-ONLY OVERRIDES ── */
+body { background: #FAFAF9; font-family:'Inter',sans-serif; }
+
+/* ── NAVBAR ── */
+.nav-home {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  padding: .875rem 0;
+  transition: background .3s, box-shadow .3s;
+}
+.nav-home.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 1px 20px rgba(0,0,0,.08); backdrop-filter: blur(10px); }
+.nav-home .brand { display:flex; align-items:center; gap:.625rem; text-decoration:none; }
+.nav-home .brand-icon { width:36px; height:36px; background:#0F766E; border-radius:9px; display:flex; align-items:center; justify-content:center; color:white; font-size:.9rem; }
+.nav-home .brand-name { font-weight:800; font-size:.95rem; color:#1C1917; line-height:1.1; }
+.nav-home .brand-sub  { font-size:.65rem; color:#78716c; font-weight:400; }
+.nav-links-home { display:flex; gap:.125rem; list-style:none; margin:0; padding:0; }
+.nav-links-home a { color:#44403c; font-size:.875rem; font-weight:500; text-decoration:none; padding:.4rem .875rem; border-radius:8px; transition: background .12s, color .12s; }
+.nav-links-home a:hover { background:#F5F5F4; color:#0F766E; }
+.btn-accedi { background:#0F766E; color:white; border:none; border-radius:9px; padding:.5rem 1.25rem; font-size:.875rem; font-weight:600; font-family:inherit; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:.375rem; transition: background .15s, transform .1s; }
+.btn-accedi:hover { background:#0D5E57; color:white; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero-home {
+  min-height: 100vh;
+  background: #0F766E;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 6rem 0 5rem;
+}
+/* dot pattern */
+.hero-home::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+/* large bg circle */
+.hero-home::after {
+  content:'';
+  position:absolute;
+  width:700px; height:700px;
+  background: rgba(255,255,255,.04);
+  border-radius:50%;
+  right:-200px; top:-150px;
+  pointer-events:none;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;
+  padding:.3rem .875rem;
+  font-size:.78rem; font-weight:600; color:rgba(255,255,255,.9);
+  margin-bottom:1.5rem;
+  letter-spacing:.02em;
+}
+.hero-home h1 {
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  margin-bottom: 1.25rem;
+}
+.hero-home h1 em {
+  font-style: normal;
+  color: #6EE7B7;
+}
+.hero-lead {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.78);
+  max-width: 460px;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+.hero-btns { display:flex; gap:.875rem; flex-wrap:wrap; }
+.btn-hero-primary {
+  background: #D97706; color: white;
+  border-radius: 10px; border: none;
+  padding: .75rem 1.75rem; font-size: .95rem; font-weight: 700;
+  font-family: inherit; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: background .15s, transform .12s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(217,119,6,.4);
+}
+.btn-hero-primary:hover { background:#B45309; color:white; transform:translateY(-2px); box-shadow: 0 6px 24px rgba(217,119,6,.5); }
+.btn-hero-ghost {
+  background: rgba(255,255,255,.1); color: white;
+  border-radius: 10px; border: 1.5px solid rgba(255,255,255,.25);
+  padding: .75rem 1.5rem; font-size: .95rem; font-weight: 600;
+  font-family: inherit; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: background .15s;
+}
+.btn-hero-ghost:hover { background: rgba(255,255,255,.18); color:white; }
+
+/* floating UI card in hero */
+.hero-card-wrap {
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  z-index:1;
+}
+.hero-card-float {
+  background:white;
+  border-radius:20px;
+  padding:1.5rem;
+  width:330px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.1);
+  transform: rotate(2deg);
+  transition: transform .4s;
+}
+.hero-card-float:hover { transform: rotate(0deg) translateY(-4px); }
+.hero-card-float2 {
+  position:absolute;
+  bottom:-30px; right:-24px;
+  background:white;
+  border-radius:14px;
+  padding:.875rem 1.125rem;
+  width:210px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
+  transform: rotate(-3deg);
+  z-index:-1;
+}
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  background:#1C1917;
+  padding:2rem 0;
+}
+.stat-item {
+  text-align:center;
+  padding:0 2rem;
+  border-right: 1px solid rgba(255,255,255,.1);
+}
+.stat-item:last-child { border-right:none; }
+.stat-num {
+  font-size:2.25rem; font-weight:900; color:#6EE7B7;
+  line-height:1; letter-spacing:-.04em;
+  display:block;
+}
+.stat-desc { font-size:.78rem; color:rgba(255,255,255,.5); margin-top:.25rem; }
+
+/* ── SECTION TITLES ── */
+.section-tag {
+  display:inline-block;
+  background:#F0FDFA; color:#0F766E;
+  border-radius:6px; font-size:.72rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.08em;
+  padding:.25rem .75rem; margin-bottom:.875rem;
+}
+.section-h2 {
+  font-size:clamp(1.75rem,3vw,2.5rem); font-weight:900;
+  color:#1C1917; line-height:1.15; letter-spacing:-.03em;
+  margin-bottom:.75rem;
+}
+.section-lead { font-size:1rem; color:#78716c; max-width:520px; line-height:1.65; }
+
+/* ── SERVICE CARDS ── */
+.svc-card {
+  background:white;
+  border-radius:18px;
+  border: 1.5px solid #E7E5E4;
+  padding:2rem 1.75rem 1.75rem;
+  position:relative;
+  overflow:hidden;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  height:100%;
+}
+.svc-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(15,118,110,.12); border-color:#CCFBF1; }
+.svc-num {
+  position:absolute; top:-12px; right:16px;
+  font-size:5rem; font-weight:900; color:#F5F5F4;
+  line-height:1; pointer-events:none; user-select:none;
+  transition: color .2s;
+}
+.svc-card:hover .svc-num { color:#E8FDF9; }
+.svc-icon {
+  width:52px; height:52px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.25rem; margin-bottom:1.25rem;
+}
+.svc-card h5 { font-weight:800; font-size:1rem; color:#1C1917; margin-bottom:.625rem; }
+.svc-card p { font-size:.875rem; color:#78716c; line-height:1.6; margin:0; }
+.svc-link {
+  display:inline-flex; align-items:center; gap:.375rem;
+  font-size:.8rem; font-weight:700; color:#0F766E;
+  text-decoration:none; margin-top:1rem;
+  transition: gap .15s;
+}
+.svc-link:hover { gap:.625rem; }
+
+/* ── HOW IT WORKS ── */
+.how-wrap { position:relative; }
+.how-line {
+  position:absolute; top:24px; left:calc(50% - 1px);
+  width:2px; height:calc(100% - 48px);
+  background:linear-gradient(to bottom,#CCFBF1,#F0FDFA);
+  z-index:0;
+}
+.how-item { position:relative; z-index:1; }
+.how-circle {
+  width:48px; height:48px; border-radius:50%;
+  background:#0F766E; color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; font-weight:900;
+  box-shadow:0 0 0 6px #F0FDFA;
+  flex-shrink:0;
+}
+.how-card {
+  background:white;
+  border:1.5px solid #E7E5E4;
+  border-radius:14px;
+  padding:1.25rem 1.5rem;
+  flex:1;
+}
+.how-card h6 { font-weight:800; color:#1C1917; margin-bottom:.375rem; }
+.how-card p { font-size:.875rem; color:#78716c; margin:0; line-height:1.55; }
+
+/* ── DOCTOR CARDS ── */
+.doc-card {
+  background:white;
+  border-radius:18px;
+  border:1.5px solid #E7E5E4;
+  overflow:hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.doc-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.09); }
+.doc-accent { height:5px; }
+.doc-body { padding:1.5rem; text-align:center; }
+.doc-av {
+  width:72px; height:72px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.75rem; margin:0 auto .875rem;
+  border:3px solid white;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+.doc-card h6 { font-weight:800; font-size:.95rem; color:#1C1917; margin-bottom:.2rem; }
+.doc-spec { font-size:.78rem; color:#78716c; margin-bottom:.875rem; }
+.doc-hours { font-size:.78rem; color:#57534e; text-align:left; }
+.doc-hours div { display:flex; gap:.375rem; padding:.25rem 0; border-bottom:1px solid #F5F5F4; }
+.doc-hours div:last-child { border-bottom:none; }
+.doc-hours i { color:#0F766E; width:14px; flex-shrink:0; margin-top:1px; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  background:#1C1917;
+  border-radius:24px;
+  margin:0 1rem 3rem;
+  padding:4rem 3rem;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.cta-section::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:24px 24px;
+}
+.cta-section::after {
+  content:'';
+  position:absolute;
+  width:500px; height:500px;
+  background:rgba(15,118,110,.25);
+  border-radius:50%;
+  left:-150px; bottom:-200px;
+}
+.cta-section h2 {
+  font-size:clamp(1.75rem,3.5vw,2.75rem); font-weight:900;
+  color:white; letter-spacing:-.03em; line-height:1.1;
+  position:relative; z-index:1;
+}
+.cta-section p { color:rgba(255,255,255,.6); font-size:1rem; position:relative; z-index:1; }
+
+/* ── ORARI E CONTATTI ── */
+.contact-card {
+  background:white; border-radius:18px;
+  border:1.5px solid #E7E5E4; padding:2rem;
+}
+.hour-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.625rem 0; border-bottom:1px solid #F5F5F4; font-size:.875rem;
+}
+.hour-row:last-child { border-bottom:none; }
+.hour-day { font-weight:600; color:#1C1917; }
+.hour-time { color:#78716c; }
+.hour-row.closed .hour-day, .hour-row.closed .hour-time { color:#d97706; }
+.contact-row {
+  display:flex; align-items:flex-start; gap:.875rem;
+  margin-bottom:1.25rem;
+}
+.contact-row:last-child { margin-bottom:0; }
+.contact-icon {
+  width:42px; height:42px; border-radius:12px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:.9rem;
+}
+
+/* ── FOOTER ── */
+.footer-home { background:#1C1917; color:rgba(255,255,255,.55); padding:3.5rem 0 1.5rem; }
+.footer-home .brand-name { color:white; }
+.footer-home .brand-sub { color:rgba(255,255,255,.35); }
+.footer-home h6 { color:rgba(255,255,255,.9); font-weight:700; font-size:.85rem; margin-bottom:.875rem; }
+.footer-home a { color:rgba(255,255,255,.4); text-decoration:none; font-size:.85rem; display:block; margin-bottom:.375rem; transition:color .12s; }
+.footer-home a:hover { color:white; }
+.footer-divider { border-color:rgba(255,255,255,.08); margin:2rem 0 1.5rem; }
+.footer-bottom { font-size:.78rem; text-align:center; }
+
+/* trust badges */
+.trust-badge {
+  display:inline-flex; align-items:center; gap:.375rem;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:8px; padding:.35rem .75rem;
+  font-size:.75rem; color:rgba(255,255,255,.65);
+}
+
+/* urgency ribbon */
+.urgency-bar {
+  background:#7F1D1D; color:#FECACA;
+  text-align:center; font-size:.8rem; font-weight:600;
+  padding:.5rem; letter-spacing:.01em;
+}
+
+/* wave divider */
+.wave-divider { display:block; width:100%; height:60px; margin-bottom:-1px; }
+</style>
+</head>
+<body>
+
+<!-- URGENZA -->
+<div class="urgency-bar">
+  <i class="fa-solid fa-triangle-exclamation me-2"></i>
+  Urgenze mediche: chiama il <strong>118</strong> · Guardia medica notturna: <strong>800.XXX.XXX</strong>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav-home" id="navbar">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="index.html" class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <div>
+        <div class="brand-name">Studio Medico Associato</div>
+        <div class="brand-sub">Medicina di Gruppo · Modena</div>
+      </div>
+    </a>
+    <ul class="nav-links-home d-none d-md-flex">
+      <li><a href="#medici">Medici</a></li>
+      <li><a href="#orari">Orari</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <div class="d-flex align-items-center gap-2">
+      <a href="admin/dashboard.html" style="font-size:.8rem;color:#78716c;text-decoration:none;padding:.4rem .75rem;border-radius:8px;" class="d-none d-md-inline">
+        <i class="fa-solid fa-user-doctor me-1"></i>Area Medici
+      </a>
+      <a href="login.html" class="btn-accedi">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span class="d-none d-sm-inline">Accedi al Portale</span>
+        <span class="d-sm-none">Accedi</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-home">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+
+        <div class="hero-eyebrow">
+          <i class="fa-solid fa-shield-halved"></i>
+          Accesso sicuro con OTP · Conforme GDPR art. 9
+        </div>
+
+        <h1>
+          La salute<br>
+          senza <em>code</em>,<br>
+          senza attese.
+        </h1>
+
+        <p class="hero-lead">
+          Prenota visite, richiedi ricette, carica referti direttamente online. Il tuo medico risponde, tu non aspetti in segreteria.
+        </p>
+
+        <div class="hero-btns">
+          <a href="login.html" class="btn-hero-primary">
+            <i class="fa-solid fa-right-to-bracket"></i> Accedi al Portale
+          </a>
+          <a href="#servizi" class="btn-hero-ghost">
+            Scopri come funziona <i class="fa-solid fa-arrow-down"></i>
+          </a>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <span class="trust-badge"><i class="fa-solid fa-lock"></i>OTP monouso</span>
+          <span class="trust-badge"><i class="fa-brands fa-google"></i>Google Login</span>
+          <span class="trust-badge"><i class="fa-brands fa-microsoft"></i>Microsoft SSO</span>
+          <span class="trust-badge"><i class="fa-solid fa-server"></i>Hosting Azure EU</span>
+        </div>
+      </div>
+
+      <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+        <div class="hero-card-wrap">
+          <!-- card principale -->
+          <div class="hero-card-float">
+            <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1rem;">
+              <div style="width:36px;height:36px;background:#F0FDFA;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#0F766E;font-size:.875rem;"><i class="fa-regular fa-calendar-check"></i></div>
+              <div>
+                <div style="font-weight:800;font-size:.875rem;color:#1C1917;">Prossimo appuntamento</div>
+                <div style="font-size:.7rem;color:#78716c;">Dott. Mario Rossi · Studio 3B</div>
+              </div>
+              <span style="margin-left:auto;background:#CCFBF1;color:#0F766E;border-radius:12px;font-size:.7rem;font-weight:700;padding:3px 9px;white-space:nowrap;">✓ Confermato</span>
+            </div>
+            <div style="background:#FAFAF9;border-radius:10px;padding:1rem;font-size:.83rem;color:#44403c;display:flex;flex-direction:column;gap:.5rem;">
+              <div style="display:flex;align-items:center;gap:.625rem;"><i class="fa-regular fa-calendar" style="color:#0F766E;width:14px;"></i><strong>Lun 16 Giugno 2025</strong></div>
+              <div style="display:flex;align-items:center;gap:.625rem;"><i class="fa-regular fa-clock" style="color:#0F766E;width:14px;"></i>Ore 10:30</div>
+              <div style="display:flex;align-items:center;gap:.625rem;"><i class="fa-solid fa-location-dot" style="color:#0F766E;width:14px;"></i>Via della Salute, 12 — Modena</div>
+            </div>
+            <div style="display:flex;gap:.5rem;margin-top:.875rem;">
+              <button style="flex:1;padding:.45rem;border:1.5px solid #E7E5E4;border-radius:8px;font-size:.75rem;font-weight:600;background:white;color:#78716c;cursor:pointer;font-family:inherit;">Sposta</button>
+              <button style="flex:1;padding:.45rem;border:1.5px solid #E7E5E4;border-radius:8px;font-size:.75rem;font-weight:600;background:white;color:#dc2626;cursor:pointer;font-family:inherit;">Annulla</button>
+            </div>
+          </div>
+
+          <!-- card secondaria -->
+          <div class="hero-card-float2">
+            <div style="font-size:.7rem;font-weight:700;color:#78716c;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;">Richieste in sospeso</div>
+            <div style="display:flex;flex-direction:column;gap:.375rem;">
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;">
+                <span style="font-size:.85rem;">💊</span>
+                <span style="flex:1;color:#292524;font-weight:500;">Ricetta Metformina</span>
+                <span style="background:#CCFBF1;color:#0F766E;padding:2px 7px;border-radius:8px;font-size:.68rem;font-weight:700;">Pronta</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:.5rem;font-size:.78rem;">
+                <span style="font-size:.85rem;">📋</span>
+                <span style="flex:1;color:#292524;font-weight:500;">Certificato malattia</span>
+                <span style="background:#FEF3C7;color:#D97706;padding:2px 7px;border-radius:8px;font-size:.68rem;font-weight:700;">In attesa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <div class="stat-desc">Medici di base</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <span class="stat-num">1.400+</span>
+          <div class="stat-desc">Pazienti assistiti</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <span class="stat-num">24h</span>
+          <div class="stat-desc">Risposta garantita</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <span class="stat-num">0</span>
+          <div class="stat-desc">Email perse</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVIZI -->
+<section style="padding:6rem 0;" id="servizi">
+  <div class="container">
+    <div class="row align-items-end mb-5">
+      <div class="col-md-7">
+        <div class="section-tag">Servizi</div>
+        <h2 class="section-h2">Tutto quello che ti serve,<br>senza alzare il telefono.</h2>
+      </div>
+      <div class="col-md-5 d-none d-md-flex justify-content-end align-items-end">
+        <p class="section-lead" style="text-align:right;">Moduli guidati che costringono i pazienti a inserire ogni informazione necessaria — niente più email incomplete.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="svc-card">
+          <span class="svc-num">01</span>
+          <div class="svc-icon" style="background:#F0FDFA;color:#0F766E;"><i class="fa-regular fa-calendar-check"></i></div>
+          <h5>Prenota una Visita</h5>
+          <p>Scegli il tuo medico, il giorno, l'orario. Ricevi conferma via email entro 24h. Possibilità di annullare fino a 24h prima.</p>
+          <a href="login.html" class="svc-link">Prenota <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="svc-card">
+          <span class="svc-num">02</span>
+          <div class="svc-icon" style="background:#F0FDF4;color:#16a34a;"><i class="fa-solid fa-pills"></i></div>
+          <h5>Richiedi una Ricetta</h5>
+          <p>Il form obbliga a specificare farmaco, dosaggio e numero di scatole. Zero richieste incomplete, zero doppi scambi.</p>
+          <a href="login.html" class="svc-link">Richiedi <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="svc-card">
+          <span class="svc-num">03</span>
+          <div class="svc-icon" style="background:#FFFBEB;color:#D97706;"><i class="fa-solid fa-file-medical"></i></div>
+          <h5>Certificato Malattia</h5>
+          <p>Date, patologia, destinazione e indirizzo di reperibilità: tutto raccolto in modo corretto, pronto per INPS o datore di lavoro.</p>
+          <a href="login.html" class="svc-link">Richiedi <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="svc-card">
+          <span class="svc-num">04</span>
+          <div class="svc-icon" style="background:#FAF5FF;color:#9333ea;"><i class="fa-solid fa-file-arrow-up"></i></div>
+          <h5>Carica Referti</h5>
+          <p>Condividi esami, analisi e risultati con il tuo medico in modo sicuro. Tutti i documenti in un posto solo.</p>
+          <a href="login.html" class="svc-link">Carica <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+  <path d="M0 60L48 52.5C96 45 192 30 288 27.5C384 25 480 35 576 40C672 45 768 45 864 40C960 35 1056 25 1152 22.5C1248 20 1344 25 1392 27.5L1440 30V0H1392C1344 0 1248 0 1152 0C1056 0 960 0 864 0C768 0 672 0 576 0C480 0 384 0 288 0C192 0 96 0 48 0H0V60Z" fill="#F5F5F4"/>
+</svg>
+
+<!-- COME FUNZIONA -->
+<section style="background:#F5F5F4;padding:5rem 0 6rem;" id="come-funziona">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6 text-center">
+        <div class="section-tag">Come funziona</div>
+        <h2 class="section-h2">Accesso in 3 passi.<br>Nessuna password.</h2>
+        <p class="section-lead mx-auto">Puoi usare il tuo account Google o Microsoft, oppure la tua email con codice OTP.</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="how-wrap d-flex flex-column gap-3">
+          <div class="how-item d-flex align-items-start gap-3">
+            <div class="how-circle">1</div>
+            <div class="how-card">
+              <h6>Scegli come accedere</h6>
+              <p>Usa il tuo account <strong>Google</strong> o <strong>Microsoft/Office 365</strong> per accedere in un click. Oppure inserisci la tua email e ricevi un codice OTP monouso.</p>
+            </div>
+          </div>
+          <div class="how-item d-flex align-items-start gap-3">
+            <div class="how-circle">2</div>
+            <div class="how-card">
+              <h6>Prima volta? Lo studio ti approva</h6>
+              <p>Al primo accesso la segreteria verifica la tua identità come paziente. Ricevi email di conferma entro poche ore. Poi accedi sempre liberamente.</p>
+            </div>
+          </div>
+          <div class="how-item d-flex align-items-start gap-3">
+            <div class="how-circle">3</div>
+            <div class="how-card">
+              <h6>Gestisci tutto dal portale</h6>
+              <p>Prenotazioni, ricette, certificati, referti e messaggi al medico. Tutto in un posto, tracciato, con notifiche via email ad ogni aggiornamento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE INVERSA -->
+<svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;transform:scaleY(-1);background:#FAFAF9;">
+  <path d="M0 60L48 52.5C96 45 192 30 288 27.5C384 25 480 35 576 40C672 45 768 45 864 40C960 35 1056 25 1152 22.5C1248 20 1344 25 1392 27.5L1440 30V0H1392C1344 0 1248 0 1152 0C1056 0 960 0 864 0C768 0 672 0 576 0C480 0 384 0 288 0C192 0 96 0 48 0H0V60Z" fill="#F5F5F4"/>
+</svg>
+
+<!-- MEDICI -->
+<section style="padding:6rem 0;" id="medici">
+  <div class="container">
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <div class="section-tag">Il nostro team</div>
+        <h2 class="section-h2">I Medici dello Studio</h2>
+      </div>
+      <div class="col-md-6">
+        <p class="section-lead">Quattro medici di medicina generale a tua disposizione dal lunedì al venerdì. Dal portale puoi prenotare direttamente con il tuo medico di base.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="doc-card">
+          <div class="doc-accent" style="background:linear-gradient(90deg,#0F766E,#14B8A6);"></div>
+          <div class="doc-body">
+            <div class="doc-av" style="background:#F0FDFA;color:#0F766E;"><i class="fa-solid fa-user-doctor"></i></div>
+            <h6>Dott. Mario Rossi</h6>
+            <div class="doc-spec">Medicina Generale</div>
+            <div class="doc-hours">
+              <div><i class="fa-regular fa-calendar"></i>Lun · Mar · Mer: 8:30–13:00</div>
+              <div><i class="fa-regular fa-clock"></i>Gio: 15:00–19:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="doc-card">
+          <div class="doc-accent" style="background:linear-gradient(90deg,#7C3AED,#A78BFA);"></div>
+          <div class="doc-body">
+            <div class="doc-av" style="background:#FAF5FF;color:#7C3AED;"><i class="fa-solid fa-user-doctor"></i></div>
+            <h6>Dott.ssa Laura Bianchi</h6>
+            <div class="doc-spec">Medicina Generale</div>
+            <div class="doc-hours">
+              <div><i class="fa-regular fa-calendar"></i>Lun · Mer · Ven: 9:00–13:30</div>
+              <div><i class="fa-regular fa-clock"></i>Mar: 15:00–18:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="doc-card">
+          <div class="doc-accent" style="background:linear-gradient(90deg,#D97706,#FBBF24);"></div>
+          <div class="doc-body">
+            <div class="doc-av" style="background:#FFFBEB;color:#D97706;"><i class="fa-solid fa-user-doctor"></i></div>
+            <h6>Dott. Giuseppe Verdi</h6>
+            <div class="doc-spec">Medicina Generale</div>
+            <div class="doc-hours">
+              <div><i class="fa-regular fa-calendar"></i>Mar · Gio: 8:00–12:30</div>
+              <div><i class="fa-regular fa-clock"></i>Lun · Mer: 14:30–19:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="doc-card">
+          <div class="doc-accent" style="background:linear-gradient(90deg,#DC2626,#F87171);"></div>
+          <div class="doc-body">
+            <div class="doc-av" style="background:#FFF5F5;color:#DC2626;"><i class="fa-solid fa-user-doctor"></i></div>
+            <h6>Dott.ssa Anna Ferrari</h6>
+            <div class="doc-spec">Medicina Generale</div>
+            <div class="doc-hours">
+              <div><i class="fa-regular fa-calendar"></i>Lun · Gio · Ven: 8:30–13:00</div>
+              <div><i class="fa-regular fa-clock"></i>Mer: 15:00–18:30</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORARI + CONTATTI -->
+<section style="background:#F5F5F4;padding:5rem 0;" id="orari">
+  <div class="container">
+    <div class="row g-4" id="contatti">
+      <div class="col-lg-6">
+        <div class="section-tag">Orari</div>
+        <h3 style="font-weight:900;color:#1C1917;font-size:1.75rem;letter-spacing:-.03em;margin-bottom:1.5rem;">Quando siamo aperti</h3>
+        <div class="contact-card">
+          <div class="hour-row"><span class="hour-day">Lunedì</span><span class="hour-time">8:00 – 13:00 · 14:30 – 19:00</span></div>
+          <div class="hour-row"><span class="hour-day">Martedì</span><span class="hour-time">8:00 – 13:00 · 14:30 – 18:00</span></div>
+          <div class="hour-row"><span class="hour-day">Mercoledì</span><span class="hour-time">8:00 – 13:00 · 14:30 – 19:00</span></div>
+          <div class="hour-row"><span class="hour-day">Giovedì</span><span class="hour-time">8:00 – 13:00 · 15:00 – 19:00</span></div>
+          <div class="hour-row"><span class="hour-day">Venerdì</span><span class="hour-time">8:00 – 13:00</span></div>
+          <div class="hour-row closed"><span class="hour-day">Sabato / Domenica</span><span class="hour-time">Chiuso</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="section-tag">Contatti</div>
+        <h3 style="font-weight:900;color:#1C1917;font-size:1.75rem;letter-spacing:-.03em;margin-bottom:1.5rem;">Dove siamo</h3>
+        <div class="contact-card">
+          <div class="contact-row">
+            <div class="contact-icon" style="background:#F0FDFA;color:#0F766E;"><i class="fa-solid fa-location-dot"></i></div>
+            <div><div style="font-weight:700;font-size:.875rem;color:#1C1917;margin-bottom:.2rem;">Indirizzo</div><div style="font-size:.85rem;color:#78716c;">Via della Salute, 12 — 41100 Modena (MO)<br><span style="font-size:.8rem;">Terzo piano, ingresso B · Ascensore disponibile</span></div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon" style="background:#F0FDF4;color:#16a34a;"><i class="fa-solid fa-phone"></i></div>
+            <div><div style="font-weight:700;font-size:.875rem;color:#1C1917;margin-bottom:.2rem;">Telefono</div><div style="font-size:.85rem;color:#78716c;">059 123 456 — Segreteria attiva in orario di apertura</div></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon" style="background:#FFFBEB;color:#D97706;"><i class="fa-solid fa-envelope"></i></div>
+            <div><div style="font-weight:700;font-size:.875rem;color:#1C1917;margin-bottom:.2rem;">Email</div><div style="font-size:.85rem;color:#78716c;">segreteria@studiomedicoassociato.it</div></div>
+          </div>
+        </div>
+        <div style="background:#7F1D1D;border-radius:12px;padding:.875rem 1.25rem;margin-top:1rem;font-size:.825rem;color:#FECACA;">
+          <i class="fa-solid fa-triangle-exclamation me-2"></i>
+          <strong>Urgenze:</strong> Chiama il <strong>118</strong> · Guardia Medica <strong>800.XXX.XXX</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<div style="padding:3rem 0 4rem;background:#FAFAF9;">
+  <div class="container">
+    <div class="cta-section">
+      <div style="position:relative;z-index:1;">
+        <div style="display:inline-block;background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.2);border-radius:20px;padding:.3rem .875rem;font-size:.78rem;font-weight:600;color:#6EE7B7;margin-bottom:1.25rem;letter-spacing:.02em;">
+          <i class="fa-solid fa-bolt me-1"></i>Accesso in 30 secondi
+        </div>
+        <h2>Pronto ad entrare?</h2>
+        <p class="mt-2 mb-3">Usa il tuo account Google, Microsoft o la tua email. Nessuna password da ricordare.</p>
+        <a href="login.html" class="btn-hero-primary" style="display:inline-flex;">
+          <i class="fa-solid fa-right-to-bracket"></i> Accedi al Portale
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-home">
+  <div class="container">
+    <div class="row gy-4 mb-4">
+      <div class="col-md-4">
+        <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:.75rem;">
+          <div style="width:32px;height:32px;background:#0F766E;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:.8rem;"><i class="fa-solid fa-stethoscope"></i></div>
+          <div><div class="brand-name" style="font-size:.9rem;font-weight:800;">Studio Medico Associato</div><div class="brand-sub" style="font-size:.65rem;">Medicina di Gruppo · Modena</div></div>
+        </div>
+        <div style="font-size:.83rem;line-height:1.65;">P.IVA 00000000000<br>Via della Salute, 12 — 41100 Modena</div>
+      </div>
+      <div class="col-md-3">
+        <h6>Informazioni</h6>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Informativa GDPR</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Note Legali</a>
+      </div>
+      <div class="col-md-3">
+        <h6>Numeri Utili</h6>
+        <div style="font-size:.85rem;line-height:1.9;">
+          Emergenze: <strong style="color:white;">118</strong><br>
+          Guardia Medica: <strong style="color:white;">800.XXX.XXX</strong><br>
+          Pronto Soccorso: <strong style="color:white;">Osp. Civile MO</strong>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <h6>Portale</h6>
+        <a href="login.html">Accedi</a>
+        <a href="admin/dashboard.html">Area Medici</a>
+        <a href="#come-funziona">Come funziona</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      © 2025 Studio Medico Associato · Tutti i diritti riservati ·
+      Piattaforma conforme <strong style="color:rgba(255,255,255,.6);">GDPR art. 9</strong> ·
+      Hosting <strong style="color:rgba(255,255,255,.6);">Azure EU</strong>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

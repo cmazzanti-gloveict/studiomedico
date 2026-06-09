@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documento Tecnico — Portale Studio Medico</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  @page { margin: 2.5cm 2cm; size: A4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', Arial, sans-serif; font-size: 10.5pt; color: #1C1917; line-height: 1.6; background: white; }
+
+  /* COVER */
+  .cover { page-break-after: always; min-height: 29cm; display: flex; flex-direction: column; justify-content: space-between; padding: 3cm 0 2cm; }
+  .cover-header { border-left: 5px solid #0F766E; padding-left: 1.5rem; }
+  .cover-header .client-label { font-size: 9pt; font-weight: 600; color: #78716c; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+  .cover-title { font-size: 32pt; font-weight: 900; color: #0F766E; line-height: 1.1; letter-spacing: -.02em; margin-bottom: .5rem; }
+  .cover-subtitle { font-size: 16pt; font-weight: 500; color: #44403c; }
+  .cover-meta { display: flex; gap: 3rem; }
+  .cover-meta-item label { font-size: 8pt; font-weight: 700; color: #78716c; text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: 3px; }
+  .cover-meta-item span { font-size: 10pt; color: #1C1917; font-weight: 500; }
+  .cover-footer { border-top: 1px solid #E7E5E4; padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+  .cover-footer .company { font-weight: 700; color: #0F766E; font-size: 11pt; }
+  .cover-footer .confidential { font-size: 8pt; color: #78716c; background: #F5F5F4; border: 1px solid #E7E5E4; padding: 3px 10px; border-radius: 4px; }
+
+  /* TYPOGRAPHY */
+  h1 { font-size: 18pt; font-weight: 900; color: #0F766E; margin: 2rem 0 .5rem; padding-bottom: .5rem; border-bottom: 2px solid #0F766E; page-break-after: avoid; }
+  h2 { font-size: 13pt; font-weight: 800; color: #1C1917; margin: 1.5rem 0 .5rem; page-break-after: avoid; }
+  h3 { font-size: 11pt; font-weight: 700; color: #292524; margin: 1rem 0 .375rem; page-break-after: avoid; }
+  p { margin-bottom: .75rem; }
+  ul, ol { margin: .5rem 0 .75rem 1.5rem; }
+  li { margin-bottom: .25rem; }
+  strong { font-weight: 700; }
+  a { color: #0F766E; text-decoration: none; }
+
+  /* COMPONENTS */
+  .toc { background: #F5F5F4; border: 1px solid #E7E5E4; border-radius: 6px; padding: 1.5rem 2rem; margin: 1rem 0 2rem; page-break-inside: avoid; }
+  .toc h4 { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #78716c; margin-bottom: 1rem; }
+  .toc-item { display: flex; align-items: baseline; gap: .5rem; padding: .2rem 0; font-size: 10pt; }
+  .toc-num { font-weight: 700; color: #0F766E; min-width: 1.5rem; }
+  .toc-dots { flex: 1; border-bottom: 1px dotted #A8A29E; margin-bottom: 2px; }
+  .toc-page { font-size: 9pt; color: #78716c; }
+
+  table { width: 100%; border-collapse: collapse; margin: .75rem 0 1rem; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background: #0F766E; color: white; padding: 7px 10px; font-weight: 700; font-size: 8.5pt; text-align: left; }
+  td { padding: 6px 10px; border-bottom: 1px solid #E7E5E4; vertical-align: top; }
+  tr:nth-child(even) td { background: #FAFAF9; }
+
+  .callout { border-left: 4px solid #0F766E; background: #F0FDFA; padding: .75rem 1rem; margin: .75rem 0; border-radius: 0 6px 6px 0; font-size: 9.5pt; }
+  .callout.warning { border-color: #D97706; background: #FFFBEB; }
+  .callout.danger { border-color: #DC2626; background: #FFF5F5; }
+  .callout strong { display: block; margin-bottom: .25rem; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 8pt; font-weight: 700; }
+  .badge-green { background: #CCFBF1; color: #0F766E; }
+  .badge-amber { background: #FEF3C7; color: #D97706; }
+  .badge-red { background: #FEE2E2; color: #DC2626; }
+  .badge-gray { background: #F5F5F4; color: #78716c; }
+
+  .arch-box { border: 1.5px solid #E7E5E4; border-radius: 8px; padding: 1rem; margin: .75rem 0; font-family: 'Courier New', monospace; font-size: 8.5pt; background: #FAFAF9; white-space: pre; line-height: 1.5; overflow-x: auto; }
+
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+
+  .section-num { display: inline-block; background: #0F766E; color: white; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 9pt; font-weight: 700; margin-right: .5rem; vertical-align: middle; }
+
+  footer { position: fixed; bottom: 1cm; left: 0; right: 0; text-align: center; font-size: 8pt; color: #A8A29E; border-top: 1px solid #E7E5E4; padding-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- FOOTER FISSO -->
+<footer>Documento Tecnico — Portale Studio Medico Associato · Glove ICT Srl · CONFIDENZIALE</footer>
+
+<!-- ═══════════════════════════════ COPERTINA ═══════════════════════════════ -->
+<div class="cover">
+  <div>
+    <div style="font-size:8pt;font-weight:600;color:#78716c;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3rem;">Glove ICT Srl — Documento Interno</div>
+    <div class="cover-header">
+      <div class="client-label">Documento Tecnico</div>
+      <div class="cover-title">Portale<br>Studio Medico</div>
+      <div class="cover-subtitle">Architettura · Stack · Infrastruttura Azure</div>
+    </div>
+  </div>
+  <div>
+    <div class="cover-meta" style="margin-bottom:2rem;">
+      <div class="cover-meta-item"><label>Cliente</label><span>Studio Medico Associato — Modena</span></div>
+      <div class="cover-meta-item"><label>Versione</label><span>1.0 — Draft</span></div>
+      <div class="cover-meta-item"><label>Data</label><span>Giugno 2025</span></div>
+      <div class="cover-meta-item"><label>Autore</label><span>Glove ICT Srl</span></div>
+    </div>
+    <div class="cover-footer">
+      <span class="company">Glove ICT Srl</span>
+      <span class="confidential">🔒 CONFIDENZIALE — Uso interno</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ INDICE ═══════════════════════════════ -->
+<div class="page-break">
+<h1>Indice</h1>
+<div class="toc">
+  <h4>Sommario</h4>
+  <div class="toc-item"><span class="toc-num">1</span><span>Sintesi del progetto</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+  <div class="toc-item"><span class="toc-num">2</span><span>Architettura del sistema</span><span class="toc-dots"></span><span class="toc-page">3</span></div>
+  <div class="toc-item"><span class="toc-num">3</span><span>Stack tecnologico</span><span class="toc-dots"></span><span class="toc-page">4</span></div>
+  <div class="toc-item"><span class="toc-num">4</span><span>Infrastruttura Azure</span><span class="toc-dots"></span><span class="toc-page">5</span></div>
+  <div class="toc-item"><span class="toc-num">5</span><span>Flussi applicativi principali</span><span class="toc-dots"></span><span class="toc-page">6</span></div>
+  <div class="toc-item"><span class="toc-num">6</span><span>Sicurezza e conformità GDPR</span><span class="toc-dots"></span><span class="toc-page">8</span></div>
+  <div class="toc-item"><span class="toc-num">7</span><span>Piano di progetto e deliverable</span><span class="toc-dots"></span><span class="toc-page">9</span></div>
+  <div class="toc-item"><span class="toc-num">8</span><span>Stima costi infrastruttura</span><span class="toc-dots"></span><span class="toc-page">10</span></div>
+  <div class="toc-item"><span class="toc-num">9</span><span>Note di deployment e manutenzione</span><span class="toc-dots"></span><span class="toc-page">10</span></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════ 1. SINTESI ═══════════════════════════════ -->
+<h1><span class="section-num">1</span> Sintesi del Progetto</h1>
+<p>Il progetto prevede la realizzazione di un <strong>portale web per pazienti e medici</strong> a supporto di uno studio medico associato composto da 4 medici di medicina generale con circa 1.400 assistiti totali.</p>
+<p>Il portale nasce dall'esigenza di ridurre il carico di comunicazioni non strutturate (email, WhatsApp, telefonate) che gravano quotidianamente sullo studio, incanalando le richieste dei pazienti in flussi guidati e tracciati.</p>
+<h3>Obiettivi principali</h3>
+<ul>
+  <li>Permettere ai pazienti di prenotare visite, richiedere ricette e certificati online</li>
+  <li>Fornire ai medici e alla segreteria un pannello di gestione centralizzato per tutte le richieste</li>
+  <li>Eliminare le richieste incomplete grazie a form guidati con campi obbligatori</li>
+  <li>Garantire conformità al GDPR art. 9 (dati sanitari di categoria particolare)</li>
+  <li>Inviare notifiche automatiche (conferme, reminder 24h, aggiornamenti di stato)</li>
+</ul>
+
+<!-- ═══════════════════════════════ 2. ARCHITETTURA ═══════════════════════════════ -->
+<h1><span class="section-num">2</span> Architettura del Sistema</h1>
+<p>Il sistema è basato interamente su servizi Azure PaaS/SaaS ospitati nella region <strong>Italy North (Milano)</strong>, senza macchine virtuali. Non è richiesta gestione di sistema operativo, patch o manutenzione infrastrutturale.</p>
+
+<div class="arch-box">┌──────────────────────────────────────────────────────────────────┐
+│                    AZURE — Italy North (Milano)                  │
+│                                                                  │
+│  ┌─────────────────────────┐   ┌──────────────────────────────┐  │
+│  │     App Service         │   │     Azure Functions v4       │  │
+│  │     (Next.js 14)        │   │                              │  │
+│  │  ├── UI / Pagine        │   │  ⏱  ReminderBatch (timer)    │  │
+│  │  ├── Route Handlers API │   │  📄  GeneraPDF (queue)       │  │
+│  │  └── Middleware Auth    │   │  🔗  Integrazioni (http)     │  │
+│  └────────────┬────────────┘   └──────────────┬───────────────┘  │
+│               │                               │                  │
+│  ┌────────────▼───────────────────────────────▼───────────────┐  │
+│  │          PostgreSQL Flexible Server (Burstable B2ms)       │  │
+│  └────────────────────────────────────────────────────────────┘  │
+│                                                                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌─────────────────────┐   │
+│  │  Entra ID    │  │  Key Vault   │  │    Blob Storage     │   │
+│  │  App Reg.    │  │  (Secrets +  │  │  (Referti cifrati)  │   │
+│  │  + Google    │  │   Enc. Keys) │  │                     │   │
+│  │  OAuth       │  │              │  │                     │   │
+│  └──────────────┘  └──────────────┘  └─────────────────────┘   │
+│                                                                  │
+│  ┌──────────────────────────┐  ┌──────────────────────────────┐ │
+│  │  Communication Services  │  │   Application Insights       │ │
+│  │  (Email: OTP, notifiche) │  │   (Monitoring + Audit Trail) │ │
+│  └──────────────────────────┘  └──────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────┘</div>
+
+<!-- ═══════════════════════════════ 3. STACK ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">3</span> Stack Tecnologico</h1>
+
+<table>
+  <tr><th style="width:25%">Layer</th><th style="width:35%">Tecnologia</th><th>Note</th></tr>
+  <tr><td><strong>Frontend + API</strong></td><td>Next.js 14 (App Router)</td><td>Full-stack: UI + Route Handlers per API REST. Deploy su App Service Linux (Node.js).</td></tr>
+  <tr><td><strong>ORM / Database</strong></td><td>Prisma ORM + PostgreSQL</td><td>Type-safe, migrations automatiche. Schema versionato in Git.</td></tr>
+  <tr><td><strong>Autenticazione</strong></td><td>NextAuth.js v5</td><td>Provider: Microsoft Entra (App Registration tenant Glove) + Google OAuth. OTP custom via ACS.</td></tr>
+  <tr><td><strong>Task asincroni</strong></td><td>Azure Functions v4 (Node.js)</td><td>Reminder batch (timer trigger), generazione PDF (queue trigger), hook integrazioni future.</td></tr>
+  <tr><td><strong>Email</strong></td><td>Azure Communication Services</td><td>Invio OTP, conferme, reminder 24h pre-appuntamento, notifiche cambio stato.</td></tr>
+  <tr><td><strong>File storage</strong></td><td>Azure Blob Storage</td><td>Upload referti pazienti. Container privati, SAS token time-limited per download. Cifratura at-rest con CMK su Key Vault.</td></tr>
+  <tr><td><strong>Generazione PDF</strong></td><td>PDFKit (Node.js)</td><td>Certificati malattia e ricette generati lato server come PDF e inviati via email.</td></tr>
+  <tr><td><strong>Monitoring</strong></td><td>Application Insights</td><td>Telemetria, logging strutturato, audit trail accessi a dati paziente.</td></tr>
+  <tr><td><strong>IaC / Deploy</strong></td><td>GitHub Actions + Azure CLI</td><td>CI/CD pipeline: build → test → deploy su App Service. Infrastructure as Code con Bicep o Terraform.</td></tr>
+</table>
+
+<h3>Scelta PostgreSQL vs Azure SQL</h3>
+<p>È stato scelto <strong>PostgreSQL Flexible Server</strong> per i seguenti motivi:</p>
+<ul>
+  <li>Costo inferiore rispetto ad Azure SQL a parità di specifiche</li>
+  <li>Nessun vendor lock-in — open source, riproducibile in locale per sviluppo e test</li>
+  <li>Supporto nativo JSONB utile per i campi dinamici dei form (ricette, certificati)</li>
+  <li>Ecosistema Node.js/Prisma è PostgreSQL-first</li>
+  <li>Identico comportamento tra ambiente di sviluppo locale e produzione</li>
+</ul>
+
+<!-- ═══════════════════════════════ 4. AZURE ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">4</span> Infrastruttura Azure</h1>
+
+<div class="callout">
+  <strong>Tenant e Resource Group</strong>
+  Tutto il progetto sarà ospitato nel tenant Azure di Glove ICT Srl, all'interno del resource group <code>rg-studiomedico-prod</code>, region <strong>Italy North (Milano)</strong>. Nessuna macchina virtuale — solo servizi PaaS e SaaS.
+</div>
+
+<table>
+  <tr><th style="width:28%">Servizio Azure</th><th style="width:20%">SKU</th><th style="width:30%">Scopo</th><th>Costo est.</th></tr>
+  <tr><td>App Service (Linux)</td><td>Standard S1 (1 vCore, 1.75 GB)</td><td>Hosting Next.js full-stack + 5 staging slot inclusi</td><td>~€63/mese</td></tr>
+  <tr><td>PostgreSQL Flexible Server</td><td>Burstable B2ms (2 vCore, 8 GB)</td><td>Database principale</td><td>~€38/mese</td></tr>
+  <tr><td>Azure Functions</td><td>Consumption Plan</td><td>Batch reminder, PDF, integrazioni</td><td>~€0–5/mese</td></tr>
+  <tr><td>Blob Storage</td><td>LRS Standard (General Purpose v2)</td><td>Referti e documenti cifrati</td><td>~€2/mese</td></tr>
+  <tr><td>Key Vault</td><td>Standard</td><td>Secrets, CMK cifratura Blob</td><td>~€1/mese</td></tr>
+  <tr><td>Communication Services</td><td>Pay-as-you-go</td><td>Email OTP, notifiche, reminder</td><td>~€3–8/mese</td></tr>
+  <tr><td>Application Insights</td><td>Free tier (5 GB/mese)</td><td>Monitoring + audit trail</td><td>€0/mese</td></tr>
+  <tr><td>Entra ID App Registration</td><td>Free</td><td>SSO Microsoft nel tenant</td><td>€0</td></tr>
+  <tr><td><strong>TOTALE STIMATO</strong></td><td></td><td></td><td><strong>€107–117/mese</strong></td></tr>
+</table>
+
+<div class="callout warning">
+  <strong>⚠ Nota sui costi</strong>
+  I costi indicati sono stime basate sui listini Azure di Giugno 2025. Il costo reale dipende da volume di email inviate e storage usato. Si consiglia di impostare un budget alert su Azure a €150/mese per evitare sorprese.
+</div>
+
+<!-- ═══════════════════════════════ 5. FLUSSI ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">5</span> Flussi Applicativi Principali</h1>
+
+<h2>5.1 Flusso di Autenticazione e Onboarding Paziente</h2>
+<table>
+  <tr><th style="width:5%">Step</th><th style="width:35%">Azione</th><th>Dettaglio tecnico</th></tr>
+  <tr><td>1</td><td>Il paziente sceglie il metodo di accesso</td><td>Tre opzioni: Google OAuth, Microsoft (Entra), Email + OTP</td></tr>
+  <tr><td>2</td><td>Autenticazione esterna</td><td>Google/Microsoft: redirect OAuth standard. OTP: generazione codice 6 cifre (TTL 10 min) salvato su PostgreSQL, invio via ACS.</td></tr>
+  <tr><td>3</td><td>Primo accesso rilevato</td><td>NextAuth callback: se <code>paziente.status = null</code>, creazione record con <code>status = 'pending_approval'</code>.</td></tr>
+  <tr><td>4</td><td>Pagina di attesa</td><td>Il paziente viene reindirizzato a <code>/paziente/pending</code>. Impossibile accedere ad altre route.</td></tr>
+  <tr><td>5</td><td>Consenso GDPR (solo primo accesso)</td><td>Pagina <code>/paziente/gdpr-consent</code>: 2 checkbox obbligatorie. Accettazione salvata su DB con timestamp e IP.</td></tr>
+  <tr><td>6</td><td>Notifica alla segreteria</td><td>Email automatica via ACS alla segreteria con link diretto alla pagina approvazioni.</td></tr>
+  <tr><td>7</td><td>Approvazione segreteria</td><td>Pannello admin: la segreteria seleziona il medico di riferimento e approva. Record aggiornato a <code>status = 'active'</code>.</td></tr>
+  <tr><td>8</td><td>Notifica al paziente</td><td>Email con link di accesso diretto al portale. Il paziente può ora accedere normalmente.</td></tr>
+  <tr><td>9</td><td>Accessi successivi</td><td>Sessione JWT (NextAuth). Middleware verifica <code>status = 'active'</code> ad ogni richiesta. OTP non richiesto.</td></tr>
+</table>
+
+<h2>5.2 Flusso Prenotazione Visita</h2>
+<table>
+  <tr><th>Step</th><th>Azione</th><th>Dettaglio</th></tr>
+  <tr><td>1</td><td>Paziente seleziona medico e data</td><td>Calendario con slot disponibili da DB. Solo slot aperti (non prenotati) vengono mostrati.</td></tr>
+  <tr><td>2</td><td>Invio richiesta</td><td>Record su tabella <code>prenotazioni</code> con <code>status = 'pending'</code>. Email di ricezione al paziente.</td></tr>
+  <tr><td>3</td><td>Notifica al medico/segreteria</td><td>Email + notifica in-app nel pannello admin (badge rosso contatore).</td></tr>
+  <tr><td>4</td><td>Gestione admin</td><td>Segreteria conferma o rifiuta dalla pagina prenotazioni. Possibilità di inserire note.</td></tr>
+  <tr><td>5</td><td>Email al paziente</td><td>Conferma o rifiuto con motivazione. In caso di conferma: data, ora, indirizzo.</td></tr>
+  <tr><td>6</td><td>Reminder automatico</td><td>Azure Function (timer trigger ore 08:00): query prenotazioni del giorno seguente → email reminder ai pazienti.</td></tr>
+  <tr><td>7</td><td>Cancellazione paziente</td><td>Consentita fino a 24h prima. Notifica automatica al medico.</td></tr>
+</table>
+
+<h2>5.3 Flusso Richiesta Ricetta / Certificato</h2>
+<p>I flussi ricetta e certificato seguono lo stesso pattern: form guidato con campi obbligatori → record su DB → notifica admin → elaborazione manuale → notifica paziente (ricetta pronta / certificato PDF allegato via email).</p>
+<p>I certificati vengono generati come <strong>PDF lato server</strong> (Azure Function + PDFKit) e allegati all'email tramite ACS Attachment API.</p>
+
+<!-- ═══════════════════════════════ 6. GDPR ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">6</span> Sicurezza e Conformità GDPR</h1>
+
+<div class="callout danger">
+  <strong>⚠ Categoria Speciale art. 9 GDPR</strong>
+  Il portale tratta dati sanitari (dati di categoria particolare ai sensi dell'art. 9 GDPR). Questo implica obblighi specifici descritti in questa sezione.
+</div>
+
+<h2>6.1 Base giuridica e consenso</h2>
+<table>
+  <tr><th>Tipo trattamento</th><th>Base giuridica</th><th>Implementazione</th></tr>
+  <tr><td>Gestione richieste sanitarie</td><td>Art. 9.2.a — Consenso esplicito</td><td>Checkbox obbligatoria al primo accesso. Timestamp + IP salvati su DB.</td></tr>
+  <tr><td>Comunicazioni operative (OTP, email)</td><td>Art. 6.1.b — Esecuzione del contratto</td><td>Seconda checkbox obbligatoria al primo accesso. Necessaria per funzionamento del servizio.</td></tr>
+  <tr><td>Audit e sicurezza</td><td>Art. 6.1.f — Interesse legittimo</td><td>Log accessi per sicurezza. Nessun consenso aggiuntivo richiesto.</td></tr>
+</table>
+
+<h2>6.2 Misure tecniche di sicurezza</h2>
+<table>
+  <tr><th style="width:30%">Misura</th><th>Implementazione</th><th>Stato</th></tr>
+  <tr><td>Cifratura in transito</td><td>TLS 1.2+ obbligatorio su tutti gli endpoint (gestito da App Service)</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Cifratura at-rest (documenti)</td><td>Azure Blob Storage con Customer-Managed Key (CMK) su Key Vault</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Cifratura at-rest (DB)</td><td>PostgreSQL Flexible Server — cifratura automatica ADE inclusa</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Audit trail accessi</td><td>Application Insights: log strutturato per ogni accesso a dati paziente (chi, cosa, quando, IP)</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Gestione secrets</td><td>Tutte le credenziali in Azure Key Vault. Nessun secret in codice o config file.</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Segmentazione dati</td><td>Il medico accede solo ai dati dei propri pazienti (filtro by <code>medico_id</code> su tutte le query)</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Data residency EU</td><td>Tutti i servizi Azure in region Italy North (Milano)</td><td><span class="badge badge-green">Incluso</span></td></tr>
+  <tr><td>Diritto all'oblio</td><td>Funzione admin "Anonimizza paziente" — sostituisce dati personali con placeholder</td><td><span class="badge badge-green">Incluso</span></td></tr>
+</table>
+
+<h2>6.3 DPIA — Data Protection Impact Assessment</h2>
+<p>Il trattamento sistematico di dati sanitari per oltre 1.000 interessati richiede la redazione di una <strong>DPIA</strong> prima del go-live (art. 35 GDPR). La DPIA è prevista come deliverable separato del progetto e include:</p>
+<ul>
+  <li>Descrizione del trattamento e delle finalità</li>
+  <li>Valutazione della necessità e proporzionalità</li>
+  <li>Identificazione e valutazione dei rischi per gli interessati</li>
+  <li>Misure adottate per affrontare i rischi</li>
+</ul>
+<div class="callout warning">
+  <strong>Nomina DPO</strong>
+  Si raccomanda allo studio di verificare con un consulente legale la necessità di nomina di un Data Protection Officer (art. 37 GDPR), probabile dato il trattamento sistematico di dati sanitari su larga scala.
+</div>
+
+<!-- ═══════════════════════════════ 7. PIANO DI PROGETTO ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">7</span> Piano di Progetto e Deliverable</h1>
+
+<table>
+  <tr><th style="width:5%">#</th><th style="width:25%">Fase</th><th style="width:35%">Attività principali</th><th>Durata est.</th><th>Deliverable</th></tr>
+  <tr><td>1</td><td><strong>Setup &amp; Infrastruttura</strong></td><td>Provisioning Azure, App Registration Entra + Google, CI/CD pipeline, DB schema v1</td><td>3–4 gg</td><td>Ambiente di sviluppo attivo</td></tr>
+  <tr><td>2</td><td><strong>Autenticazione</strong></td><td>NextAuth: Google + Microsoft + OTP flow. Pagine login, OTP, GDPR consent, pending. Flusso approvazione admin.</td><td>4–5 gg</td><td>Login funzionante end-to-end</td></tr>
+  <tr><td>3</td><td><strong>Area Paziente</strong></td><td>Dashboard, prenota visita, richiesta ricetta, certificato malattia, upload referti, messaggi</td><td>6–8 gg</td><td>Frontend paziente completo</td></tr>
+  <tr><td>4</td><td><strong>Pannello Admin</strong></td><td>Dashboard, gestione prenotazioni/ricette/certificati/messaggi, disponibilità, approvazioni, gestione pazienti</td><td>6–8 gg</td><td>Backend admin operativo</td></tr>
+  <tr><td>5</td><td><strong>Notifiche &amp; Automazioni</strong></td><td>Email templates ACS, reminder batch Azure Function, generazione PDF certificati, notifiche stato</td><td>4–5 gg</td><td>Sistema notifiche completo</td></tr>
+  <tr><td>6</td><td><strong>GDPR &amp; Sicurezza</strong></td><td>Audit trail, CMK Blob, right-to-erasure, DPIA</td><td>3–4 gg</td><td>DPIA + documentazione conformità</td></tr>
+  <tr><td>7</td><td><strong>Test &amp; QA</strong></td><td>Test funzionali, test email, test mobile, UAT con cliente, correzioni</td><td>4–5 gg</td><td>Applicazione testata e approvata</td></tr>
+  <tr><td>8</td><td><strong>Go-live &amp; Formazione</strong></td><td>Deploy produzione, configurazione DNS/dominio, sessione formazione segreteria (2h)</td><td>2 gg</td><td>Sistema live, personale formato</td></tr>
+  <tr><td colspan="3"><strong>TOTALE STIMATO</strong></td><td><strong>32–41 giorni lavorativi</strong></td><td></td></tr>
+</table>
+
+<!-- ═══════════════════════════════ 8. COSTI ═══════════════════════════════ -->
+<h1><span class="section-num">8</span> Stima Costi Infrastruttura</h1>
+
+<table>
+  <tr><th>Voce</th><th>Tipo</th><th>Importo</th></tr>
+  <tr><td>App Service Linux Standard S1</td><td>Mensile ricorrente</td><td>~€63/mese</td></tr>
+  <tr><td>PostgreSQL Flexible B2ms</td><td>Mensile ricorrente</td><td>~€38/mese</td></tr>
+  <tr><td>Azure Functions (Consumption)</td><td>Mensile ricorrente</td><td>~€0–5/mese</td></tr>
+  <tr><td>Blob Storage + Key Vault</td><td>Mensile ricorrente</td><td>~€3/mese</td></tr>
+  <tr><td>Communication Services email</td><td>Mensile ricorrente (volume)</td><td>~€3–8/mese</td></tr>
+  <tr><td>Application Insights</td><td>Mensile ricorrente</td><td>€0 (free tier)</td></tr>
+  <tr><td><strong>Totale mensile Azure</strong></td><td></td><td><strong>€107–117/mese</strong></td></tr>
+</table>
+<p style="font-size:9pt;color:#78716c;margin-top:.5rem;">* I costi di sviluppo sono dettagliati nel documento commerciale separato.</p>
+
+<!-- ═══════════════════════════════ 9. DEPLOYMENT ═══════════════════════════════ -->
+<h1><span class="section-num">9</span> Note di Deployment e Manutenzione</h1>
+
+<h2>9.1 Pipeline CI/CD</h2>
+<p>Il progetto utilizzerà <strong>GitHub Actions</strong> per la pipeline CI/CD:</p>
+<ul>
+  <li><strong>Branch <code>main</code>:</strong> deploy automatico su ambiente di produzione (App Service)</li>
+  <li><strong>Branch <code>dev</code>:</strong> deploy su slot staging di App Service (zero downtime swap)</li>
+  <li>Build: <code>npm run build</code> → artifact Next.js</li>
+  <li>Migrations DB: <code>prisma migrate deploy</code> eseguito pre-deploy</li>
+</ul>
+
+<h2>9.2 Backup e Ripristino</h2>
+<ul>
+  <li>PostgreSQL Flexible: backup automatico giornaliero con retention 7 giorni (incluso nel servizio)</li>
+  <li>Blob Storage: versioning attivato per i documenti pazienti (referti)</li>
+  <li>RTO stimato: &lt;2h — RPO: 24h (ultimo backup)</li>
+</ul>
+
+<h2>9.3 Monitoraggio</h2>
+<ul>
+  <li>Application Insights: alert automatici su errori 5xx, latenza &gt;3s, disponibilità &lt;99%</li>
+  <li>Azure Monitor: alert budget a €150/mese</li>
+  <li>Audit trail: consultabile dalla segreteria tramite dashboard Application Insights dedicata</li>
+</ul>
+
+<div style="margin-top:3rem;padding-top:1rem;border-top:1px solid #E7E5E4;font-size:8.5pt;color:#78716c;text-align:center;">
+  Documento Tecnico v1.0 — Studio Medico Associato — Glove ICT Srl — Giugno 2025<br>
+  Documento confidenziale ad uso interno. Non distribuire senza autorizzazione.
+</div>
+
+</body>
+</html>

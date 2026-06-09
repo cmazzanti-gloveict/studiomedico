@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Portale Paziente</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="patient-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="patient-sidebar">
+    <div class="patient-sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <div>
+        <div class="brand-name">Studio Medico</div>
+        <div class="brand-sub">Portale Pazienti</div>
+      </div>
+    </div>
+    <div class="patient-user">
+      <div class="patient-avatar">MB</div>
+      <div>
+        <div class="patient-user-name">Mario Bianchi</div>
+        <div class="patient-user-email">mario.bianchi@gmail.com</div>
+      </div>
+    </div>
+    <nav class="patient-nav">
+      <a href="dashboard.html" class="patient-nav-link active"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a href="prenota.html" class="patient-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenota Visita</a>
+      <a href="ricetta.html" class="patient-nav-link"><i class="fa-solid fa-pills"></i> Richiedi Ricetta</a>
+      <a href="certificato.html" class="patient-nav-link"><i class="fa-solid fa-file-medical"></i> Certificato Malattia</a>
+      <a href="referti.html" class="patient-nav-link"><i class="fa-solid fa-file-arrow-up"></i> I Miei Referti</a>
+      <a href="messaggi.html" class="patient-nav-link"><i class="fa-regular fa-message"></i> Scrivi al Medico</a>
+      <hr style="border-color:var(--border);margin:.5rem 0;">
+      <a href="../login.html" class="patient-nav-link danger"><i class="fa-solid fa-right-from-bracket"></i> Esci</a>
+    </nav>
+    <div style="padding:.875rem 1.5rem;border-top:1px solid var(--border);">
+      <div style="font-size:.72rem;color:var(--text-muted);">
+        <i class="fa-solid fa-shield-halved me-1"></i>Dati protetti · GDPR art. 9
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="patient-main">
+    <div class="patient-topbar">
+      <div class="patient-topbar-title">Ciao Mario 👋</div>
+      <div style="font-size:.8rem;color:var(--text-muted);">
+        <i class="fa-solid fa-user-doctor me-1"></i>
+        Il tuo medico: <strong>Dott. Mario Rossi</strong>
+      </div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- PROSSIMO APPUNTAMENTO -->
+      <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:16px;padding:1.5rem;color:white;margin-bottom:1.75rem;">
+        <div style="font-size:.8rem;opacity:.75;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;">Prossimo Appuntamento</div>
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+          <div>
+            <div style="font-size:1.35rem;font-weight:700;">Lunedì 16 Giugno 2025 · Ore 10:30</div>
+            <div style="opacity:.85;font-size:.875rem;margin-top:.25rem;">
+              <i class="fa-solid fa-user-doctor me-2"></i>Dott. Mario Rossi
+              <span class="ms-3"><i class="fa-solid fa-location-dot me-1"></i>Via della Salute, 12</span>
+            </div>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3);">
+              <i class="fa-regular fa-calendar me-1"></i>Sposta
+            </button>
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3);">
+              <i class="fa-solid fa-xmark me-1"></i>Annulla
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AZIONI RAPIDE -->
+      <h6 style="font-weight:700;color:var(--text-muted);text-transform:uppercase;font-size:.72rem;letter-spacing:.06em;margin-bottom:1rem;">Azioni Rapide</h6>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <a href="prenota.html" style="display:block;text-decoration:none;background:white;border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;transition:box-shadow .2s;">
+            <div style="font-size:1.5rem;color:var(--primary);margin-bottom:.5rem;"><i class="fa-regular fa-calendar-check"></i></div>
+            <div style="font-size:.8rem;font-weight:600;color:var(--dark);">Prenota Visita</div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="ricetta.html" style="display:block;text-decoration:none;background:white;border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div style="font-size:1.5rem;color:var(--success);margin-bottom:.5rem;"><i class="fa-solid fa-pills"></i></div>
+            <div style="font-size:.8rem;font-weight:600;color:var(--dark);">Richiedi Ricetta</div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="certificato.html" style="display:block;text-decoration:none;background:white;border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div style="font-size:1.5rem;color:var(--warning);margin-bottom:.5rem;"><i class="fa-solid fa-file-medical"></i></div>
+            <div style="font-size:.8rem;font-weight:600;color:var(--dark);">Certificato</div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="referti.html" style="display:block;text-decoration:none;background:white;border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div style="font-size:1.5rem;color:var(--purple);margin-bottom:.5rem;"><i class="fa-solid fa-file-arrow-up"></i></div>
+            <div style="font-size:.8rem;font-weight:600;color:var(--dark);">Carica Referto</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- STORICO RICHIESTE -->
+      <div class="data-card">
+        <div class="data-card-header">
+          <span class="data-card-title">Le tue ultime richieste</span>
+          <span style="font-size:.8rem;color:var(--text-muted);">Ultimi 30 giorni</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Data richiesta</th>
+              <th>Dettaglio</th>
+              <th>Stato</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="fa-regular fa-calendar-check me-2" style="color:var(--primary);"></i>Visita</td>
+              <td>09/06/2025</td>
+              <td>Visita di controllo — Dott. Rossi</td>
+              <td><span class="badge badge-confermato"><i class="fa-solid fa-check"></i> Confermato</span></td>
+              <td><a href="#" style="font-size:.8rem;color:var(--primary);">Dettaglio</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-pills me-2" style="color:var(--success);"></i>Ricetta</td>
+              <td>07/06/2025</td>
+              <td>Metformina 1000mg × 3 scatole</td>
+              <td><span class="badge badge-completato">Pronta</span></td>
+              <td><a href="#" style="font-size:.8rem;color:var(--primary);">Dettaglio</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-file-medical me-2" style="color:var(--warning);"></i>Certificato</td>
+              <td>03/06/2025</td>
+              <td>Malattia 3–6 giugno 2025</td>
+              <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> In attesa</span></td>
+              <td><a href="#" style="font-size:.8rem;color:var(--primary);">Dettaglio</a></td>
+            </tr>
+            <tr>
+              <td><i class="fa-solid fa-file-arrow-up me-2" style="color:var(--purple);"></i>Referto</td>
+              <td>28/05/2025</td>
+              <td>Esame del sangue — Laboratorio Bios</td>
+              <td><span class="badge badge-completato">Caricato</span></td>
+              <td><a href="#" style="font-size:.8rem;color:var(--primary);">Vedi</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

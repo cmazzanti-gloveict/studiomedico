@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificati — Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<aside class="admin-sidebar">
+  <div class="admin-brand"><div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div><div><div class="brand-name">Studio Medico</div><div class="brand-sub">Pannello Gestione</div></div></div>
+  <nav class="admin-nav">
+    <div class="admin-nav-section">Gestione</div>
+    <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="prenotazioni.html" class="admin-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
+    <a href="certificati.html" class="admin-nav-link active"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
+    <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
+    <div class="admin-nav-section" style="margin-top:.5rem;">Configurazione</div>
+    <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
+    <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
+    <a href="#" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+  </nav>
+  <div class="admin-footer"><div class="admin-user"><div class="admin-avatar">MR</div><div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div><a href="../login.html" style="margin-left:auto;color:rgba(255,255,255,.4);font-size:.875rem;"><i class="fa-solid fa-right-from-bracket"></i></a></div></div>
+</aside>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title"><i class="fa-solid fa-file-medical me-2" style="color:var(--warning);"></i>Richieste Certificati</span>
+  </div>
+  <div class="admin-body">
+
+    <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">In sospeso (3)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Emessi (52)</button>
+    </div>
+
+    <div class="data-card">
+      <table class="data-table">
+        <thead>
+          <tr><th>Paziente</th><th>Periodo malattia</th><th>Patologia</th><th>Destinazione</th><th>Indirizzo reperibilità</th><th>Richiesta</th><th>Azioni</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Roberto Esposito</div><div style="font-size:.72rem;color:var(--text-muted);">Dott. Verdi</div></td>
+            <td><div style="font-size:.85rem;font-weight:600;">3 – 9 Giu 2025</div><div style="font-size:.75rem;color:var(--text-muted);">7 giorni</div></td>
+            <td style="font-size:.85rem;">Sindrome influenzale</td>
+            <td><span class="badge" style="background:var(--bg);color:var(--text-muted);font-size:.72rem;">Datore privato</span></td>
+            <td style="font-size:.82rem;">Via Roma 45, Modena</td>
+            <td style="font-size:.78rem;color:var(--danger);">Ieri 18:33 ⚠️</td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button onclick="alert('📄 Certificato emesso e inviato via email!')" class="btn btn-primary btn-sm">Emetti PDF</button>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Carla Neri</div><div style="font-size:.72rem;color:var(--text-muted);">Dott.ssa Ferrari</div></td>
+            <td><div style="font-size:.85rem;font-weight:600;">9 – 11 Giu 2025</div><div style="font-size:.75rem;color:var(--text-muted);">3 giorni</div></td>
+            <td style="font-size:.85rem;">Gastroenterite</td>
+            <td><span class="badge" style="background:var(--bg);color:var(--text-muted);font-size:.72rem;">INPS / P.A.</span></td>
+            <td style="font-size:.82rem;">Corso Italia 8, Modena</td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 08:11</td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button onclick="alert('📄 Certificato emesso!')" class="btn btn-primary btn-sm">Emetti PDF</button>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Marco Bassi</div><div style="font-size:.72rem;color:var(--text-muted);">Dott. Rossi</div></td>
+            <td><div style="font-size:.85rem;font-weight:600;">9 – 10 Giu 2025</div><div style="font-size:.75rem;color:var(--text-muted);">2 giorni</div></td>
+            <td style="font-size:.85rem;">Lombalgia acuta</td>
+            <td><span class="badge" style="background:var(--bg);color:var(--text-muted);font-size:.72rem;">Datore privato</span></td>
+            <td style="font-size:.82rem;">Via Emilia 212, Modena</td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 07:44</td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button onclick="alert('📄 Certificato emesso!')" class="btn btn-primary btn-sm">Emetti PDF</button>
+                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codice OTP — Studio Medico Associato</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-box">
+
+    <div class="auth-logo">
+      <div class="auth-logo-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <h2>Studio Medico Associato</h2>
+      <p style="color:var(--text-muted);font-size:.875rem;margin:0;">Verifica email</p>
+    </div>
+
+    <div class="auth-card">
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div style="width:56px;height:56px;background:var(--success-light);color:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto .875rem;">
+          <i class="fa-solid fa-envelope-circle-check"></i>
+        </div>
+        <h5 style="font-weight:700;color:var(--dark);margin-bottom:.25rem;">Controlla la tua email</h5>
+        <p style="color:var(--text-muted);font-size:.85rem;margin:0;">
+          Abbiamo inviato un codice di 6 cifre a<br>
+          <strong style="color:var(--dark);">mario.bianchi@gmail.com</strong>
+        </p>
+      </div>
+
+      <div class="otp-row">
+        <input type="text" class="otp-digit filled" maxlength="1" value="4">
+        <input type="text" class="otp-digit filled" maxlength="1" value="7">
+        <input type="text" class="otp-digit filled" maxlength="1" value="2">
+        <input type="text" class="otp-digit" maxlength="1" placeholder="—">
+        <input type="text" class="otp-digit" maxlength="1" placeholder="—">
+        <input type="text" class="otp-digit" maxlength="1" placeholder="—">
+      </div>
+
+      <div style="text-align:center;font-size:.8rem;color:var(--text-muted);margin-bottom:1.25rem;">
+        <i class="fa-regular fa-clock me-1"></i>
+        Il codice scade tra <strong style="color:var(--warning);">07:32</strong>
+      </div>
+
+      <a href="paziente/dashboard.html" class="btn btn-primary btn-full btn-lg">
+        Verifica e Accedi <i class="fa-solid fa-arrow-right ms-1"></i>
+      </a>
+
+      <div style="text-align:center;margin-top:1.25rem;font-size:.825rem;color:var(--text-muted);">
+        Non hai ricevuto il codice?
+        <a href="#" style="color:var(--primary);text-decoration:none;font-weight:600;">Reinvia OTP</a>
+      </div>
+    </div>
+
+    <a href="login.html" class="auth-back">
+      <i class="fa-solid fa-arrow-left me-1"></i>Cambia email
+    </a>
+  </div>
+</div>
+
+<script>
+  // Navigazione automatica tra i campi OTP
+  document.querySelectorAll('.otp-digit').forEach((input, i, all) => {
+    input.addEventListener('input', e => {
+      if (e.target.value.length === 1 && i < all.length - 1) all[i+1].focus();
+    });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !e.target.value && i > 0) all[i-1].focus();
+    });
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

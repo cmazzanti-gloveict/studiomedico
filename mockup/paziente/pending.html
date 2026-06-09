@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accesso in attesa — Studio Medico Associato</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.pending-page { background:#F5F5F4; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+.pending-box { width:100%; max-width:500px; text-align:center; }
+.pending-icon { width:88px; height:88px; background:#FEF3C7; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#D97706; margin:0 auto 1.75rem; border:4px solid #FDE68A; }
+.pending-card { background:white; border:1px solid var(--border); border-radius:16px; padding:2.5rem 2rem; box-shadow:0 4px 16px rgba(0,0,0,.06); }
+.status-steps { display:flex; flex-direction:column; gap:.625rem; margin:1.75rem 0; text-align:left; }
+.status-step { display:flex; align-items:center; gap:.875rem; padding:.75rem 1rem; border-radius:10px; }
+.status-step.done { background:#F0FDFA; }
+.status-step.active { background:#FFFBEB; border:1px solid #FDE68A; }
+.status-step.waiting { background:#F5F5F4; opacity:.6; }
+.step-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:700; flex-shrink:0; }
+.step-num.done { background:#0F766E; color:white; }
+.step-num.active { background:#D97706; color:white; }
+.step-num.waiting { background:#E7E5E4; color:#A8A29E; }
+.step-text { flex:1; }
+.step-text strong { font-size:.875rem; color:var(--dark); display:block; }
+.step-text span { font-size:.78rem; color:var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="pending-page">
+  <div class="pending-box">
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:.625rem;margin-bottom:2rem;">
+      <div style="width:32px;height:32px;background:#0F766E;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:.8rem;"><i class="fa-solid fa-stethoscope"></i></div>
+      <div style="font-weight:800;font-size:.9rem;color:var(--dark);">Studio Medico Associato</div>
+    </div>
+
+    <div class="pending-card">
+      <div class="pending-icon">
+        <i class="fa-regular fa-hourglass-half"></i>
+      </div>
+
+      <h4 style="font-weight:900;color:var(--dark);margin-bottom:.5rem;letter-spacing:-.02em;">Richiesta inviata con successo</h4>
+      <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:0;line-height:1.6;">
+        La segreteria dello studio sta verificando la tua identità come paziente. Riceverai una <strong>email di conferma</strong> non appena il tuo accesso sarà attivato.
+      </p>
+
+      <!-- STEPS DI STATO -->
+      <div class="status-steps">
+        <div class="status-step done">
+          <div class="step-num done"><i class="fa-solid fa-check"></i></div>
+          <div class="step-text">
+            <strong>Accesso effettuato</strong>
+            <span>Identità verificata via Google · mario.bianchi@gmail.com</span>
+          </div>
+        </div>
+        <div class="status-step done">
+          <div class="step-num done"><i class="fa-solid fa-check"></i></div>
+          <div class="step-text">
+            <strong>Consenso privacy accettato</strong>
+            <span>GDPR art. 9 + comunicazioni operative · Oggi ore 10:14</span>
+          </div>
+        </div>
+        <div class="status-step active">
+          <div class="step-num active"><i class="fa-solid fa-hourglass-half"></i></div>
+          <div class="step-text">
+            <strong>Approvazione segreteria</strong>
+            <span>Lo studio verificherà i tuoi dati entro poche ore lavorative</span>
+          </div>
+        </div>
+        <div class="status-step waiting">
+          <div class="step-num waiting">4</div>
+          <div class="step-text">
+            <strong>Accesso al portale attivato</strong>
+            <span>Riceverai email con link diretto per accedere</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO BOX -->
+      <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:.875rem 1rem;font-size:.82rem;color:#92400E;margin-bottom:1.5rem;text-align:left;">
+        <i class="fa-regular fa-clock me-2"></i>
+        <strong>Tempo stimato:</strong> Solitamente meno di 2 ore negli orari di apertura dello studio.<br>
+        <span style="font-size:.78rem;opacity:.85;">Se non ricevi notizie entro 24h, contatta la segreteria al 059 123 456.</span>
+      </div>
+
+      <!-- AZIONI -->
+      <div style="display:flex;gap:.625rem;flex-direction:column;">
+        <a href="../login.html" style="display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.625rem 1rem;background:#0F766E;color:white;border-radius:10px;font-weight:600;font-size:.875rem;text-decoration:none;">
+          <i class="fa-solid fa-arrow-right"></i> Torna alla home
+        </a>
+        <button onclick="window.location.reload()" style="padding:.625rem 1rem;background:white;color:var(--text-muted);border:1.5px solid var(--border);border-radius:10px;font-weight:500;font-size:.875rem;font-family:inherit;cursor:pointer;">
+          <i class="fa-solid fa-rotate-right me-2"></i>Aggiorna stato
+        </button>
+      </div>
+
+    </div>
+
+    <p style="font-size:.75rem;color:var(--text-muted);margin-top:1.25rem;">
+      Problemi con l'accesso? Scrivi a
+      <a href="mailto:segreteria@studiomedicoassociato.it" style="color:#0F766E;">segreteria@studiomedicoassociato.it</a>
+    </p>
+
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

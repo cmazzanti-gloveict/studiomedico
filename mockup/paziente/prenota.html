@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prenota Visita — Portale Paziente</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="patient-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="patient-sidebar">
+    <div class="patient-sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Portale Pazienti</div></div>
+    </div>
+    <div class="patient-user">
+      <div class="patient-avatar">MB</div>
+      <div><div class="patient-user-name">Mario Bianchi</div><div class="patient-user-email">mario.bianchi@gmail.com</div></div>
+    </div>
+    <nav class="patient-nav">
+      <a href="dashboard.html" class="patient-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a href="prenota.html" class="patient-nav-link active"><i class="fa-regular fa-calendar-check"></i> Prenota Visita</a>
+      <a href="ricetta.html" class="patient-nav-link"><i class="fa-solid fa-pills"></i> Richiedi Ricetta</a>
+      <a href="certificato.html" class="patient-nav-link"><i class="fa-solid fa-file-medical"></i> Certificato Malattia</a>
+      <a href="referti.html" class="patient-nav-link"><i class="fa-solid fa-file-arrow-up"></i> I Miei Referti</a>
+      <a href="messaggi.html" class="patient-nav-link"><i class="fa-regular fa-message"></i> Scrivi al Medico</a>
+      <hr style="border-color:var(--border);margin:.5rem 0;">
+      <a href="../login.html" class="patient-nav-link danger"><i class="fa-solid fa-right-from-bracket"></i> Esci</a>
+    </nav>
+  </aside>
+
+  <main class="patient-main">
+    <div class="patient-topbar">
+      <div class="patient-topbar-title"><i class="fa-regular fa-calendar-check me-2" style="color:var(--primary);"></i>Prenota una Visita</div>
+    </div>
+    <div class="page-body">
+
+      <!-- STEP WIZARD -->
+      <div class="steps mb-4">
+        <div class="step">
+          <div class="step-circle done"><i class="fa-solid fa-check"></i></div>
+          <div class="step-label">Medico</div>
+        </div>
+        <div class="step-connector done"></div>
+        <div class="step">
+          <div class="step-circle active">2</div>
+          <div class="step-label active">Data e Ora</div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-label">Conferma</div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- STEP 1: MEDICO SELEZIONATO -->
+        <div class="col-12">
+          <div style="background:var(--success-light);border:1px solid #bbf7d0;border-radius:12px;padding:.875rem 1.25rem;display:flex;align-items:center;gap:.875rem;margin-bottom:.5rem;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--success);color:white;display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;flex-shrink:0;">MR</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;color:var(--dark);font-size:.9rem;">Dott. Mario Rossi</div>
+              <div style="font-size:.8rem;color:var(--text-muted);">Il tuo medico di base · Medicina Generale</div>
+            </div>
+            <span class="badge badge-confermato"><i class="fa-solid fa-check"></i> Selezionato</span>
+          </div>
+          <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:1.5rem;">
+            Non è il tuo medico? <a href="#" style="color:var(--primary);">Cambia medico</a>
+          </div>
+        </div>
+
+        <!-- CALENDARIO -->
+        <div class="col-md-5">
+          <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.5rem;">
+            <div class="cal-nav">
+              <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-chevron-left"></i></button>
+              <h6>Giugno 2025</h6>
+              <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="cal-grid" style="margin-bottom:.25rem;">
+              <div class="cal-day-header">L</div>
+              <div class="cal-day-header">M</div>
+              <div class="cal-day-header">M</div>
+              <div class="cal-day-header">G</div>
+              <div class="cal-day-header">V</div>
+              <div class="cal-day-header">S</div>
+              <div class="cal-day-header">D</div>
+            </div>
+            <div class="cal-grid" style="position:relative;">
+              <!-- Week 1 -->
+              <div class="cal-day other">26</div><div class="cal-day other">27</div><div class="cal-day other">28</div><div class="cal-day other">29</div><div class="cal-day other">30</div><div class="cal-day other">31</div><div class="cal-day other">1</div>
+              <!-- Week 2 -->
+              <div class="cal-day past">2</div><div class="cal-day past">3</div><div class="cal-day past">4</div><div class="cal-day past">5</div><div class="cal-day past">6</div><div class="cal-day">7</div><div class="cal-day">8</div>
+              <!-- Week 3 -->
+              <div class="cal-day today">9</div><div class="cal-day has-slots" title="disponibile" style="position:relative;">10<span style="position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--success);border-radius:50%;display:block;"></span></div>
+              <div class="cal-day has-slots" style="position:relative;">11<span style="position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--success);border-radius:50%;display:block;"></span></div>
+              <div class="cal-day has-slots" style="position:relative;">12<span style="position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--success);border-radius:50%;display:block;"></span></div>
+              <div class="cal-day has-slots" style="position:relative;">13<span style="position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:var(--success);border-radius:50%;display:block;"></span></div>
+              <div class="cal-day">14</div><div class="cal-day">15</div>
+              <!-- Week 4 -->
+              <div class="cal-day selected has-slots" style="position:relative;">16<span style="position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:5px;height:5px;background:white;border-radius:50%;display:block;"></span></div>
+              <div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div>
+              <!-- Week 5 -->
+              <div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div><div class="cal-day">29</div>
+              <div class="cal-day">30</div><div class="cal-day other">1</div><div class="cal-day other">2</div><div class="cal-day other">3</div><div class="cal-day other">4</div><div class="cal-day other">5</div><div class="cal-day other">6</div>
+            </div>
+            <div style="margin-top:.875rem;display:flex;align-items:center;gap:.75rem;font-size:.75rem;color:var(--text-muted);">
+              <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%;display:inline-block;"></span>Disponibile</span>
+              <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;background:var(--primary);border-radius:50%;display:inline-block;"></span>Selezionato</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLOT ORARI -->
+        <div class="col-md-7">
+          <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.5rem;">
+            <h6 style="font-weight:700;color:var(--dark);margin-bottom:.25rem;">Orari disponibili</h6>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:1.25rem;">
+              <i class="fa-regular fa-calendar me-1"></i><strong>Lunedì 16 Giugno 2025</strong>
+            </p>
+
+            <div style="font-size:.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.625rem;">Mattina</div>
+            <div class="slots-grid" style="margin-bottom:1.25rem;">
+              <div class="slot busy">8:30</div>
+              <div class="slot busy">9:00</div>
+              <div class="slot">9:30</div>
+              <div class="slot">10:00</div>
+              <div class="slot selected">10:30</div>
+              <div class="slot busy">11:00</div>
+              <div class="slot">11:30</div>
+              <div class="slot busy">12:00</div>
+            </div>
+
+            <div style="font-size:.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.625rem;">Pomeriggio</div>
+            <div class="slots-grid" style="margin-bottom:1.5rem;">
+              <div class="slot busy">15:00</div>
+              <div class="slot">15:30</div>
+              <div class="slot">16:00</div>
+              <div class="slot">16:30</div>
+              <div class="slot busy">17:00</div>
+              <div class="slot">17:30</div>
+              <div class="slot busy">18:00</div>
+              <div class="slot busy">18:30</div>
+            </div>
+
+            <div style="background:var(--primary-xlight);border:1px solid var(--primary-light);border-radius:10px;padding:.875rem;font-size:.825rem;color:var(--primary);margin-bottom:1.25rem;">
+              <i class="fa-solid fa-circle-check me-2"></i>
+              Orario selezionato: <strong>Lunedì 16/06 · Ore 10:30</strong>
+            </div>
+
+            <div class="form-field" style="margin-bottom:1rem;">
+              <label class="form-label">Motivo della visita (opzionale)</label>
+              <textarea class="form-control" rows="2" placeholder="Es. controllo pressione, rinnovo terapia, problema nuovo..."></textarea>
+            </div>
+
+            <a href="#" onclick="alert('✅ Richiesta inviata!\n\nRiceverai conferma via email entro 24 ore.');return false;" class="btn btn-primary btn-full">
+              <i class="fa-solid fa-paper-plane me-1"></i>Invia Richiesta di Prenotazione
+            </a>
+            <p style="font-size:.78rem;color:var(--text-muted);text-align:center;margin-top:.625rem;">
+              Riceverai conferma via email entro 24h lavorative.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

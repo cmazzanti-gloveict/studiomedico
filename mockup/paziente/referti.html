@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Miei Referti — Portale Paziente</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="patient-wrap">
+  <aside class="patient-sidebar">
+    <div class="patient-sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Portale Pazienti</div></div>
+    </div>
+    <div class="patient-user">
+      <div class="patient-avatar">MB</div>
+      <div><div class="patient-user-name">Mario Bianchi</div><div class="patient-user-email">mario.bianchi@gmail.com</div></div>
+    </div>
+    <nav class="patient-nav">
+      <a href="dashboard.html" class="patient-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a href="prenota.html" class="patient-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenota Visita</a>
+      <a href="ricetta.html" class="patient-nav-link"><i class="fa-solid fa-pills"></i> Richiedi Ricetta</a>
+      <a href="certificato.html" class="patient-nav-link"><i class="fa-solid fa-file-medical"></i> Certificato Malattia</a>
+      <a href="referti.html" class="patient-nav-link active"><i class="fa-solid fa-file-arrow-up"></i> I Miei Referti</a>
+      <a href="messaggi.html" class="patient-nav-link"><i class="fa-regular fa-message"></i> Scrivi al Medico</a>
+      <hr style="border-color:var(--border);margin:.5rem 0;">
+      <a href="../login.html" class="patient-nav-link danger"><i class="fa-solid fa-right-from-bracket"></i> Esci</a>
+    </nav>
+  </aside>
+
+  <main class="patient-main">
+    <div class="patient-topbar">
+      <div class="patient-topbar-title"><i class="fa-solid fa-file-arrow-up me-2" style="color:var(--purple);"></i>I Miei Referti</div>
+    </div>
+    <div class="page-body">
+
+      <!-- UPLOAD ZONE -->
+      <div class="upload-zone mb-4" onclick="alert('📎 Seleziona un file da caricare');">
+        <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <h6>Trascina qui il tuo referto o clicca per selezionarlo</h6>
+        <p style="font-size:.825rem;color:var(--text-muted);margin:0;">PDF, JPG, PNG — max 10 MB per file</p>
+        <div style="margin-top:1rem;">
+          <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();">
+            <i class="fa-solid fa-folder-open me-1"></i>Scegli file
+          </button>
+        </div>
+      </div>
+
+      <!-- LISTA REFERTI -->
+      <div class="data-card">
+        <div class="data-card-header">
+          <span class="data-card-title">Referti caricati</span>
+          <span style="font-size:.8rem;color:var(--text-muted);">3 documenti</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Tipo</th>
+              <th>Data caricamento</th>
+              <th>Visto dal medico</th>
+              <th>Azioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div style="width:36px;height:36px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--danger);font-size:1rem;"><i class="fa-solid fa-file-pdf"></i></div>
+                  <div>
+                    <div style="font-weight:600;color:var(--dark);font-size:.85rem;">Esame_sangue_28052025.pdf</div>
+                    <div style="font-size:.75rem;color:var(--text-muted);">Laboratorio Bios Modena</div>
+                  </div>
+                </div>
+              </td>
+              <td>Esame del sangue</td>
+              <td>28/05/2025</td>
+              <td><span class="badge badge-confermato"><i class="fa-solid fa-eye"></i> Visto</span></td>
+              <td>
+                <div style="display:flex;gap:.375rem;">
+                  <button class="btn btn-outline btn-sm btn-icon" title="Scarica"><i class="fa-solid fa-download"></i></button>
+                  <button class="btn btn-ghost btn-sm btn-icon" title="Elimina" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div style="width:36px;height:36px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--danger);font-size:1rem;"><i class="fa-solid fa-file-pdf"></i></div>
+                  <div>
+                    <div style="font-weight:600;color:var(--dark);font-size:.85rem;">ECG_12042025.pdf</div>
+                    <div style="font-size:.75rem;color:var(--text-muted);">Cardio Clinic MO</div>
+                  </div>
+                </div>
+              </td>
+              <td>ECG / Cardiologia</td>
+              <td>12/04/2025</td>
+              <td><span class="badge badge-confermato"><i class="fa-solid fa-eye"></i> Visto</span></td>
+              <td>
+                <div style="display:flex;gap:.375rem;">
+                  <button class="btn btn-outline btn-sm btn-icon" title="Scarica"><i class="fa-solid fa-download"></i></button>
+                  <button class="btn btn-ghost btn-sm btn-icon" title="Elimina" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div style="width:36px;height:36px;background:#dbeafe;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;"><i class="fa-solid fa-file-image"></i></div>
+                  <div>
+                    <div style="font-weight:600;color:var(--dark);font-size:.85rem;">Radiografia_torace.jpg</div>
+                    <div style="font-size:.75rem;color:var(--text-muted);">Ospedale Civile Modena</div>
+                  </div>
+                </div>
+              </td>
+              <td>Radiologia</td>
+              <td>03/06/2025</td>
+              <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> In attesa</span></td>
+              <td>
+                <div style="display:flex;gap:.375rem;">
+                  <button class="btn btn-outline btn-sm btn-icon" title="Scarica"><i class="fa-solid fa-download"></i></button>
+                  <button class="btn btn-ghost btn-sm btn-icon" title="Elimina" style="color:var(--danger);"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

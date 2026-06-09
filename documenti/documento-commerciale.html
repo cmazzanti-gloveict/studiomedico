@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta Commerciale — Portale Pazienti Studio Medico</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  @page { margin: 2.5cm 2cm; size: A4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', Arial, sans-serif; font-size: 10.5pt; color: #1C1917; line-height: 1.6; background: white; }
+
+  /* COVER */
+  .cover { page-break-after: always; min-height: 29cm; display: flex; flex-direction: column; justify-content: space-between; padding: 2.5cm 0 2cm; }
+  .cover-badge { display: inline-block; background: #F0FDFA; border: 1px solid #CCFBF1; color: #0F766E; font-size: 8pt; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 2rem; }
+  .cover-title { font-size: 36pt; font-weight: 900; color: #0F766E; line-height: 1.05; letter-spacing: -.03em; margin-bottom: .75rem; }
+  .cover-subtitle { font-size: 16pt; font-weight: 500; color: #44403c; margin-bottom: 2rem; }
+  .cover-tagline { font-size: 11.5pt; color: #57534e; max-width: 400pt; line-height: 1.7; border-left: 4px solid #D97706; padding-left: 1rem; }
+  .cover-divider { height: 1px; background: linear-gradient(90deg, #0F766E, #D97706, transparent); margin: 2rem 0; }
+  .cover-info-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .cover-info-item label { font-size: 7.5pt; font-weight: 700; color: #78716c; text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 3px; }
+  .cover-info-item span { font-size: 10pt; color: #1C1917; font-weight: 600; }
+  .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #E7E5E4; padding-top: 1.25rem; }
+  .cover-footer .company { font-weight: 800; color: #0F766E; font-size: 12pt; }
+  .cover-footer .contact { font-size: 8.5pt; color: #78716c; text-align: right; line-height: 1.7; }
+
+  /* TYPOGRAPHY */
+  h1 { font-size: 18pt; font-weight: 900; color: #0F766E; margin: 2rem 0 .5rem; padding-bottom: .5rem; border-bottom: 2px solid #0F766E; page-break-after: avoid; }
+  h2 { font-size: 13pt; font-weight: 800; color: #1C1917; margin: 1.5rem 0 .5rem; page-break-after: avoid; }
+  h3 { font-size: 11pt; font-weight: 700; color: #292524; margin: 1rem 0 .375rem; page-break-after: avoid; }
+  p { margin-bottom: .75rem; }
+  ul, ol { margin: .5rem 0 .75rem 1.5rem; }
+  li { margin-bottom: .3rem; }
+  strong { font-weight: 700; }
+
+  /* COMPONENTS */
+  table { width: 100%; border-collapse: collapse; margin: .75rem 0 1rem; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background: #0F766E; color: white; padding: 7px 10px; font-weight: 700; font-size: 8.5pt; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid #E7E5E4; vertical-align: top; }
+  tr:nth-child(even) td { background: #FAFAF9; }
+
+  .highlight-box { border: 2px solid #0F766E; border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1rem 0; background: #F0FDFA; page-break-inside: avoid; }
+  .highlight-box.amber { border-color: #D97706; background: #FFFBEB; }
+  .highlight-box.dark { background: #0f172a; color: white; border-color: #0f172a; }
+  .highlight-box.dark h3 { color: #CCFBF1; }
+
+  .callout { border-left: 4px solid #0F766E; background: #F0FDFA; padding: .75rem 1rem; margin: .75rem 0; border-radius: 0 6px 6px 0; font-size: 9.5pt; }
+  .callout.warning { border-color: #D97706; background: #FFFBEB; }
+
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; margin: .75rem 0 1rem; }
+  .feature-card { border: 1.5px solid #E7E5E4; border-radius: 10px; padding: .875rem 1rem; page-break-inside: avoid; }
+  .feature-card-icon { font-size: 1.2rem; margin-bottom: .375rem; }
+  .feature-card h4 { font-size: .88rem; font-weight: 700; color: #1C1917; margin-bottom: .25rem; }
+  .feature-card p { font-size: .8rem; color: #78716c; margin: 0; }
+
+  .price-table-main { width: 100%; border-collapse: collapse; margin: 1rem 0; page-break-inside: avoid; }
+  .price-table-main th { background: #0f172a; color: white; padding: 10px 14px; font-weight: 700; font-size: 9pt; text-align: left; }
+  .price-table-main td { padding: 9px 14px; border-bottom: 1px solid #E7E5E4; font-size: 9.5pt; }
+  .price-table-main .total-row td { background: #F0FDFA; font-weight: 700; border-top: 2px solid #0F766E; }
+  .price-table-main .price { font-weight: 700; color: #0F766E; font-size: 10pt; white-space: nowrap; }
+  .price-table-main .note { font-size: 8pt; color: #78716c; display: block; margin-top: 2px; }
+  .price-table-main .recurring { font-size: 8pt; color: #D97706; font-weight: 600; }
+
+  .timeline-item { display: flex; gap: 1rem; margin-bottom: .75rem; page-break-inside: avoid; }
+  .timeline-dot { width: 32px; height: 32px; background: #0F766E; border-radius: 50%; color: white; font-size: .75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: .125rem; }
+  .timeline-content { flex: 1; border-bottom: 1px solid #E7E5E4; padding-bottom: .625rem; }
+  .timeline-content h4 { font-size: .9rem; font-weight: 700; margin-bottom: .2rem; }
+  .timeline-content p { font-size: .82rem; color: #78716c; margin: 0; }
+
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: 8pt; font-weight: 700; }
+  .badge-green { background: #CCFBF1; color: #0F766E; }
+  .badge-amber { background: #FEF3C7; color: #D97706; }
+  .badge-blue { background: #DBEAFE; color: #1d4ed8; }
+
+  .section-num { display: inline-block; background: #0F766E; color: white; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 9pt; font-weight: 700; margin-right: .5rem; vertical-align: middle; }
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+
+  footer { position: fixed; bottom: 1cm; left: 0; right: 0; text-align: center; font-size: 8pt; color: #A8A29E; border-top: 1px solid #E7E5E4; padding-top: 6px; }
+</style>
+</head>
+<body>
+
+<footer>Proposta Commerciale — Portale Pazienti Studio Medico · Glove ICT Srl · Giugno 2025 · RISERVATA</footer>
+
+<!-- ═══════════════════════════════ COPERTINA ═══════════════════════════════ -->
+<div class="cover">
+  <div>
+    <div class="cover-badge">Proposta Commerciale — Giugno 2025</div>
+    <div class="cover-title">Portale Pazienti<br>per il Vostro Studio</div>
+    <div class="cover-subtitle">Meno telefonate. Più tempo con i pazienti.</div>
+    <div class="cover-tagline">
+      Un portale digitale su misura per il vostro studio: prenotazioni, ricette, certificati e messaggi — tutto online, tutto tracciato, tutto sicuro.
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-info-grid">
+      <div class="cover-info-item"><label>Destinatario</label><span>Studio Medico Associato</span></div>
+      <div class="cover-info-item"><label>Data proposta</label><span>Giugno 2025</span></div>
+      <div class="cover-info-item"><label>Validità offerta</label><span>30 giorni</span></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div>
+      <div class="company">Glove ICT Srl</div>
+      <div style="font-size:8.5pt;color:#78716c;margin-top:3px;">Soluzioni digitali per professionisti</div>
+    </div>
+    <div class="contact">
+      info@gloveict.it<br>
+      www.gloveict.it
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ 1. IL PROBLEMA ═══════════════════════════════ -->
+<h1><span class="section-num">1</span> Il Problema che Vogliamo Risolvere</h1>
+
+<p>Ogni giorno, il vostro studio riceve decine di richieste attraverso canali non strutturati: telefonate in orario di studio, messaggi WhatsApp al di fuori degli orari, email senza le informazioni necessarie. Questo comporta un carico organizzativo significativo per la segreteria e i medici.</p>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-icon">📞</div>
+    <h4>Richieste non strutturate</h4>
+    <p>Ricette e certificati richiesti via telefono senza le informazioni necessarie per elaborarle immediatamente.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon">📱</div>
+    <h4>WhatsApp fuori orario</h4>
+    <p>Messaggi dei pazienti che arrivano h24, anche nei fine settimana, senza possibilità di risposta strutturata.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon">📅</div>
+    <h4>Prenotazioni disorganizzate</h4>
+    <p>Difficoltà nel gestire le disponibilità di 4 medici su canali separati, con il rischio di sovrapposizioni.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon">📋</div>
+    <h4>Nessuna tracciabilità</h4>
+    <p>Senza un sistema centralizzato, le richieste possono andare perse o richiedere follow-up ripetuti.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ 2. LA SOLUZIONE ═══════════════════════════════ -->
+<h1><span class="section-num">2</span> La Nostra Soluzione</h1>
+
+<p>Proponiamo la realizzazione di un <strong>portale web dedicato per pazienti e medici</strong>, accessibile da qualsiasi dispositivo (smartphone, tablet, PC), che centralizza tutte le comunicazioni tra studio e pazienti in un unico sistema sicuro e tracciato.</p>
+
+<div class="highlight-box">
+  <h3 style="color:#0F766E;margin-bottom:.5rem;">In sintesi</h3>
+  <p style="margin:0;font-size:10pt;line-height:1.7;">Il portale trasforma ogni richiesta del paziente in una <strong>pratica digitale strutturata</strong>: il paziente compila un form guidato con tutte le informazioni necessarie, la segreteria e i medici gestiscono tutto dal pannello di controllo, il sistema invia notifiche automatiche a paziente e studio a ogni cambio di stato.</p>
+</div>
+
+<h2>Cosa può fare il paziente</h2>
+<table>
+  <tr><th style="width:30%">Funzione</th><th>Come funziona</th></tr>
+  <tr><td><strong>Prenota una visita</strong></td><td>Sceglie il medico, seleziona data e ora disponibile su calendario, il sistema conferma via email.</td></tr>
+  <tr><td><strong>Richiede una ricetta</strong></td><td>Compila il form con farmaco, dosaggio, numero scatole e posologia. Riceve email quando è pronta.</td></tr>
+  <tr><td><strong>Richiede un certificato</strong></td><td>Inserisce le date di malattia, tipo e destinazione (datore privato / INPS). Il PDF viene generato automaticamente e inviato via email.</td></tr>
+  <tr><td><strong>Carica referti</strong></td><td>Upload diretto di esami e documentazione medica. Il medico vede un indicatore "da revisionare".</td></tr>
+  <tr><td><strong>Messaggia il medico</strong></td><td>Sistema messaggi interno, strutturato per argomento. Non sostituisce la visita, ma elimina le email sparse.</td></tr>
+</table>
+
+<h2>Cosa può fare la segreteria / il medico</h2>
+<table>
+  <tr><th style="width:30%">Funzione</th><th>Come funziona</th></tr>
+  <tr><td><strong>Dashboard centralizzata</strong></td><td>Tutte le richieste in attesa in un'unica schermata: prenotazioni, ricette, certificati, messaggi — filtrabili per medico.</td></tr>
+  <tr><td><strong>Approva / rifiuta richieste</strong></td><td>Un click per confermare o rifiutare con nota. Il paziente riceve notifica email immediata.</td></tr>
+  <tr><td><strong>Gestisce le disponibilità</strong></td><td>Calendario settimanale per medico: apre/chiude slot, blocca giorni, copia settimana tipo.</td></tr>
+  <tr><td><strong>Approva nuovi pazienti</strong></td><td>I nuovi iscritti entrano in una coda di approvazione. La segreteria assegna il medico di riferimento prima di attivare l'accesso.</td></tr>
+  <tr><td><strong>Anagrafica pazienti</strong></td><td>Lista completa con stato accesso portale, medico assegnato, storico richieste.</td></tr>
+</table>
+
+<!-- ═══════════════════════════════ 3. SICUREZZA ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">3</span> Sicurezza e Protezione dei Dati</h1>
+
+<p>Trattando dati sanitari, la sicurezza è un requisito non negoziabile. Il sistema è progettato per essere conforme al <strong>GDPR art. 9</strong> (dati di categoria particolare) fin dall'architettura.</p>
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-icon">🔐</div>
+    <h4>Cifratura completa</h4>
+    <p>Tutti i dati sono cifrati sia in transito (TLS 1.2+) che a riposo. I documenti caricati dai pazienti sono cifrati con chiavi gestite da Azure Key Vault.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon">🌍</div>
+    <h4>Dati in Italia</h4>
+    <p>Server e database ospitati su Azure Italia Nord (Milano). I dati non escono mai dall'Unione Europea.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon">📝</div>
+    <h4>Audit trail completo</h4>
+    <p>Ogni accesso ai dati paziente viene registrato: chi ha consultato cosa, quando e da quale dispositivo. Consultabile in qualsiasi momento.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-icon">✅</div>
+    <h4>Consenso GDPR guidato</h4>
+    <p>Al primo accesso il paziente accetta esplicitamente il trattamento dei propri dati sanitari. Il consenso è archiviato con data e ora.</p>
+  </div>
+</div>
+
+<h2>Accesso al portale</h2>
+<p>Il paziente può accedere in tre modi, senza bisogno di ricordare un'ulteriore password:</p>
+<table>
+  <tr><th>Metodo</th><th>Come funziona</th><th>Consigliato per</th></tr>
+  <tr><td><strong>Google</strong></td><td>Accede con il proprio account Gmail esistente</td><td>Chi ha smartphone Android o usa Gmail</td></tr>
+  <tr><td><strong>Microsoft</strong></td><td>Accede con account Microsoft/Outlook esistente</td><td>Chi usa Outlook o prodotti Microsoft</td></tr>
+  <tr><td><strong>Email + OTP</strong></td><td>Inserisce email → riceve codice di 6 cifre valido 10 minuti</td><td>Chi non ha account Google o Microsoft</td></tr>
+</table>
+<p>Ogni nuovo paziente entra in una <strong>coda di approvazione</strong>: la segreteria verifica l'identità e attiva l'accesso. Nessuno può accedere ai propri dati sanitari senza l'approvazione esplicita dello studio.</p>
+
+<!-- ═══════════════════════════════ 4. INFRASTRUTTURA ═══════════════════════════════ -->
+<h1><span class="section-num">4</span> Infrastruttura e Affidabilità</h1>
+
+<p>Il portale è ospitato interamente su <strong>Microsoft Azure</strong>, la piattaforma cloud enterprise più diffusa a livello mondiale, con data center in Italia.</p>
+
+<table>
+  <tr><th style="width:30%">Caratteristica</th><th>Dettaglio</th></tr>
+  <tr><td><strong>Disponibilità</strong></td><td>SLA Azure App Service: 99,95% di uptime garantito contrattualmente da Microsoft</td></tr>
+  <tr><td><strong>Backup automatici</strong></td><td>Database con backup giornaliero automatico, retention 7 giorni. Ripristino entro 2 ore in caso di incidente.</td></tr>
+  <tr><td><strong>Scalabilità</strong></td><td>L'infrastruttura può essere scalata in pochi minuti senza interruzione del servizio se il numero di pazienti cresce significativamente.</td></tr>
+  <tr><td><strong>Aggiornamenti zero-downtime</strong></td><td>Gli aggiornamenti del portale vengono applicati senza interruzione del servizio, tramite slot staging.</td></tr>
+  <tr><td><strong>Nessuna VM da gestire</strong></td><td>Tutta l'infrastruttura è PaaS (Platform as a Service): nessun server fisico o virtuale da manutenere da parte vostra o nostra.</td></tr>
+</table>
+
+<!-- ═══════════════════════════════ 5. TIMELINE ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">5</span> Piano di Lavoro</h1>
+
+<p>Il progetto è strutturato in 8 fasi per una durata complessiva di <strong>circa 7–9 settimane</strong> dalla firma del contratto al go-live.</p>
+
+<div class="timeline-item"><div class="timeline-dot">1</div><div class="timeline-content"><h4>Setup infrastruttura Azure (Sett. 1)</h4><p>Provisioning dei servizi cloud, configurazione ambienti di sviluppo e produzione, pipeline di rilascio.</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">2</div><div class="timeline-content"><h4>Autenticazione e accesso (Sett. 1–2)</h4><p>Login Google/Microsoft/OTP, flusso di approvazione nuovi pazienti, consenso GDPR, sessioni sicure.</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">3</div><div class="timeline-content"><h4>Area pazienti (Sett. 2–4)</h4><p>Dashboard, prenotazioni, richiesta ricette, certificati malattia, upload referti, messaggistica.</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">4</div><div class="timeline-content"><h4>Pannello amministrativo (Sett. 3–5)</h4><p>Dashboard segreteria, gestione completa richieste per tutti e 4 i medici, calendario disponibilità.</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">5</div><div class="timeline-content"><h4>Notifiche e automazioni (Sett. 5–6)</h4><p>Email di conferma, reminder 24h pre-appuntamento, generazione PDF certificati, notifiche stato richieste.</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">6</div><div class="timeline-content"><h4>Conformità GDPR e DPIA (Sett. 6–7)</h4><p>Audit trail, documentazione privacy, redazione DPIA (valutazione d'impatto obbligatoria per dati sanitari sistematici).</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">7</div><div class="timeline-content"><h4>Test e collaudo (Sett. 7–8)</h4><p>Test funzionali, test su mobile, collaudo con il personale dello studio, correzioni e ottimizzazioni.</p></div></div>
+<div class="timeline-item"><div class="timeline-dot">8</div><div class="timeline-content"><h4>Go-live e formazione (Sett. 8–9)</h4><p>Attivazione in produzione, configurazione del dominio dello studio, sessione di formazione per la segreteria (2 ore).</p></div></div>
+
+<!-- ═══════════════════════════════ 6. PRICING ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">6</span> Investimento</h1>
+
+<h2>6.1 Sviluppo (una tantum)</h2>
+<table class="price-table-main">
+  <tr><th style="width:50%">Voce</th><th style="width:30%">Descrizione</th><th style="width:20%">Importo</th></tr>
+  <tr>
+    <td><strong>Sviluppo portale completo</strong><span class="note">Setup Azure, autenticazione, area paziente, pannello admin, notifiche, PDF, GDPR</span></td>
+    <td>32–41 giorni lavorativi</td>
+    <td class="price">€ 14.500</td>
+  </tr>
+  <tr>
+    <td><strong>DPIA — Data Protection Impact Assessment</strong><span class="note">Obbligatoria per trattamento sistematico dati sanitari (art. 35 GDPR). Redatta da consulente specializzato.</span></td>
+    <td>6–8 ore consulenza legale</td>
+    <td class="price">€ 1.200 – 1.600</td>
+  </tr>
+  <tr>
+    <td><strong>Formazione personale</strong><span class="note">Sessione di 2 ore con segreteria e medici per utilizzo del pannello amministrativo</span></td>
+    <td>Inclusa</td>
+    <td class="price">€ 0</td>
+  </tr>
+  <tr class="total-row">
+    <td><strong>TOTALE SVILUPPO</strong></td>
+    <td></td>
+    <td class="price">€ 15.700 – 16.100</td>
+  </tr>
+</table>
+
+<h2>6.2 Canone mensile (ricorrente)</h2>
+<table class="price-table-main">
+  <tr><th style="width:50%">Voce</th><th style="width:30%">Incluso</th><th style="width:20%">Importo</th></tr>
+  <tr>
+    <td><strong>Infrastruttura Azure</strong><span class="note">App Service, Database PostgreSQL, Blob Storage, Key Vault, Email, Monitoring</span></td>
+    <td>Tutti i servizi cloud</td>
+    <td class="price recurring">€ 107 – 117 /mese</td>
+  </tr>
+  <tr>
+    <td><strong>Manutenzione e supporto</strong><span class="note">Aggiornamenti di sicurezza, monitoraggio, supporto email su malfunzionamenti (SLA 24h lavorativi)</span></td>
+    <td>Standard</td>
+    <td class="price recurring">€ 0 *</td>
+  </tr>
+  <tr class="total-row">
+    <td><strong>TOTALE CANONE MENSILE</strong></td>
+    <td></td>
+    <td class="price recurring">€ 107 – 117 /mese</td>
+  </tr>
+</table>
+
+<p style="font-size:8.5pt;color:#78716c;">* La manutenzione ordinaria è inclusa nel primo anno. Dal secondo anno in poi è disponibile un contratto di manutenzione annuale a €900/anno (opzionale).</p>
+
+<h2>6.3 Opzioni di manutenzione (dal 2° anno)</h2>
+<table>
+  <tr><th style="width:35%">Piano</th><th>Incluso</th><th style="width:20%">Costo</th></tr>
+  <tr>
+    <td><strong>Base</strong> <span class="badge badge-green">Consigliato</span></td>
+    <td>Aggiornamenti sicurezza, monitoraggio proattivo, supporto email (SLA 48h lavorativi)</td>
+    <td>€ 900/anno</td>
+  </tr>
+  <tr>
+    <td><strong>Plus</strong></td>
+    <td>Tutto il piano Base + supporto telefonico, SLA 24h, 4 ore evolutive/anno incluse</td>
+    <td>€ 1.800/anno</td>
+  </tr>
+  <tr>
+    <td><strong>Pay-per-use</strong></td>
+    <td>Solo interventi on-demand a tariffa giornaliera. Nessun contratto ricorrente.</td>
+    <td>€ 550/giorno</td>
+  </tr>
+</table>
+
+<!-- ═══════════════════════════════ 7. RIEPILOGO ═══════════════════════════════ -->
+<h1 class="page-break"><span class="section-num">7</span> Riepilogo dell'Investimento</h1>
+
+<div class="highlight-box dark">
+  <h3>Costo totale primo anno</h3>
+  <table style="margin:.75rem 0 0;font-size:10pt;">
+    <tr><td style="padding:5px 0;color:#CBD5E1;border:none;">Sviluppo una tantum</td><td style="padding:5px 0;font-weight:700;color:white;text-align:right;border:none;">€ 15.700 – 16.100</td></tr>
+    <tr><td style="padding:5px 0;color:#CBD5E1;border:none;">Infrastruttura Azure (12 mesi)</td><td style="padding:5px 0;font-weight:700;color:white;text-align:right;border:none;">€ 1.284 – 1.404</td></tr>
+    <tr><td style="padding:5px 0;color:#CBD5E1;border:none;">Manutenzione (1° anno inclusa)</td><td style="padding:5px 0;font-weight:700;color:#CCFBF1;text-align:right;border:none;">€ 0</td></tr>
+    <tr><td style="padding:5px 8px;color:white;font-weight:700;font-size:11pt;border-top:1px solid rgba(255,255,255,.2);">TOTALE PRIMO ANNO</td><td style="padding:5px 8px;font-weight:900;color:#6EE7B7;font-size:13pt;text-align:right;border-top:1px solid rgba(255,255,255,.2);">€ 16.984 – 17.504</td></tr>
+  </table>
+  <p style="font-size:8.5pt;color:#94A3B8;margin-top:.75rem;margin-bottom:0;">Anni successivi: solo canone Azure €1.284–1.404/anno + eventuale contratto manutenzione</p>
+</div>
+
+<div class="highlight-box amber" style="margin-top:1rem;">
+  <strong>Tutti i prezzi si intendono IVA esclusa.</strong> Per la DPIA il costo finale dipende dall'offerta del consulente legale che verrà coinvolto e non è direttamente a carico di Glove ICT Srl.
+</div>
+
+<!-- ═══════════════════════════════ 8. NEXT STEPS ═══════════════════════════════ -->
+<h1><span class="section-num">8</span> Come Procedere</h1>
+
+<p>Per avviare il progetto sono sufficienti tre passaggi:</p>
+<ol style="margin-left:1.5rem;margin-top:.5rem;">
+  <li style="margin-bottom:.5rem;"><strong>Approvazione della proposta</strong> — Conferma scritta (email) di accettazione delle condizioni commerciali.</li>
+  <li style="margin-bottom:.5rem;"><strong>Firma del contratto</strong> — Invio e firma del contratto di sviluppo software con specifiche tecniche complete.</li>
+  <li style="margin-bottom:.5rem;"><strong>Kickoff meeting</strong> — Riunione di avvio (1 ora, in sede o video) per allinearsi su flussi specifici dello studio, impostare le credenziali Azure e pianificare il calendario di sviluppo.</li>
+</ol>
+
+<div class="callout" style="margin-top:1rem;">
+  <strong>Questa proposta è valida per 30 giorni dalla data di emissione.</strong><br>
+  Per qualsiasi domanda o per fissare un incontro di approfondimento, contattate:<br>
+  <strong>Cataldo Mazzanti — Glove ICT Srl</strong> · c.mazzanti@gloveict.it
+</div>
+
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:2px solid #0F766E;text-align:center;">
+  <div style="font-size:8.5pt;color:#78716c;margin-bottom:.5rem;">Proposta predisposta da</div>
+  <div style="font-size:13pt;font-weight:900;color:#0F766E;">Glove ICT Srl</div>
+  <div style="font-size:9pt;color:#78716c;">Soluzioni digitali per professionisti · info@gloveict.it · www.gloveict.it</div>
+  <div style="font-size:8pt;color:#A8A29E;margin-top:.5rem;">Documento riservato — preparato per Studio Medico Associato — Giugno 2025</div>
+</div>
+
+</body>
+</html>

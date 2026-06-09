@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consenso Privacy — Studio Medico Associato</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.consent-page { background:#F5F5F4; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:2rem; }
+.consent-box { width:100%; max-width:560px; }
+.consent-header { text-align:center; margin-bottom:1.75rem; }
+.consent-logo-icon { width:60px; height:60px; background:#0F766E; border-radius:16px; display:inline-flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; margin-bottom:.875rem; }
+.consent-card { background:white; border:1px solid var(--border); border-radius:16px; padding:2rem; box-shadow:0 4px 16px rgba(0,0,0,.06); }
+.consent-step { display:flex; align-items:center; gap:.5rem; font-size:.72rem; font-weight:600; color:#0F766E; text-transform:uppercase; letter-spacing:.08em; margin-bottom:1.25rem; }
+.consent-step-dot { width:8px; height:8px; background:#0F766E; border-radius:50%; }
+
+.check-item {
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:1.125rem 1.25rem;
+  margin-bottom:.875rem;
+  transition:border-color .15s, background .15s;
+  cursor:pointer;
+}
+.check-item.checked { border-color:#0F766E; background:#F0FDFA; }
+.check-item.required-item { border-left:4px solid var(--danger); }
+.check-item.required-item.checked { border-left:4px solid #0F766E; border-color:#0F766E; }
+.check-item-header { display:flex; align-items:flex-start; gap:.875rem; }
+.check-item input[type="checkbox"] { width:18px; height:18px; flex-shrink:0; margin-top:1px; accent-color:#0F766E; cursor:pointer; }
+.check-item-title { font-weight:700; font-size:.875rem; color:var(--dark); margin-bottom:.25rem; display:flex; align-items:center; gap:.5rem; }
+.check-item-body { font-size:.82rem; color:var(--text-muted); line-height:1.55; }
+.required-badge { background:var(--danger-light); color:var(--danger); font-size:.65rem; font-weight:700; padding:2px 7px; border-radius:8px; text-transform:uppercase; letter-spacing:.04em; }
+.check-expand { margin-top:.75rem; margin-left:26px; font-size:.8rem; color:var(--text-muted); background:#F5F5F4; border-radius:8px; padding:.75rem 1rem; border-left:3px solid var(--border); }
+.check-expand ul { margin:0; padding-left:1.25rem; }
+.check-expand ul li { margin-bottom:.2rem; }
+</style>
+</head>
+<body>
+<div class="consent-page">
+  <div class="consent-box">
+
+    <div class="consent-header">
+      <div class="consent-logo-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <h2 style="font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:.25rem;">Studio Medico Associato</h2>
+      <p style="color:var(--text-muted);font-size:.875rem;margin:0;">Benvenuto nel portale · Prima configurazione</p>
+    </div>
+
+    <div class="consent-card">
+      <div class="consent-step">
+        <div class="consent-step-dot"></div>
+        Primo accesso — passo 1 di 2
+      </div>
+
+      <h5 style="font-weight:800;color:var(--dark);margin-bottom:.375rem;">Informativa e consenso al trattamento dati</h5>
+      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem;">
+        Leggi con attenzione. Entrambi i consensi sono <strong>obbligatori</strong> per utilizzare il portale. Senza di essi non è possibile garantire il funzionamento del servizio.
+      </p>
+
+      <!-- CONSENSO 1: PRIVACY / GDPR -->
+      <div class="check-item required-item checked" id="item1" onclick="toggleCheck(this, 'cb1')">
+        <div class="check-item-header">
+          <input type="checkbox" id="cb1" checked onclick="event.stopPropagation(); toggleCheck(document.getElementById('item1'), 'cb1')">
+          <div>
+            <div class="check-item-title">
+              Trattamento dati sanitari (GDPR art. 9)
+              <span class="required-badge">Obbligatorio</span>
+            </div>
+            <div class="check-item-body">
+              Accetto la <a href="#" style="color:#0F766E;">Privacy Policy</a> dello Studio Medico Associato e acconsento al trattamento dei miei dati sanitari ai sensi dell'<strong>art. 9 GDPR</strong> per la gestione delle richieste mediche attraverso questo portale.
+            </div>
+          </div>
+        </div>
+        <div class="check-expand">
+          <strong style="font-size:.78rem;color:var(--dark);">Dati trattati:</strong>
+          <ul style="margin-top:.375rem;">
+            <li>Dati identificativi (nome, email, data di nascita)</li>
+            <li>Dati sanitari (richieste di visita, ricette, certificati, referti caricati)</li>
+            <li>Dati di accesso e log di attività</li>
+          </ul>
+          <div style="margin-top:.5rem;font-size:.78rem;">
+            <strong>Titolare:</strong> Studio Medico Associato — Via della Salute, 12, Modena ·
+            <strong>Conservazione:</strong> 10 anni dalla data di inserimento ·
+            <strong>Puoi chiedere:</strong> accesso, rettifica, cancellazione scrivendo a privacy@studiomedicoassociato.it
+          </div>
+        </div>
+      </div>
+
+      <!-- CONSENSO 2: COMUNICAZIONI OPERATIVE -->
+      <div class="check-item required-item checked" id="item2" onclick="toggleCheck(this, 'cb2')">
+        <div class="check-item-header">
+          <input type="checkbox" id="cb2" checked onclick="event.stopPropagation(); toggleCheck(document.getElementById('item2'), 'cb2')">
+          <div>
+            <div class="check-item-title">
+              Comunicazioni operative via email
+              <span class="required-badge">Obbligatorio</span>
+            </div>
+            <div class="check-item-body">
+              Acconsento all'invio di comunicazioni email necessarie al funzionamento del servizio: codici OTP di accesso, conferme e aggiornamenti sulle mie richieste, promemoria appuntamenti.
+            </div>
+          </div>
+        </div>
+        <div class="check-expand">
+          <strong style="font-size:.78rem;color:var(--dark);">Perché è obbligatorio:</strong>
+          <ul style="margin-top:.375rem;">
+            <li>Senza l'email OTP non puoi accedere al portale</li>
+            <li>Le conferme di prenotazione / ricetta vengono inviate solo via email</li>
+            <li>I promemoria 24h prima dell'appuntamento sono inviati via email</li>
+          </ul>
+          <div style="margin-top:.5rem;font-size:.78rem;color:var(--danger);">
+            <i class="fa-solid fa-circle-info me-1"></i>
+            Questo consenso riguarda solo le comunicazioni di servizio. <strong>Non riceverai mai email promozionali o di marketing.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO GDPR -->
+      <div style="background:#F0FDFA;border:1px solid #CCFBF1;border-radius:10px;padding:.875rem 1rem;font-size:.8rem;color:#0F766E;margin-bottom:1.5rem;">
+        <i class="fa-solid fa-shield-halved me-2"></i>
+        I tuoi dati sono trattati in conformità al GDPR · Hosting su <strong>Azure EU (Milano)</strong> · Cifratura at-rest sui documenti
+      </div>
+
+      <button id="btnProcedi"
+        onclick="window.location.href='../mockup/paziente/pending.html'"
+        style="width:100%;padding:.75rem;background:#0F766E;color:white;border:none;border-radius:10px;font-size:.95rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .15s;">
+        <i class="fa-solid fa-arrow-right"></i> Accetta e continua
+      </button>
+
+      <p style="font-size:.75rem;color:var(--text-muted);text-align:center;margin-top:.75rem;">
+        Puoi revocare il consenso in qualsiasi momento scrivendo a <a href="#" style="color:#0F766E;">privacy@studiomedicoassociato.it</a>
+      </p>
+    </div>
+
+    <div style="text-align:center;margin-top:1rem;">
+      <a href="../login.html" style="font-size:.8rem;color:var(--text-muted);text-decoration:none;">
+        <i class="fa-solid fa-arrow-left me-1"></i>Torna al login
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleCheck(el, cbId) {
+  const cb = document.getElementById(cbId);
+  cb.checked = !cb.checked;
+  el.classList.toggle('checked', cb.checked);
+
+  // aggiorna bottone
+  const cb1 = document.getElementById('cb1').checked;
+  const cb2 = document.getElementById('cb2').checked;
+  const btn = document.getElementById('btnProcedi');
+  btn.disabled = !(cb1 && cb2);
+  btn.style.background = (cb1 && cb2) ? '#0F766E' : '#ccc';
+  btn.style.cursor = (cb1 && cb2) ? 'pointer' : 'not-allowed';
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

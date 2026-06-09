@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Richiedi Ricetta — Portale Paziente</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="patient-wrap">
+
+  <aside class="patient-sidebar">
+    <div class="patient-sidebar-brand">
+      <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+      <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Portale Pazienti</div></div>
+    </div>
+    <div class="patient-user">
+      <div class="patient-avatar">MB</div>
+      <div><div class="patient-user-name">Mario Bianchi</div><div class="patient-user-email">mario.bianchi@gmail.com</div></div>
+    </div>
+    <nav class="patient-nav">
+      <a href="dashboard.html" class="patient-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a href="prenota.html" class="patient-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenota Visita</a>
+      <a href="ricetta.html" class="patient-nav-link active"><i class="fa-solid fa-pills"></i> Richiedi Ricetta</a>
+      <a href="certificato.html" class="patient-nav-link"><i class="fa-solid fa-file-medical"></i> Certificato Malattia</a>
+      <a href="referti.html" class="patient-nav-link"><i class="fa-solid fa-file-arrow-up"></i> I Miei Referti</a>
+      <a href="messaggi.html" class="patient-nav-link"><i class="fa-regular fa-message"></i> Scrivi al Medico</a>
+      <hr style="border-color:var(--border);margin:.5rem 0;">
+      <a href="../login.html" class="patient-nav-link danger"><i class="fa-solid fa-right-from-bracket"></i> Esci</a>
+    </nav>
+  </aside>
+
+  <main class="patient-main">
+    <div class="patient-topbar">
+      <div class="patient-topbar-title"><i class="fa-solid fa-pills me-2" style="color:var(--success);"></i>Richiedi una Ricetta</div>
+    </div>
+    <div class="page-body">
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.75rem;">
+
+            <div style="background:#fef3c7;border:1px solid #fde68a;border-radius:10px;padding:.875rem 1rem;font-size:.825rem;color:#92400e;margin-bottom:1.5rem;">
+              <i class="fa-solid fa-triangle-exclamation me-2"></i>
+              <strong>Attenzione:</strong> Le ricette vengono emesse solo per farmaci già in terapia. Per nuovi farmaci è necessaria una visita.
+            </div>
+
+            <div class="form-row cols-2">
+              <div class="form-field">
+                <label class="form-label">Nome del farmaco <span class="required">*</span></label>
+                <input type="text" class="form-control" placeholder="Es. Metformina, Ramipril..." value="Metformina">
+                <div class="input-hint">Nome commerciale o principio attivo.</div>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Dosaggio <span class="required">*</span></label>
+                <input type="text" class="form-control" placeholder="Es. 1000mg, 5mg..." value="1000mg">
+              </div>
+            </div>
+
+            <div class="form-row cols-2">
+              <div class="form-field">
+                <label class="form-label">Numero di scatole <span class="required">*</span></label>
+                <select class="form-select">
+                  <option>— Seleziona —</option>
+                  <option>1 scatola</option>
+                  <option selected>2 scatole</option>
+                  <option>3 scatole</option>
+                  <option>Altro (specifica nelle note)</option>
+                </select>
+                <div class="input-hint">Obbligatorio: senza questa info la ricetta non può essere emessa.</div>
+              </div>
+              <div class="form-field">
+                <label class="form-label">Posologia attuale <span class="required">*</span></label>
+                <input type="text" class="form-control" placeholder="Es. 1 cp 2 volte al giorno..." value="1 cp mattina e sera ai pasti">
+              </div>
+            </div>
+
+            <div class="form-field" style="margin-bottom:1rem;">
+              <label class="form-label">Stai seguendo una terapia cronica per questo farmaco? <span class="required">*</span></label>
+              <div style="display:flex;gap:1rem;margin-top:.375rem;">
+                <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem;">
+                  <input type="radio" name="cronica" checked> Sì, farmaco cronico
+                </label>
+                <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem;">
+                  <input type="radio" name="cronica"> No, necessito visita
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field" style="margin-bottom:1rem;">
+              <label class="form-label">Urgenza</label>
+              <div style="display:flex;gap:1rem;margin-top:.375rem;">
+                <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem;">
+                  <input type="radio" name="urgenza" checked> Normale (entro 3 gg)
+                </label>
+                <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem;">
+                  <input type="radio" name="urgenza"> Urgente (entro 24h)
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field" style="margin-bottom:1.5rem;">
+              <label class="form-label">Note aggiuntive</label>
+              <textarea class="form-control" rows="3" placeholder="Qualsiasi informazione utile per il medico..."></textarea>
+            </div>
+
+            <button onclick="alert('✅ Richiesta ricetta inviata!\n\nRiceverai email quando la ricetta è pronta.');" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
+              <i class="fa-solid fa-paper-plane me-2"></i>Invia Richiesta Ricetta
+            </button>
+            <p style="font-size:.78rem;color:var(--text-muted);text-align:center;margin-top:.625rem;">Elaborazione entro 24–72 ore lavorative. Riceverai notifica via email.</p>
+          </div>
+        </div>
+
+        <!-- SIDEBAR INFO -->
+        <div class="col-lg-4">
+          <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1rem;">
+            <h6 style="font-weight:700;color:var(--dark);margin-bottom:.875rem;">Storico ricette</h6>
+            <div style="display:flex;flex-direction:column;gap:.625rem;">
+              <div style="padding:.625rem;background:var(--bg);border-radius:8px;font-size:.8rem;">
+                <div style="font-weight:600;color:var(--dark);">Metformina 1000mg</div>
+                <div style="color:var(--text-muted);">07/06/2025 · 3 scatole</div>
+                <span class="badge badge-completato" style="margin-top:3px;">Pronta</span>
+              </div>
+              <div style="padding:.625rem;background:var(--bg);border-radius:8px;font-size:.8rem;">
+                <div style="font-weight:600;color:var(--dark);">Ramipril 5mg</div>
+                <div style="color:var(--text-muted);">20/05/2025 · 2 scatole</div>
+                <span class="badge badge-completato" style="margin-top:3px;">Pronta</span>
+              </div>
+            </div>
+          </div>
+          <div style="background:var(--primary-xlight);border:1px solid var(--primary-light);border-radius:14px;padding:1.25rem;">
+            <h6 style="font-weight:700;color:var(--primary);margin-bottom:.625rem;"><i class="fa-solid fa-circle-info me-2"></i>Come funziona</h6>
+            <ol style="font-size:.82rem;color:var(--text-muted);margin:0;padding-left:1.25rem;line-height:1.7;">
+              <li>Compila il modulo con tutti i dati</li>
+              <li>Il medico riceve la richiesta</li>
+              <li>Ricevi email con conferma</li>
+              <li>Ritira la ricetta in studio</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

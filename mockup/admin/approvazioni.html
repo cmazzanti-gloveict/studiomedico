@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Approvazioni Accessi — Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+
+<aside class="admin-sidebar">
+  <div class="admin-brand">
+    <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+    <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Pannello Gestione</div></div>
+  </div>
+  <nav class="admin-nav">
+    <div class="admin-nav-section">Gestione</div>
+    <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="prenotazioni.html" class="admin-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
+    <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
+    <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
+    <div class="admin-nav-section" style="margin-top:.5rem;">Configurazione</div>
+    <a href="approvazioni.html" class="admin-nav-link active"><i class="fa-solid fa-user-check"></i> Approvazioni <span class="admin-nav-badge">4</span></a>
+    <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
+    <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
+    <a href="#" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+  </nav>
+  <div class="admin-footer">
+    <div class="admin-user">
+      <div class="admin-avatar">MR</div>
+      <div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div>
+      <a href="../login.html" style="margin-left:auto;color:rgba(255,255,255,.4);font-size:.875rem;" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a>
+    </div>
+  </div>
+</aside>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title">
+      <i class="fa-solid fa-user-check me-2" style="color:#0F766E;"></i>Approvazione Nuovi Accessi
+    </span>
+    <div class="admin-topbar-actions">
+      <span style="font-size:.8rem;color:var(--text-muted);">4 richieste in attesa</span>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- BANNER INFORMATIVO -->
+    <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:.875rem;">
+      <i class="fa-solid fa-circle-info" style="color:#D97706;margin-top:2px;flex-shrink:0;"></i>
+      <div style="font-size:.85rem;color:#78350F;">
+        <strong>Come funziona:</strong> Quando un paziente accede per la prima volta (Google, Microsoft o OTP), il suo accesso rimane in attesa finché la segreteria non lo approva. Solo i pazienti del vostro studio devono essere approvati.
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:#0F766E;border-bottom:2px solid #0F766E;margin-bottom:-2px;cursor:pointer;">In attesa (4)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Approvati (338)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutati (7)</button>
+    </div>
+
+    <!-- LISTA APPROVAZIONI -->
+    <div style="display:flex;flex-direction:column;gap:.875rem;">
+
+      <!-- Card 1 -->
+      <div style="background:white;border:1.5px solid #FDE68A;border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div style="width:44px;height:44px;border-radius:50%;background:#FFFBEB;color:#D97706;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;flex-shrink:0;">MB</div>
+        <div style="flex:1;min-width:200px;">
+          <div style="font-weight:800;font-size:.95rem;color:var(--dark);margin-bottom:.125rem;">Mario Bianchi</div>
+          <div style="font-size:.8rem;color:var(--text-muted);display:flex;gap:.875rem;flex-wrap:wrap;">
+            <span><i class="fa-regular fa-envelope me-1"></i>mario.bianchi@gmail.com</span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" style="margin-right:3px;vertical-align:middle;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Google
+            </span>
+            <span><i class="fa-regular fa-clock me-1"></i>Oggi ore 10:14</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <select style="padding:.35rem .75rem;border:1.5px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;background:white;color:var(--dark);">
+            <option>— Assegna medico —</option>
+            <option selected>Dott. Mario Rossi</option>
+            <option>Dott.ssa Laura Bianchi</option>
+            <option>Dott. Giuseppe Verdi</option>
+            <option>Dott.ssa Anna Ferrari</option>
+          </select>
+          <button onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
+            <i class="fa-solid fa-check"></i> Approva
+          </button>
+          <button onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
+            Rifiuta
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div style="background:white;border:1.5px solid #FDE68A;border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div style="width:44px;height:44px;border-radius:50%;background:#FFFBEB;color:#D97706;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;flex-shrink:0;">LM</div>
+        <div style="flex:1;min-width:200px;">
+          <div style="font-weight:800;font-size:.95rem;color:var(--dark);margin-bottom:.125rem;">Laura Montanari</div>
+          <div style="font-size:.8rem;color:var(--text-muted);display:flex;gap:.875rem;flex-wrap:wrap;">
+            <span><i class="fa-regular fa-envelope me-1"></i>l.montanari@outlook.com</span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 23 23" style="margin-right:3px;vertical-align:middle;"><path fill="#f3f3f3" d="M0 0h23v23H0z"/><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
+              Microsoft
+            </span>
+            <span><i class="fa-regular fa-clock me-1"></i>Oggi ore 08:21</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <select style="padding:.35rem .75rem;border:1.5px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;background:white;color:var(--dark);">
+            <option>— Assegna medico —</option>
+            <option>Dott. Mario Rossi</option>
+            <option selected>Dott.ssa Laura Bianchi</option>
+            <option>Dott. Giuseppe Verdi</option>
+            <option>Dott.ssa Anna Ferrari</option>
+          </select>
+          <button onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
+            <i class="fa-solid fa-check"></i> Approva
+          </button>
+          <button onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
+            Rifiuta
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div style="background:white;border:1.5px solid #FDE68A;border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div style="width:44px;height:44px;border-radius:50%;background:#FFFBEB;color:#D97706;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;flex-shrink:0;">CP</div>
+        <div style="flex:1;min-width:200px;">
+          <div style="font-weight:800;font-size:.95rem;color:var(--dark);margin-bottom:.125rem;">Carlo Perin</div>
+          <div style="font-size:.8rem;color:var(--text-muted);display:flex;gap:.875rem;flex-wrap:wrap;">
+            <span><i class="fa-regular fa-envelope me-1"></i>carlo.perin@libero.it</span>
+            <span><i class="fa-solid fa-key me-1"></i>OTP Email</span>
+            <span><i class="fa-regular fa-clock me-1"></i>Ieri ore 17:43</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <select style="padding:.35rem .75rem;border:1.5px solid var(--border);border-radius:8px;font-size:.82rem;font-family:inherit;background:white;color:var(--dark);">
+            <option>— Assegna medico —</option>
+            <option>Dott. Mario Rossi</option>
+            <option>Dott.ssa Laura Bianchi</option>
+            <option selected>Dott. Giuseppe Verdi</option>
+            <option>Dott.ssa Anna Ferrari</option>
+          </select>
+          <button onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
+            <i class="fa-solid fa-check"></i> Approva
+          </button>
+          <button onclick="rifiuta(this)" style="padding:.4rem .875zm;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
+            Rifiuta
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 4 — SOSPETTO -->
+      <div style="background:white;border:1.5px solid #FECACA;border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div style="width:44px;height:44px;border-radius:50%;background:#FFF5F5;color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;flex-shrink:0;">??</div>
+        <div style="flex:1;min-width:200px;">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.125rem;">
+            <span style="font-weight:800;font-size:.95rem;color:var(--dark);">utente.sconosciuto99</span>
+            <span style="background:var(--danger-light);color:var(--danger);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:8px;">⚠ Non riconosciuto</span>
+          </div>
+          <div style="font-size:.8rem;color:var(--text-muted);display:flex;gap:.875rem;flex-wrap:wrap;">
+            <span><i class="fa-regular fa-envelope me-1"></i>utente.sconosciuto99@tempmail.com</span>
+            <span><i class="fa-solid fa-key me-1"></i>OTP Email</span>
+            <span><i class="fa-regular fa-clock me-1"></i>Ieri ore 23:11</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center;">
+          <button onclick="rifiuta(this)" style="padding:.4rem .875rem;background:var(--danger);color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;">
+            <i class="fa-solid fa-xmark me-1"></i>Rifiuta
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+function approva(btn) {
+  const card = btn.closest('[style*="border-radius:14px"]');
+  const nome = card.querySelector('[style*="font-weight:800"]').textContent.trim();
+  card.style.borderColor = '#CCFBF1';
+  card.style.background = '#F0FDFA';
+  btn.textContent = '✓ Approvato';
+  btn.disabled = true;
+  btn.style.background = '#CCFBF1';
+  btn.style.color = '#0F766E';
+  alert(`✅ ${nome} approvato!\n\nRiceverà email di conferma con link di accesso al portale.`);
+}
+function rifiuta(btn) {
+  const card = btn.closest('[style*="border-radius:14px"]');
+  const nome = card.querySelector('[style*="font-weight:800"]')?.textContent.trim() || 'Utente';
+  if(confirm(`Rifiutare l'accesso a "${nome}"?\n\nL'utente riceverà email di notifica.`)) {
+    card.style.opacity = '.4';
+    card.style.pointerEvents = 'none';
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

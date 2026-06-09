@@ -1,0 +1,43 @@
+c’è uno studio medico che vuole un preventivo per la creazione di un portale del loro studio (sono 3 o 4 medici).
+ 
+Come esempio mi hanno dato questo link https://www.studiomedicobadalocchio.it. Il sito è basico ma contiene esattamente quello che vogliono.
+ 
+Ho già fatto alcune domande e:
+hanno le e-mail dei loro pazienti (per preiscrizione e OTP).
+Non devono essere prenotate visite specialistiche ma solo visite standard.
+L’85% dei pazienti usa l’e-mail per comunicare con loro.
+Non hanno database dei farmaci.
+ 
+Il portale, come quello di esempio, deve consentire di:
+Prenotare la visita con il tuo dottore.
+Richiedere una ricetta.
+Richiedere il certificato di malattia per il lavoro.
+
+Un sito come da esempio è facilmente sviluppabile molto velocemente.
+- Da capire per area di /prenota-visita/ che calendari usano attualmente ? Ci serve per capire come collegarci e fare integrazione di disponibilita per visita medica.
+
+- Cosa intendono per "preiscrizione e OTP"? L'OTP serve solo a validare l'email del paziente al momento della richiesta (anti-spam, anti-richieste fake), o vogliono un'area riservata persistente con login?
+
+- I pazienti che possono usare il portale sono solo quelli già presenti nella loro lista (pre-caricata) o chiunque con un'email valida?
+
+- Reminder automatici prima dell'appuntamento: sì o no?
+
+- Cancellazione/spostamento appuntamenti dal paziente: sì o no?
+
+- Esiste quindi anche un backend per visualizzazione richieste immagino oppure arrivano tutte le richieste via email? (Credo che nel sito di esempio funzioni così) ma preferirei la prima strada che secondo me funziona meglio e non si rischia di perdere richieste.
+
+- Confermano/rifiutano manualmente le prenotazioni o auto-conferma?
+
+- Dati sanitari = categoria particolare art. 9 GDPR. Hanno un DPO? Una privacy policy esistente da adattare? Hanno fatto una DPIA?
+
+- Branding/contenuti: logo, foto medici, testi - li hanno da fornirci?
+
+condivido un’analisi fatta con potenziale cliente.
+ 
+
+Tipologia cliente: studio medico, Medici di rete. Sono 4 medici.
+Sono bombardati, ricevono centinaia di email al giorno, whatsapp a manetta, hanno già cambiato un tot di segretarie in quanto dopo un po’ scappano. La situazione è per loro ingestibile.
+ 
+
+Hanno pensato a un portale ove i pazienti possano entrare e oltre alle info di base, es orari apertura studio e presenza medici, possano richiedere una ricetta, richiedere un certificato per esempio di malattia, caricare un referto o scrivere in merito a dubbi. Pensano che incanalando correttamente il paziente si eviterebbero un sacco di rogne: es. il paziente non scrive mai quante scatole vuole, allora ti faccio il form e se non inserisci il numero di scatole non vai avanti.
+ 

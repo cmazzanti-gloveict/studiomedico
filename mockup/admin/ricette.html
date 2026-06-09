@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ricette — Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+</head>
+<body>
+<aside class="admin-sidebar">
+  <div class="admin-brand"><div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div><div><div class="brand-name">Studio Medico</div><div class="brand-sub">Pannello Gestione</div></div></div>
+  <nav class="admin-nav">
+    <div class="admin-nav-section">Gestione</div>
+    <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="prenotazioni.html" class="admin-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="ricette.html" class="admin-nav-link active"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
+    <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
+    <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
+    <div class="admin-nav-section" style="margin-top:.5rem;">Configurazione</div>
+    <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
+    <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
+    <a href="#" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+  </nav>
+  <div class="admin-footer"><div class="admin-user"><div class="admin-avatar">MR</div><div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div><a href="../login.html" style="margin-left:auto;color:rgba(255,255,255,.4);font-size:.875rem;"><i class="fa-solid fa-right-from-bracket"></i></a></div></div>
+</aside>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title"><i class="fa-solid fa-pills me-2" style="color:var(--success);"></i>Richieste Ricette</span>
+  </div>
+  <div class="admin-body">
+
+    <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">Da elaborare (8)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Pronte (24)</button>
+      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Ritirate (187)</button>
+    </div>
+
+    <div class="data-card">
+      <table class="data-table">
+        <thead>
+          <tr><th>Paziente</th><th>Farmaco</th><th>Dosaggio</th><th>Quantità</th><th>Urgenza</th><th>Richiesta</th><th>Stato</th><th>Azioni</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Mario Bianchi</div><div style="font-size:.72rem;color:var(--text-muted);">Dott. Rossi</div></td>
+            <td style="font-weight:600;font-size:.85rem;">Metformina</td>
+            <td style="font-size:.85rem;">1000mg</td>
+            <td style="font-size:.85rem;">3 scatole</td>
+            <td><span class="badge badge-normale">Normale</span></td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 09:47</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td>
+              <div style="display:flex;gap:.375rem;">
+                <button onclick="alert('✅ Ricetta segnata come pronta!')" class="btn btn-success btn-sm">Pronta</button>
+                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Giulia Marchetti</div><div style="font-size:.72rem;color:var(--text-muted);">Dott.ssa Bianchi</div></td>
+            <td style="font-weight:600;font-size:.85rem;">Ramipril</td>
+            <td style="font-size:.85rem;">5mg</td>
+            <td style="font-size:.85rem;">2 scatole</td>
+            <td><span class="badge badge-normale">Normale</span></td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 09:12</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td><div style="display:flex;gap:.375rem;"><button class="btn btn-success btn-sm">Pronta</button><button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button></div></td>
+          </tr>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Anna Colombo</div><div style="font-size:.72rem;color:var(--text-muted);">Dott.ssa Ferrari</div></td>
+            <td style="font-weight:600;font-size:.85rem;">Levotiroxina</td>
+            <td style="font-size:.85rem;">75mcg</td>
+            <td style="font-size:.85rem;">3 scatole</td>
+            <td><span class="badge badge-urgente"><i class="fa-solid fa-exclamation"></i> Urgente</span></td>
+            <td style="font-size:.78rem;color:var(--danger);">Ieri 16:02 ⚠️</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td><div style="display:flex;gap:.375rem;"><button class="btn btn-success btn-sm">Pronta</button><button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button></div></td>
+          </tr>
+          <tr>
+            <td><div style="font-weight:600;font-size:.85rem;">Stefano Luca</div><div style="font-size:.72rem;color:var(--text-muted);">Dott. Verdi</div></td>
+            <td style="font-weight:600;font-size:.85rem;">Amlodipina</td>
+            <td style="font-size:.85rem;">10mg</td>
+            <td style="font-size:.85rem;">1 scatola</td>
+            <td><span class="badge badge-normale">Normale</span></td>
+            <td style="font-size:.78rem;color:var(--text-muted);">Ieri 11:30</td>
+            <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
+            <td><div style="display:flex;gap:.375rem;"><button class="btn btn-success btn-sm">Pronta</button><button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
