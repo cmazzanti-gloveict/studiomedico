@@ -39,7 +39,7 @@
   <div class="admin-topbar">
     <span class="admin-topbar-title">Prenotazioni</span>
     <div class="admin-topbar-actions">
-      <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Aggiungi manuale</button>
+      <button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Aggiungi manuale</button>
     </div>
   </div>
   <div class="admin-body">
@@ -71,18 +71,18 @@
           </select>
         </div>
         <div>
-          <button class="btn btn-primary">Filtra</button>
-          <button class="btn btn-ghost btn-sm ms-1">Reset</button>
+          <button type="button" class="btn btn-primary">Filtra</button>
+          <button type="button" class="btn btn-ghost btn-sm ms-1">Reset</button>
         </div>
       </div>
     </div>
 
     <!-- TABS -->
     <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">In attesa (5)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Confermate (43)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutate (3)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Tutte</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">In attesa (5)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Confermate (43)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutate (3)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Tutte</button>
     </div>
 
     <div class="data-card">
@@ -119,9 +119,9 @@
             <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
             <td>
               <div style="display:flex;gap:.375rem;">
-                <button onclick="this.closest('tr').querySelector('.badge').outerHTML='<span class=\'badge badge-confermato\'>✓ Confermato</span>'" class="btn btn-success btn-sm">Conferma</button>
-                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
-                <button class="btn btn-ghost btn-sm btn-icon" title="Dettaglio"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" onclick="this.closest('tr').querySelector('.badge').outerHTML='<span class=\'badge badge-confermato\'>✓ Confermato</span>'" class="btn btn-success btn-sm">Conferma</button>
+                <button type="button" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button type="button" class="btn btn-ghost btn-sm btn-icon" title="Dettaglio"><i class="fa-solid fa-eye"></i></button>
               </div>
             </td>
           </tr>
@@ -145,9 +145,9 @@
             <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
             <td>
               <div style="display:flex;gap:.375rem;">
-                <button class="btn btn-success btn-sm">Conferma</button>
-                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
-                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-success btn-sm">Conferma</button>
+                <button type="button" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button type="button" class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
               </div>
             </td>
           </tr>
@@ -171,9 +171,9 @@
             <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
             <td>
               <div style="display:flex;gap:.375rem;">
-                <button class="btn btn-success btn-sm">Conferma</button>
-                <button class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
-                <button class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-success btn-sm">Conferma</button>
+                <button type="button" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button type="button" class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
               </div>
             </td>
           </tr>

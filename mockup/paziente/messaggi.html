@@ -43,7 +43,7 @@
           <div style="background:white;border:1px solid var(--border);border-radius:14px;overflow:hidden;">
             <div style="padding:.875rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
               <span style="font-weight:700;font-size:.875rem;color:var(--dark);">Conversazioni</span>
-              <button onclick="document.getElementById('nuovoMsg').scrollIntoView();" class="btn btn-primary btn-sm">
+              <button type="button" onclick="document.getElementById('nuovoMsg').scrollIntoView();" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-plus"></i> Nuovo
               </button>
             </div>
@@ -122,7 +122,7 @@
               <textarea class="form-control" rows="4" placeholder="Scrivi il tuo messaggio..."></textarea>
               <div class="input-hint">⚠️ Non inviare dati di carte di credito o documenti di identità via messaggio.</div>
             </div>
-            <button onclick="alert('✅ Messaggio inviato!\n\nRiceverai risposta entro 24 ore lavorative.');" class="btn btn-primary">
+            <button type="button" onclick="alert('✅ Messaggio inviato!\n\nRiceverai risposta entro 24 ore lavorative.');" class="btn btn-primary">
               <i class="fa-solid fa-paper-plane me-1"></i>Invia Messaggio
             </button>
           </div>

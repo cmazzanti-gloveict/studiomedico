@@ -59,9 +59,9 @@
 
     <!-- TABS -->
     <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:#0F766E;border-bottom:2px solid #0F766E;margin-bottom:-2px;cursor:pointer;">In attesa (4)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Approvati (338)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutati (7)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:#0F766E;border-bottom:2px solid #0F766E;margin-bottom:-2px;cursor:pointer;">In attesa (4)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Approvati (338)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutati (7)</button>
     </div>
 
     <!-- LISTA APPROVAZIONI -->
@@ -89,10 +89,10 @@
             <option>Dott. Giuseppe Verdi</option>
             <option>Dott.ssa Anna Ferrari</option>
           </select>
-          <button onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
+          <button type="button" onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
             <i class="fa-solid fa-check"></i> Approva
           </button>
-          <button onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
+          <button type="button" onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
             Rifiuta
           </button>
         </div>
@@ -120,10 +120,10 @@
             <option>Dott. Giuseppe Verdi</option>
             <option>Dott.ssa Anna Ferrari</option>
           </select>
-          <button onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
+          <button type="button" onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
             <i class="fa-solid fa-check"></i> Approva
           </button>
-          <button onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
+          <button type="button" onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
             Rifiuta
           </button>
         </div>
@@ -151,7 +151,7 @@
           <button onclick="approva(this)" style="padding:.4rem .875rem;background:#0F766E;color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.375rem;">
             <i class="fa-solid fa-check"></i> Approva
           </button>
-          <button onclick="rifiuta(this)" style="padding:.4rem .875zm;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
+          <button type="button" onclick="rifiuta(this)" style="padding:.4rem .875rem;background:white;color:var(--danger);border:1.5px solid var(--danger);border-radius:8px;font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;">
             Rifiuta
           </button>
         </div>
@@ -172,7 +172,7 @@
           </div>
         </div>
         <div style="display:flex;gap:.5rem;align-items:center;">
-          <button onclick="rifiuta(this)" style="padding:.4rem .875rem;background:var(--danger);color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;">
+          <button type="button" onclick="rifiuta(this)" style="padding:.4rem .875rem;background:var(--danger);color:white;border:none;border-radius:8px;font-size:.82rem;font-weight:700;font-family:inherit;cursor:pointer;">
             <i class="fa-solid fa-xmark me-1"></i>Rifiuta
           </button>
         </div>

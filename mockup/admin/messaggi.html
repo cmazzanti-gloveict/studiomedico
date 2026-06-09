@@ -39,9 +39,9 @@
   <div class="admin-body">
 
     <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">Non letti (12)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Tutti (47)</button>
-      <button style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Archiviati</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">Non letti (12)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Tutti (47)</button>
+      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Archiviati</button>
     </div>
 
     <div class="row g-3">
@@ -109,7 +109,7 @@
               <div style="font-size:.75rem;color:var(--text-muted);">mario.bianchi@gmail.com · Paziente Dott. Rossi</div>
             </div>
             <div style="display:flex;gap:.375rem;">
-              <button class="btn btn-ghost btn-sm btn-icon" title="Archivia"><i class="fa-solid fa-archive"></i></button>
+              <button type="button" class="btn btn-ghost btn-sm btn-icon" title="Archivia"><i class="fa-solid fa-archive"></i></button>
               <a href="../paziente/dashboard.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-user me-1"></i>Profilo paziente</a>
             </div>
           </div>
@@ -127,7 +127,7 @@
               <div style="font-size:.78rem;color:var(--text-muted);">
                 <i class="fa-solid fa-envelope me-1"></i>La risposta verrà inviata via email al paziente
               </div>
-              <button onclick="alert('✅ Risposta inviata via email al paziente!');" class="btn btn-primary btn-sm">
+              <button type="button" onclick="alert('✅ Risposta inviata via email al paziente!');" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-paper-plane me-1"></i>Invia risposta
               </button>
             </div>
