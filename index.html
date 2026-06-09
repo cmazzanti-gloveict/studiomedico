@@ -30,7 +30,7 @@
   <h2>Anteprima Riservata</h2>
   <p>Questo contenuto è riservato.<br>Inserisci il codice ricevuto via email per accedere.</p>
   <label for="code">Codice di accesso</label>
-  <input type="text" id="code" placeholder="XXXX-XXXX" maxlength="11" autocomplete="off"
+  <input type="text" id="code" placeholder="XXXX-XXXX" maxlength="8" autocomplete="off"
     oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')"
     onkeydown="if(event.key==='Enter')verifica()">
   <button type="button" onclick="verifica()">Accedi →</button>
@@ -39,7 +39,7 @@
 </div>
 
 <script>
-const CODICI = ['STUDIO-2025', 'MEDICO-7X4K', 'GLOVE-9QR2'];
+const CODICI = ['STUDIO25', 'MEDICO7X', 'GLOVE9QR'];
 
 function verifica() {
   const val = document.getElementById('code').value.trim().toUpperCase();
