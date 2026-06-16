@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impostazioni — Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.settings-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 24px; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+.settings-tab  { padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 0.85rem; font-weight: 500; color: var(--muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.settings-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+.settings-tab:hover:not(.active) { color: var(--dark); }
+.tab-content > .tab-pane { display: none; }
+.tab-content > .tab-pane.show { display: block; }
+.settings-section { max-width: 700px; }
+.colore-preview { width: 28px; height: 28px; border-radius: 6px; border: 2px solid var(--border); display: inline-block; vertical-align: middle; }
+.user-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.user-row:last-child { border-bottom: none; }
+.user-row-info { flex: 1; }
+.user-row-name { font-weight: 600; font-size: 0.88rem; }
+.user-row-meta { font-size: 0.78rem; color: var(--muted); }
+.delega-row { display: flex; align-items: center; gap-10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 8px; }
+.archivio-bar { height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; margin-top: 4px; }
+.archivio-bar-fill { height: 100%; border-radius: 3px; background: var(--primary); }
+.feed-url { font-family: monospace; font-size: 0.78rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; word-break: break-all; }
+.connect-row { display: flex; align-items: center; justify-content: space-between; padding: 12px; border-radius: 12px; border: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<aside class="admin-sidebar">
+  <div class="admin-brand">
+    <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+    <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Pannello Gestione</div></div>
+  </div>
+  <nav class="admin-nav">
+    <div class="admin-nav-section">Gestione</div>
+    <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="prenotazioni.html" class="admin-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="agenda.html" class="admin-nav-link"><i class="fa-solid fa-calendar-week"></i> Agenda</a>
+    <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
+    <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
+    <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
+    <div class="admin-nav-section mt-2">Configurazione</div>
+    <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
+    <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
+    <a href="impostazioni.html" class="admin-nav-link active"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+  </nav>
+  <div class="admin-footer">
+    <div class="admin-user">
+      <div class="admin-avatar">MR</div>
+      <div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico · Admin</div></div>
+      <a href="../login.html" class="ms-auto sidebar-exit-link" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a>
+    </div>
+  </div>
+</aside>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title"><i class="fa-solid fa-gear me-2 text-primary"></i>Impostazioni</span>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- TAB BAR -->
+    <div class="settings-tabs">
+      <button class="settings-tab" onclick="showTab('profilo', this)">Profilo</button>
+      <button class="settings-tab active" onclick="showTab('personale', this)">Personale</button>
+      <button class="settings-tab" onclick="showTab('visibilita', this)">Visibilità</button>
+      <button class="settings-tab" onclick="showTab('deleghe', this)">Deleghe</button>
+      <button class="settings-tab" onclick="showTab('archivio', this)">Archivio</button>
+      <button class="settings-tab" onclick="showTab('email', this)">Email</button>
+      <button class="settings-tab" onclick="showTab('calendario', this)">Calendario</button>
+    </div>
+
+    <!-- TAB: PROFILO -->
+    <div id="tab-profilo" class="settings-section" style="display:none">
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-user me-2 text-primary"></i>Il tuo profilo</h2>
+        <p class="text-xs text-muted mb-4">Modifica il tuo nome visualizzato e i dati del profilo medico.</p>
+        <form>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-control" value="Mario">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Cognome</label>
+              <input type="text" class="form-control" value="Rossi">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Specialità</label>
+            <input type="text" class="form-control" value="Medicina Generale">
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Colore agenda</label>
+            <div class="d-flex align-items-center gap-3">
+              <input type="color" class="form-control form-control-color" value="#4f46e5">
+              <span class="text-sm text-muted">Usato nell'agenda per distinguere i tuoi appuntamenti</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-floppy-disk me-1"></i>Salva profilo</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB: PERSONALE -->
+    <div id="tab-personale" class="settings-section" style="display:block">
+      <div class="card mb-4">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-user-doctor me-2 text-primary"></i>Medici</h2>
+        <p class="text-xs text-muted mb-4">Gestisci i medici dello studio. Ogni medico può accedere con le proprie credenziali.</p>
+
+        <!-- Lista medici -->
+        <div class="user-row">
+          <div class="admin-avatar">MR</div>
+          <div class="user-row-info">
+            <div class="user-row-name">Dott. Mario Rossi <span class="badge badge-confermato ms-1">Admin</span></div>
+            <div class="user-row-meta">m.rossi@studiomedico.it · Medicina Generale</div>
+          </div>
+          <span class="colore-preview" style="background:#4f46e5"></span>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Modifica"><i class="fa-solid fa-pen"></i></button>
+        </div>
+        <div class="user-row">
+          <div class="admin-avatar" style="background:#16a34a">LB</div>
+          <div class="user-row-info">
+            <div class="user-row-name">Dott.ssa Laura Bianchi</div>
+            <div class="user-row-meta">l.bianchi@studiomedico.it · Pediatria</div>
+          </div>
+          <span class="colore-preview" style="background:#16a34a"></span>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Modifica"><i class="fa-solid fa-pen"></i></button>
+          <button class="btn btn-ghost btn-sm btn-icon text-danger" title="Rimuovi"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="user-row">
+          <div class="admin-avatar" style="background:#ea580c">GV</div>
+          <div class="user-row-info">
+            <div class="user-row-name">Dott. Giuseppe Verdi</div>
+            <div class="user-row-meta">g.verdi@studiomedico.it · Cardiologia</div>
+          </div>
+          <span class="colore-preview" style="background:#ea580c"></span>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Modifica"><i class="fa-solid fa-pen"></i></button>
+          <button class="btn btn-ghost btn-sm btn-icon text-danger" title="Rimuovi"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="user-row">
+          <div class="admin-avatar" style="background:#0891b2">AF</div>
+          <div class="user-row-info">
+            <div class="user-row-name">Dott.ssa Anna Ferrari</div>
+            <div class="user-row-meta">a.ferrari@studiomedico.it · Dermatologia</div>
+          </div>
+          <span class="colore-preview" style="background:#0891b2"></span>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Modifica"><i class="fa-solid fa-pen"></i></button>
+          <button class="btn btn-ghost btn-sm btn-icon text-danger" title="Rimuovi"><i class="fa-solid fa-trash"></i></button>
+        </div>
+
+        <div class="mt-4 pt-3" style="border-top:1px solid var(--border)">
+          <h3 class="fw-600 text-sm mb-3">Aggiungi medico</h3>
+          <form>
+            <div class="row g-2 mb-2">
+              <div class="col-md-4"><input type="text" class="form-control" placeholder="Nome"></div>
+              <div class="col-md-4"><input type="text" class="form-control" placeholder="Cognome"></div>
+              <div class="col-md-4"><input type="email" class="form-control" placeholder="Email"></div>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Specialità"></div>
+              <div class="col-md-3">
+                <div class="d-flex align-items-center gap-2">
+                  <input type="color" class="form-control form-control-color" value="#4f46e5" title="Colore agenda">
+                  <span class="text-xs text-muted">Colore agenda</span>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Aggiungi medico</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-user-tie me-2 text-primary"></i>Segreteria</h2>
+        <p class="text-xs text-muted mb-3">Gestisci il personale di segreteria con accesso al pannello admin.</p>
+        <div class="user-row">
+          <div class="admin-avatar" style="background:#7c3aed">CP</div>
+          <div class="user-row-info">
+            <div class="user-row-name">Carla Pini</div>
+            <div class="user-row-meta">c.pini@studiomedico.it · Segreteria</div>
+          </div>
+          <button class="btn btn-ghost btn-sm btn-icon text-danger" title="Rimuovi"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="mt-3 pt-3" style="border-top:1px solid var(--border)">
+          <form class="d-flex gap-2">
+            <input type="text" class="form-control" placeholder="Nome">
+            <input type="text" class="form-control" placeholder="Cognome">
+            <input type="email" class="form-control" placeholder="Email segreteria">
+            <button type="submit" class="btn btn-primary btn-sm flex-shrink-0"><i class="fa-solid fa-plus me-1"></i>Aggiungi</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: VISIBILITÀ -->
+    <div id="tab-visibilita" class="settings-section" style="display:none">
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-eye me-2 text-primary"></i>Regole di visibilità</h2>
+        <p class="text-xs text-muted mb-4">Configura quali dati ogni medico può vedere nel pannello.</p>
+
+        <div class="mb-4">
+          <label class="form-label fw-600">Visibilità pazienti tra medici</label>
+          <div class="d-flex flex-column gap-2">
+            <label class="d-flex align-items-start gap-2 p-3 rounded-3 border cursor-pointer" style="border-color:var(--primary);background:rgba(79,70,229,.05)">
+              <input type="radio" name="vis" checked> <div><div class="fw-600 text-sm">Solo i propri pazienti</div><div class="text-xs text-muted">Ogni medico vede solo i pazienti assegnati a lui</div></div>
+            </label>
+            <label class="d-flex align-items-start gap-2 p-3 rounded-3 border cursor-pointer">
+              <input type="radio" name="vis"> <div><div class="fw-600 text-sm">Tutti i pazienti</div><div class="text-xs text-muted">Ogni medico vede tutti i pazienti dello studio (utile per studi piccoli)</div></div>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label fw-600">Modalità segreteria per singolo medico</label>
+          <p class="text-xs text-muted mb-3">Se abilitata, il medico vede tutti i pazienti come una segreteria (per urgenze).</p>
+          <div class="d-flex flex-column gap-2">
+            <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border">
+              <div class="text-sm">Dott. Mario Rossi</div>
+              <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" checked></div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border">
+              <div class="text-sm">Dott.ssa Laura Bianchi</div>
+              <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"></div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border">
+              <div class="text-sm">Dott. Giuseppe Verdi</div>
+              <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"></div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border">
+              <div class="text-sm">Dott.ssa Anna Ferrari</div>
+              <div class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: DELEGHE -->
+    <div id="tab-deleghe" class="settings-section" style="display:none">
+      <div class="card mb-4">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-people-arrows me-2 text-primary"></i>Deleghe attive</h2>
+        <p class="text-xs text-muted mb-4">Un medico delegato vede e gestisce i pazienti del delegante.</p>
+        <div class="delega-row">
+          <div class="flex-1">
+            <span class="fw-600 text-sm">Dott. Mario Rossi</span>
+            <i class="fa-solid fa-arrow-right mx-2 text-muted" style="font-size:.75rem"></i>
+            <span class="fw-600 text-sm text-primary">Dott.ssa Laura Bianchi</span>
+            <span class="text-xs text-muted ms-2">(Laura gestisce i pazienti di Mario)</span>
+          </div>
+          <span class="badge badge-confermato me-2">Attiva</span>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Sospendi"><i class="fa-solid fa-pause"></i></button>
+          <button class="btn btn-ghost btn-sm btn-icon text-danger" title="Elimina"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="delega-row">
+          <div class="flex-1">
+            <span class="fw-600 text-sm">Dott. Giuseppe Verdi</span>
+            <i class="fa-solid fa-arrow-right mx-2 text-muted" style="font-size:.75rem"></i>
+            <span class="fw-600 text-sm text-primary">Dott. Mario Rossi</span>
+            <span class="text-xs text-muted ms-2">(Mario gestisce i pazienti di Giuseppe)</span>
+          </div>
+          <span class="badge badge-sospeso me-2">Sospesa</span>
+          <button class="btn btn-ghost btn-sm btn-icon" title="Riattiva"><i class="fa-solid fa-play"></i></button>
+          <button class="btn btn-ghost btn-sm btn-icon text-danger" title="Elimina"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-3" style="font-size:.95rem">Nuova delega</h2>
+        <form>
+          <div class="row g-2 mb-3">
+            <div class="col-md-5">
+              <label class="form-label text-sm">Delegante (chi delega)</label>
+              <select class="form-select"><option>Dott. Mario Rossi</option><option>Dott.ssa Laura Bianchi</option><option>Dott. Giuseppe Verdi</option><option>Dott.ssa Anna Ferrari</option></select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end justify-content-center pb-1">
+              <i class="fa-solid fa-arrow-right text-muted"></i>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label text-sm">Delegato (chi riceve)</label>
+              <select class="form-select"><option>Dott.ssa Laura Bianchi</option><option>Dott. Mario Rossi</option><option>Dott. Giuseppe Verdi</option><option>Dott.ssa Anna Ferrari</option></select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Crea delega</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TAB: ARCHIVIO -->
+    <div id="tab-archivio" class="settings-section" style="display:none">
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-box-archive me-2 text-primary"></i>Stato conservazione dati</h2>
+        <p class="text-xs text-muted mb-4">I dati vengono archiviati automaticamente in base alle retention policy GDPR. L'archiviazione avviene il 1° di ogni mese.</p>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="p-3 rounded-3 border">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-sm fw-600">Prenotazioni</span>
+                <span class="text-xs text-muted">10 anni</span>
+              </div>
+              <div class="text-xs text-muted mb-2">1.247 totali · <strong>38 archiviate</strong></div>
+              <div class="archivio-bar"><div class="archivio-bar-fill" style="width:3%"></div></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 rounded-3 border">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-sm fw-600">Ricette</span>
+                <span class="text-xs text-muted">2 anni</span>
+              </div>
+              <div class="text-xs text-muted mb-2">892 totali · <strong>127 archiviate</strong></div>
+              <div class="archivio-bar"><div class="archivio-bar-fill" style="width:14%"></div></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 rounded-3 border">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-sm fw-600">Certificati</span>
+                <span class="text-xs text-muted">5 anni</span>
+              </div>
+              <div class="text-xs text-muted mb-2">456 totali · <strong>12 archiviati</strong></div>
+              <div class="archivio-bar"><div class="archivio-bar-fill" style="width:3%"></div></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 rounded-3 border">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-sm fw-600">Referti caricati</span>
+                <span class="text-xs text-muted">10 anni</span>
+              </div>
+              <div class="text-xs text-muted">234 file in Blob Storage</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3 p-3 rounded-3" style="background:var(--bg);border:1px solid var(--border)">
+          <span class="text-xs text-muted"><i class="fa-solid fa-clock me-1"></i>Prossima archiviazione automatica: <strong>1 Luglio 2025 ore 02:00</strong> · <strong>4 OTP scaduti</strong> da eliminare</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: EMAIL -->
+    <div id="tab-email" class="settings-section" style="display:none">
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-envelope me-2 text-primary"></i>Configurazione email</h2>
+        <p class="text-xs text-muted mb-4">Le email transazionali vengono inviate tramite Azure Communication Services.</p>
+        <div class="mb-4 p-3 rounded-3" style="background:var(--bg);border:1px solid var(--border)">
+          <div class="text-xs text-muted mb-1">Mittente configurato</div>
+          <div class="fw-600 text-sm">DoNotReply@gloveict.it</div>
+          <div class="text-xs text-muted mt-1">SPF · DKIM verificati ✓</div>
+        </div>
+        <div class="mb-4">
+          <label class="form-label fw-600 text-sm">Email notifiche segreteria</label>
+          <p class="text-xs text-muted mb-2">Riceve notifica ad ogni nuova registrazione paziente.</p>
+          <input type="email" class="form-control" value="segreteria@studiomedico.it">
+        </div>
+        <button type="button" class="btn btn-outline btn-sm"><i class="fa-solid fa-paper-plane me-1"></i>Invia email di test</button>
+      </div>
+    </div>
+
+    <!-- TAB: CALENDARIO -->
+    <div id="tab-calendario" class="settings-section" style="display:none">
+      <div class="card mb-4">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-calendar-arrow-up me-2 text-primary"></i>Feed ICS — Unidirezionale</h2>
+        <p class="text-xs text-muted mb-3">Abbona il tuo Google Calendar o Outlook a questo link. Gli appuntamenti confermati compaiono automaticamente nel tuo calendario personale.</p>
+        <div class="feed-url mb-3">https://studiomedico-app.azurewebsites.net/api/calendario/feed/a1b2c3d4-e5f6-...</div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-outline btn-sm"><i class="fa-solid fa-copy me-1"></i>Copia link</button>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fa-brands fa-google me-1"></i>Abbona in Google Calendar</a>
+          <a href="#" class="btn btn-outline btn-sm"><i class="fa-brands fa-microsoft me-1"></i>Abbona in Outlook</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="fw-600 text-dark mb-1" style="font-size:1rem"><i class="fa-solid fa-plug me-2 text-primary"></i>Push automatico appuntamenti</h2>
+        <p class="text-xs text-muted mb-4">Quando un appuntamento viene confermato, viene creato automaticamente nel tuo calendario personale.</p>
+        <div class="d-flex flex-column gap-2">
+          <div class="connect-row">
+            <div class="d-flex align-items-center gap-3">
+              <i class="fa-brands fa-google fs-5" style="color:#4285F4"></i>
+              <div>
+                <div class="fw-600 text-sm">Google Calendar</div>
+                <div class="text-xs text-success"><i class="fa-solid fa-circle-check me-1"></i>Connesso — push attivo</div>
+              </div>
+            </div>
+            <button class="btn btn-outline btn-sm">Riconnetti</button>
+          </div>
+          <div class="connect-row">
+            <div class="d-flex align-items-center gap-3">
+              <i class="fa-brands fa-microsoft fs-5" style="color:#00A4EF"></i>
+              <div>
+                <div class="fw-600 text-sm">Microsoft Outlook</div>
+                <div class="text-xs text-muted">Non connesso — accedi con Microsoft per abilitare</div>
+              </div>
+            </div>
+            <span class="text-xs text-muted fst-italic">Automatico al login</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('[id^="tab-"]').forEach(el => el.style.display = 'none');
+  document.getElementById('tab-' + id).style.display = 'block';
+  document.querySelectorAll('.settings-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

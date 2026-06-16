@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda — Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="../assets/style.css" rel="stylesheet">
+<style>
+.agenda-grid { overflow-x: auto; }
+.agenda-table { min-width: 700px; border-collapse: collapse; width: 100%; }
+.agenda-table th, .agenda-table td { border: 1px solid var(--border); padding: 0; }
+.agenda-table th { background: var(--bg); padding: 8px 12px; font-size: 0.78rem; font-weight: 600; color: var(--muted); text-align: center; }
+.agenda-table th.ora-col { width: 64px; text-align: left; }
+.agenda-ora { padding: 6px 10px; font-size: 0.75rem; color: var(--muted); font-weight: 500; white-space: nowrap; vertical-align: top; }
+.agenda-cell { height: 44px; vertical-align: top; padding: 3px; position: relative; }
+.agenda-card { border-radius: 6px; padding: 4px 7px; font-size: 0.72rem; height: 100%; cursor: pointer; border-left: 3px solid transparent; }
+.agenda-card.rossi   { background: #eef2ff; border-left-color: #4f46e5; color: #3730a3; }
+.agenda-card.bianchi { background: #f0fdf4; border-left-color: #16a34a; color: #166534; }
+.agenda-card.verdi   { background: #fff7ed; border-left-color: #ea580c; color: #9a3412; }
+.agenda-card .card-ora   { font-weight: 700; }
+.agenda-card .card-nome  { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.agenda-card .card-motivo { opacity: 0.75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.day-header-date { font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+.day-header-day  { font-size: 0.72rem; color: var(--muted); }
+.day-today .day-header-date { color: var(--primary); }
+.day-today .day-header-day  { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<aside class="admin-sidebar">
+  <div class="admin-brand">
+    <div class="brand-icon"><i class="fa-solid fa-stethoscope"></i></div>
+    <div><div class="brand-name">Studio Medico</div><div class="brand-sub">Pannello Gestione</div></div>
+  </div>
+  <nav class="admin-nav">
+    <div class="admin-nav-section">Gestione</div>
+    <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    <a href="prenotazioni.html" class="admin-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="agenda.html" class="admin-nav-link active"><i class="fa-solid fa-calendar-week"></i> Agenda</a>
+    <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
+    <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
+    <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
+    <div class="admin-nav-section mt-2">Configurazione</div>
+    <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
+    <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
+    <a href="impostazioni.html" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+  </nav>
+  <div class="admin-footer">
+    <div class="admin-user">
+      <div class="admin-avatar">MR</div>
+      <div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div>
+      <a href="../login.html" class="ms-auto sidebar-exit-link" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a>
+    </div>
+  </div>
+</aside>
+
+<div class="admin-main">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title"><i class="fa-solid fa-calendar-week me-2 text-primary"></i>Agenda Settimanale</span>
+    <div class="admin-topbar-actions">
+      <button type="button" class="btn btn-outline btn-sm" title="Settimana precedente"><i class="fa-solid fa-chevron-left"></i></button>
+      <span class="topbar-week-label fw-600">9–15 Giu 2025</span>
+      <button type="button" class="btn btn-outline btn-sm" title="Settimana successiva"><i class="fa-solid fa-chevron-right"></i></button>
+      <button type="button" class="btn btn-outline btn-sm">Oggi</button>
+      <div class="divider-v"></div>
+      <select class="form-select select-auto" aria-label="Filtro medico">
+        <option>Tutti i medici</option>
+        <option>Dott. Mario Rossi</option>
+        <option>Dott.ssa Laura Bianchi</option>
+        <option>Dott. Giuseppe Verdi</option>
+        <option>Dott.ssa Anna Ferrari</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Legenda medici -->
+    <div class="d-flex gap-3 mb-3 flex-wrap">
+      <span class="d-flex align-items-center gap-2 text-sm"><span style="width:12px;height:12px;border-radius:3px;background:#4f46e5;display:inline-block"></span> Dott. Rossi</span>
+      <span class="d-flex align-items-center gap-2 text-sm"><span style="width:12px;height:12px;border-radius:3px;background:#16a34a;display:inline-block"></span> Dott.ssa Bianchi</span>
+      <span class="d-flex align-items-center gap-2 text-sm"><span style="width:12px;height:12px;border-radius:3px;background:#ea580c;display:inline-block"></span> Dott. Verdi</span>
+    </div>
+
+    <div class="card p-0 agenda-grid">
+      <table class="agenda-table">
+        <thead>
+          <tr>
+            <th class="ora-col">Ora</th>
+            <th><div class="day-header-day">Lun</div><div class="day-header-date">9</div></th>
+            <th class="day-today"><div class="day-header-day">Mar</div><div class="day-header-date">10</div></th>
+            <th><div class="day-header-day">Mer</div><div class="day-header-date">11</div></th>
+            <th><div class="day-header-day">Gio</div><div class="day-header-date">12</div></th>
+            <th><div class="day-header-day">Ven</div><div class="day-header-date">13</div></th>
+            <th><div class="day-header-day">Sab</div><div class="day-header-date">14</div></th>
+            <th><div class="day-header-day">Dom</div><div class="day-header-date">15</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="agenda-ora">08:00</td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">08:00 · 30min</div><div class="card-nome">Marco Bianchi</div><div class="card-motivo">Controllo glicemia</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">08:00 · 20min</div><div class="card-nome">Sara Neri</div><div class="card-motivo">Visita generale</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">08:00 · 30min</div><div class="card-nome">Luigi Esposito</div><div class="card-motivo">Rinnovo terapia</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">08:30</td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">08:30 · 30min</div><div class="card-nome">Anna Colombo</div><div class="card-motivo">Pressione arteriosa</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">08:30 · 30min</div><div class="card-nome">Franco Russo</div><div class="card-motivo">Certificato sportivo</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">09:00</td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">09:00 · 20min</div><div class="card-nome">Giulia Marchetti</div><div class="card-motivo">Visita di controllo</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">09:00 · 30min</div><div class="card-nome">Carlo Ferrari</div><div class="card-motivo">Dolore lombare</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">09:00 · 20min</div><div class="card-nome">Marta Conti</div><div class="card-motivo">Referto esami</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">09:30</td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">09:30 · 30min</div><div class="card-nome">Elena Ricci</div><div class="card-motivo">Primo accesso</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">09:30 · 30min</div><div class="card-nome">Paolo Longo</div><div class="card-motivo">Rinnovo ricetta</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">10:00</td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">10:00 · 30min</div><div class="card-nome">Roberto Gallo</div><div class="card-motivo">ECG di controllo</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">10:00 · 20min</div><div class="card-nome">Teresa Bruno</div><div class="card-motivo">Visita generale</div></div></td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">10:00 · 30min</div><div class="card-nome">Davide Costa</div><div class="card-motivo">Allergie stagionali</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">10:30</td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">10:30 · 20min</div><div class="card-nome">Lucia Fontana</div><div class="card-motivo">Visita pediatrica</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">10:30 · 30min</div><div class="card-nome">Giorgio Marini</div><div class="card-motivo">Dolore toracico</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">11:00</td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">11:00 · 30min</div><div class="card-nome">Silvia Greco</div><div class="card-motivo">Colesterolo alto</div></div></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">11:00 · 30min</div><div class="card-nome">Antonio De Luca</div><div class="card-motivo">Controllo diabete</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">11:00 · 20min</div><div class="card-nome">Federica Serra</div><div class="card-motivo">Ansia e insonnia</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">11:30</td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">11:30 · 30min</div><div class="card-nome">Vincenzo Martini</div><div class="card-motivo">Visita cardiologica</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">11:30 · 30min</div><div class="card-nome">Chiara Lombardi</div><div class="card-motivo">Referto TAC</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">12:00</td>
+            <td class="agenda-cell"><div class="agenda-card bianchi"><div class="card-ora">12:00 · 20min</div><div class="card-nome">Massimo Rizzo</div><div class="card-motivo">Rinnovo esenzione</div></div></td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">12:00 · 30min</div><div class="card-nome">Patrizia Sala</div><div class="card-motivo">Visita generale</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card rossi"><div class="card-ora">12:00 · 30min</div><div class="card-nome">Bruno Amato</div><div class="card-motivo">Ipertensione</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+          <tr>
+            <td class="agenda-ora">12:30</td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"><div class="agenda-card verdi"><div class="card-ora">12:30 · 30min</div><div class="card-nome">Irene Pellegrini</div><div class="card-motivo">Primo accesso</div></div></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+            <td class="agenda-cell"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -15,29 +15,30 @@
     <div class="admin-nav-section">Gestione</div>
     <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
     <a href="prenotazioni.html" class="admin-nav-link"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="agenda.html" class="admin-nav-link"><i class="fa-solid fa-calendar-week"></i> Agenda</a>
     <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
     <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
     <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
-    <div class="admin-nav-section" style="margin-top:.5rem;">Configurazione</div>
+    <div class="admin-nav-section mt-2">Configurazione</div>
     <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
     <a href="disponibilita.html" class="admin-nav-link active"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
-    <a href="#" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+    <a href="impostazioni.html" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
   </nav>
-  <div class="admin-footer"><div class="admin-user"><div class="admin-avatar">MR</div><div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div><a href="../login.html" style="margin-left:auto;color:rgba(255,255,255,.4);font-size:.875rem;"><i class="fa-solid fa-right-from-bracket"></i></a></div></div>
+  <div class="admin-footer"><div class="admin-user"><div class="admin-avatar">MR</div><div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div><a href="../login.html" class="ms-auto sidebar-exit-link" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a></div></div>
 </aside>
 
 <div class="admin-main">
   <div class="admin-topbar">
-    <span class="admin-topbar-title"><i class="fa-regular fa-calendar me-2" style="color:var(--primary);"></i>Gestione Disponibilità</span>
+    <span class="admin-topbar-title"><i class="fa-regular fa-calendar me-2 text-primary"></i>Gestione Disponibilità</span>
     <div class="admin-topbar-actions">
-      <select class="form-select" style="width:auto;font-size:.875rem;">
+      <select class="form-select select-auto" aria-label="Seleziona medico">
         <option>Dott. Mario Rossi</option>
         <option>Dott.ssa Laura Bianchi</option>
         <option>Dott. Giuseppe Verdi</option>
         <option>Dott.ssa Anna Ferrari</option>
       </select>
       <button type="button" class="btn btn-outline btn-sm" title="Settimana precedente"><i class="fa-solid fa-chevron-left"></i></button>
-      <span style="font-size:.875rem;font-weight:600;color:var(--dark);">9–13 Giu 2025</span>
+      <span class="topbar-week-label">9–13 Giu 2025</span>
       <button type="button" class="btn btn-outline btn-sm" title="Settimana successiva"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
   </div>
@@ -46,25 +47,25 @@
     <div class="row g-3 mb-3">
       <div class="col-md-3">
         <div class="stat-card">
-          <div class="stat-icon" style="background:var(--success-light);color:var(--success);"><i class="fa-solid fa-clock"></i></div>
+          <div class="stat-icon stat-icon-success"><i class="fa-solid fa-clock"></i></div>
           <div><div class="stat-value">24</div><div class="stat-label">Slot liberi questa settimana</div></div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#fef3c7;color:var(--warning);"><i class="fa-regular fa-calendar-check"></i></div>
+          <div class="stat-icon stat-icon-warning"><i class="fa-regular fa-calendar-check"></i></div>
           <div><div class="stat-value">18</div><div class="stat-label">Slot prenotati</div></div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="stat-card">
-          <div class="stat-icon" style="background:var(--danger-light);color:var(--danger);"><i class="fa-solid fa-ban"></i></div>
+          <div class="stat-icon stat-icon-danger"><i class="fa-solid fa-ban"></i></div>
           <div><div class="stat-value">4</div><div class="stat-label">Slot bloccati / assenza</div></div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="stat-card">
-          <div class="stat-icon" style="background:var(--primary-light);color:var(--primary);"><i class="fa-solid fa-percent"></i></div>
+          <div class="stat-icon stat-icon-primary"><i class="fa-solid fa-percent"></i></div>
           <div><div class="stat-value">75%</div><div class="stat-label">Tasso occupazione</div></div>
         </div>
       </div>
@@ -76,11 +77,11 @@
         <span class="data-card-title">Settimana 9–13 Giugno · Dott. Mario Rossi</span>
         <button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Aggiungi slot</button>
       </div>
-      <div style="padding:1rem;overflow-x:auto;">
+      <div class="table-wrap">
         <table class="avail-table">
           <thead>
             <tr>
-              <th style="width:70px;">Orario</th>
+              <th class="col-w-70">Orario</th>
               <th>Lunedì 9/6</th>
               <th>Martedì 10/6</th>
               <th>Mercoledì 11/6</th>
@@ -90,7 +91,7 @@
           </thead>
           <tbody>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">8:30</td>
+              <td class="td-header-muted">8:30</td>
               <td class="avail-cell"><span class="slot-pill slot-booked" onclick="alert('Mario Bianchi — Visita di controllo')">Mario B.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked" onclick="alert('Carla Ricci — Prima visita')">Carla R.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Luca F.</span></td>
@@ -98,7 +99,7 @@
               <td class="avail-cell"><span class="slot-pill slot-booked">Anna C.</span></td>
             </tr>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">9:00</td>
+              <td class="td-header-muted">9:00</td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Sara M.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Marco B.</span></td>
@@ -106,7 +107,7 @@
               <td class="avail-cell"><span class="slot-pill slot-booked">Giorgio P.</span></td>
             </tr>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">9:30</td>
+              <td class="td-header-muted">9:30</td>
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Paolo L.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
@@ -114,7 +115,7 @@
               <td class="avail-cell"><span class="slot-pill slot-booked">Rita N.</span></td>
             </tr>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">10:00</td>
+              <td class="td-header-muted">10:00</td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Franco S.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Maria G.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Carlo R.</span></td>
@@ -122,7 +123,7 @@
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
             </tr>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">10:30</td>
+              <td class="td-header-muted">10:30</td>
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Aldo M.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Franca B.</span></td>
@@ -130,7 +131,7 @@
               <td class="avail-cell"><span class="slot-pill slot-booked">Nino R.</span></td>
             </tr>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">11:00</td>
+              <td class="td-header-muted">11:00</td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Lucia D.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
               <td class="avail-cell"><span class="slot-pill slot-open">Libero</span></td>
@@ -138,10 +139,10 @@
               <td class="avail-cell"><span class="slot-pill slot-booked">Dario S.</span></td>
             </tr>
             <tr>
-              <td colspan="6" style="background:#f8fafc;text-align:center;font-size:.78rem;color:var(--text-muted);padding:.5rem;font-weight:600;">— Pausa pranzo 12:00–15:00 —</td>
+              <td colspan="6" class="td-empty-state">— Pausa pranzo 12:00–15:00 —</td>
             </tr>
             <tr>
-              <td style="font-weight:600;font-size:.78rem;color:var(--text-muted);text-align:center;">15:00</td>
+              <td class="td-header-muted">15:00</td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Marco B.</span></td>
               <td class="avail-cell"><span class="slot-pill slot-closed">Chiuso</span></td>
               <td class="avail-cell"><span class="slot-pill slot-booked">Laura T.</span></td>
@@ -151,11 +152,11 @@
           </tbody>
         </table>
       </div>
-      <div style="padding:.875rem 1.25rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1rem;font-size:.8rem;">
-        <span style="display:inline-flex;align-items:center;gap:.375rem;"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--success-light);border:1px solid var(--success);"></span>Libero</span>
-        <span style="display:inline-flex;align-items:center;gap:.375rem;"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--warning-light);border:1px solid var(--warning);"></span>Prenotato</span>
-        <span style="display:inline-flex;align-items:center;gap:.375rem;"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#f1f5f9;border:1px solid var(--border);"></span>Non disponibile</span>
-        <div style="margin-left:auto;">
+      <div class="card-footer-bar">
+        <span class="d-inline-flex align-items-center gap-xs"><span class="legend-swatch legend-swatch-success"></span>Libero</span>
+        <span class="d-inline-flex align-items-center gap-xs"><span class="legend-swatch legend-swatch-warning"></span>Prenotato</span>
+        <span class="d-inline-flex align-items-center gap-xs"><span class="legend-swatch legend-swatch-neutral"></span>Non disponibile</span>
+        <div class="ms-auto">
           <button type="button" class="btn btn-outline btn-sm me-1">Blocca giorno</button>
           <button type="button" class="btn btn-outline btn-sm">Copia settimana tipo</button>
         </div>
@@ -165,5 +166,10 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+.topbar-week-label { font-size: .875rem; font-weight: 600; color: var(--dark); }
+</style>
 </body>
 </html>
+
+

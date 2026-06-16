@@ -18,19 +18,20 @@
     <div class="admin-nav-section">Gestione</div>
     <a href="dashboard.html" class="admin-nav-link"><i class="fa-solid fa-house"></i> Dashboard</a>
     <a href="prenotazioni.html" class="admin-nav-link active"><i class="fa-regular fa-calendar-check"></i> Prenotazioni <span class="admin-nav-badge">5</span></a>
+    <a href="agenda.html" class="admin-nav-link"><i class="fa-solid fa-calendar-week"></i> Agenda</a>
     <a href="ricette.html" class="admin-nav-link"><i class="fa-solid fa-pills"></i> Ricette <span class="admin-nav-badge">8</span></a>
     <a href="certificati.html" class="admin-nav-link"><i class="fa-solid fa-file-medical"></i> Certificati <span class="admin-nav-badge">3</span></a>
     <a href="messaggi.html" class="admin-nav-link"><i class="fa-regular fa-envelope"></i> Messaggi <span class="admin-nav-badge">12</span></a>
-    <div class="admin-nav-section" style="margin-top:.5rem;">Configurazione</div>
+    <div class="admin-nav-section mt-2">Configurazione</div>
     <a href="pazienti.html" class="admin-nav-link"><i class="fa-solid fa-users"></i> Pazienti</a>
     <a href="disponibilita.html" class="admin-nav-link"><i class="fa-regular fa-calendar"></i> Disponibilità</a>
-    <a href="#" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
+    <a href="impostazioni.html" class="admin-nav-link"><i class="fa-solid fa-gear"></i> Impostazioni</a>
   </nav>
   <div class="admin-footer">
     <div class="admin-user">
       <div class="admin-avatar">MR</div>
       <div><div class="admin-user-name">Dott. Mario Rossi</div><div class="admin-user-role">Medico</div></div>
-      <a href="../login.html" style="margin-left:auto;color:rgba(255,255,255,.4);font-size:.875rem;" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a>
+      <a href="../login.html" class="ms-auto sidebar-exit-link" title="Esci"><i class="fa-solid fa-right-from-bracket"></i></a>
     </div>
   </div>
 </aside>
@@ -45,11 +46,11 @@
   <div class="admin-body">
 
     <!-- FILTRI -->
-    <div style="background:white;border:1px solid var(--border);border-radius:14px;padding:1.25rem;margin-bottom:1.25rem;">
-      <div style="display:flex;gap:.875rem;flex-wrap:wrap;align-items:flex-end;">
-        <div style="flex:1;min-width:160px;">
+    <div class="card-filter-bar">
+      <div class="d-flex gap-3 flex-wrap align-items-end">
+        <div class="flex-min-160">
           <label class="form-label">Medico</label>
-          <select class="form-select">
+          <select class="form-select" aria-label="Filtra per medico">
             <option>Tutti i medici</option>
             <option selected>Dott. Rossi</option>
             <option>Dott.ssa Bianchi</option>
@@ -57,13 +58,13 @@
             <option>Dott.ssa Ferrari</option>
           </select>
         </div>
-        <div style="flex:1;min-width:140px;">
+        <div class="flex-min-140">
           <label class="form-label">Data</label>
-          <input type="date" class="form-control" value="2025-06-09">
+          <input type="date" class="form-control" value="2025-06-09" aria-label="Filtra per data">
         </div>
-        <div style="flex:1;min-width:140px;">
+        <div class="flex-min-140">
           <label class="form-label">Stato</label>
-          <select class="form-select">
+          <select class="form-select" aria-label="Filtra per stato">
             <option>Tutti</option>
             <option selected>In attesa</option>
             <option>Confermati</option>
@@ -78,11 +79,11 @@
     </div>
 
     <!-- TABS -->
-    <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.25rem;">
-      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;cursor:pointer;">In attesa (5)</button>
-      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Confermate (43)</button>
-      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Rifiutate (3)</button>
-      <button type="button" style="padding:.625rem 1.25rem;border:none;background:none;font-size:.875rem;font-weight:500;color:var(--text-muted);cursor:pointer;">Tutte</button>
+    <div class="tab-bar">
+      <button type="button" class="tab-btn tab-btn-active">In attesa (5)</button>
+      <button type="button" class="tab-btn">Confermate (43)</button>
+      <button type="button" class="tab-btn">Rifiutate (3)</button>
+      <button type="button" class="tab-btn">Tutte</button>
     </div>
 
     <div class="data-card">
@@ -101,79 +102,79 @@
         <tbody>
           <tr>
             <td>
-              <div style="display:flex;align-items:center;gap:.625rem;">
-                <div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">MB</div>
+              <div class="d-flex align-items-center gap-md">
+                <div class="avatar-xs avatar-xs-primary">MB</div>
                 <div>
-                  <div style="font-weight:600;font-size:.85rem;">Mario Bianchi</div>
-                  <div style="font-size:.72rem;color:var(--text-muted);">mario.bianchi@gmail.com</div>
+                  <div class="fw-600 text-sm">Mario Bianchi</div>
+                  <div class="text-2xs text-muted">mario.bianchi@gmail.com</div>
                 </div>
               </div>
             </td>
-            <td style="font-size:.85rem;">Dott. Rossi</td>
+            <td class="text-sm">Dott. Rossi</td>
             <td>
-              <div style="font-weight:600;font-size:.85rem;">16/06/2025</div>
-              <div style="font-size:.78rem;color:var(--primary);">Ore 10:30</div>
+              <div class="fw-600 text-sm">16/06/2025</div>
+              <div class="text-xxs text-primary">Ore 10:30</div>
             </td>
-            <td style="font-size:.82rem;max-width:160px;">Visita di controllo</td>
-            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 09:47</td>
+            <td class="text-82 max-w-160">Visita di controllo</td>
+            <td class="text-2xs text-muted">Oggi 09:47</td>
             <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
             <td>
-              <div style="display:flex;gap:.375rem;">
+              <div class="d-flex gap-xs">
                 <button type="button" onclick="this.closest('tr').querySelector('.badge').outerHTML='<span class=\'badge badge-confermato\'>✓ Confermato</span>'" class="btn btn-success btn-sm">Conferma</button>
-                <button type="button" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
+                <button type="button" class="btn btn-outline btn-sm btn-outline-danger">Rifiuta</button>
                 <button type="button" class="btn btn-ghost btn-sm btn-icon" title="Dettaglio"><i class="fa-solid fa-eye"></i></button>
               </div>
             </td>
           </tr>
           <tr>
             <td>
-              <div style="display:flex;align-items:center;gap:.625rem;">
-                <div style="width:32px;height:32px;border-radius:50%;background:#dcfce7;color:var(--success);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">LM</div>
+              <div class="d-flex align-items-center gap-md">
+                <div class="avatar-xs avatar-xs-success">LM</div>
                 <div>
-                  <div style="font-weight:600;font-size:.85rem;">Laura Montanari</div>
-                  <div style="font-size:.72rem;color:var(--text-muted);">l.montanari@outlook.com</div>
+                  <div class="fw-600 text-sm">Laura Montanari</div>
+                  <div class="text-2xs text-muted">l.montanari@outlook.com</div>
                 </div>
               </div>
             </td>
-            <td style="font-size:.85rem;">Dott.ssa Bianchi</td>
+            <td class="text-sm">Dott.ssa Bianchi</td>
             <td>
-              <div style="font-weight:600;font-size:.85rem;">17/06/2025</div>
-              <div style="font-size:.78rem;color:var(--primary);">Ore 9:00</div>
+              <div class="fw-600 text-sm">17/06/2025</div>
+              <div class="text-xxs text-primary">Ore 9:00</div>
             </td>
-            <td style="font-size:.82rem;">Prima visita</td>
-            <td style="font-size:.78rem;color:var(--text-muted);">Oggi 08:21</td>
+            <td class="text-82">Prima visita</td>
+            <td class="text-2xs text-muted">Oggi 08:21</td>
             <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
             <td>
-              <div style="display:flex;gap:.375rem;">
+              <div class="d-flex gap-xs">
                 <button type="button" class="btn btn-success btn-sm">Conferma</button>
-                <button type="button" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
-                <button type="button" class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-outline btn-sm btn-outline-danger">Rifiuta</button>
+                <button type="button" class="btn btn-ghost btn-sm btn-icon" aria-label="Visualizza dettaglio"><i class="fa-solid fa-eye"></i></button>
               </div>
             </td>
           </tr>
           <tr>
             <td>
-              <div style="display:flex;align-items:center;gap:.625rem;">
-                <div style="width:32px;height:32px;border-radius:50%;background:#fef3c7;color:var(--warning);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;">GP</div>
+              <div class="d-flex align-items-center gap-md">
+                <div class="avatar-xs avatar-xs-warning">GP</div>
                 <div>
-                  <div style="font-weight:600;font-size:.85rem;">Giorgio Pari</div>
-                  <div style="font-size:.72rem;color:var(--text-muted);">giorgio.p@gmail.com</div>
+                  <div class="fw-600 text-sm">Giorgio Pari</div>
+                  <div class="text-2xs text-muted">giorgio.p@gmail.com</div>
                 </div>
               </div>
             </td>
-            <td style="font-size:.85rem;">Dott. Verdi</td>
+            <td class="text-sm">Dott. Verdi</td>
             <td>
-              <div style="font-weight:600;font-size:.85rem;">18/06/2025</div>
-              <div style="font-size:.78rem;color:var(--primary);">Ore 11:30</div>
+              <div class="fw-600 text-sm">18/06/2025</div>
+              <div class="text-xxs text-primary">Ore 11:30</div>
             </td>
-            <td style="font-size:.82rem;">Rinnovo terapia ipertensione</td>
-            <td style="font-size:.78rem;color:var(--danger);">Ieri 17:44 ⚠️</td>
+            <td class="text-82">Rinnovo terapia ipertensione</td>
+            <td class="text-2xs text-danger">Ieri 17:44 ⚠️</td>
             <td><span class="badge badge-attesa"><i class="fa-regular fa-clock"></i> Attesa</span></td>
             <td>
-              <div style="display:flex;gap:.375rem;">
+              <div class="d-flex gap-xs">
                 <button type="button" class="btn btn-success btn-sm">Conferma</button>
-                <button type="button" class="btn btn-outline btn-sm" style="color:var(--danger);border-color:var(--danger);">Rifiuta</button>
-                <button type="button" class="btn btn-ghost btn-sm btn-icon"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-outline btn-sm btn-outline-danger">Rifiuta</button>
+                <button type="button" class="btn btn-ghost btn-sm btn-icon" aria-label="Visualizza dettaglio"><i class="fa-solid fa-eye"></i></button>
               </div>
             </td>
           </tr>
@@ -186,3 +187,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
